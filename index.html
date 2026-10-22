@@ -25,6 +25,7 @@
     <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon_io/apple-touch-icon.png" />
     <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon_io/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon_io/favicon-16x16.png" />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
     <link rel="manifest" href="assets/favicon_io/site.webmanifest" />
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
@@ -49,8 +50,7 @@
         const saved = localStorage.getItem("theme");
         if (saved === "light") document.documentElement.classList.remove("dark");
         else document.documentElement.classList.add("dark");
-    </script>
-    <script>
+
         tailwind.config = {
             theme: {
                 extend: {
@@ -67,10 +67,11 @@
                     },
                 },
             },
-        }
+        };
     </script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap" rel="stylesheet" />
 </head>
 
 <body class="bg-base text-primary font-sans antialiased min-h-screen flex flex-col">
@@ -108,7 +109,7 @@
                 Hor Tongan
             </h1>
             <p class="text-lg text-sub leading-relaxed max-w-2xl mb-8">
-                Hi! I'm an IT student at The University of Cambodia. I like building things on the side to learn, mostly apps, tools, games, and whatever seems interesting next.
+                Hello! I'm an IT student at The University of Cambodia. I like building things on the side to learn such as apps, tools, games, and whatever seems cool or interesting next.
             </p>
             <div class="flex flex-wrap gap-3">
                 <a href="projects/index.html"
@@ -128,14 +129,14 @@
                 <div>
                     <p class="text-base text-primary font-medium uppercase tracking-widest mb-6">Studying</p>
                     <p class="text-base text-sub leading-relaxed">
-                        Third-year IT at The University of Cambodia.
+                        Third-year Information Technology at The University of Cambodia.
                     </p>
                 </div>
 
                 <div>
                     <p class="text-base text-primary font-medium uppercase tracking-widest mb-6">Learning</p>
                     <p class="text-base text-sub leading-relaxed">
-                        Java, C++, Python, Android development, and better ways to organize my code.
+                        Java, C++, Python, Android development, and better ways to optimize my code.
                     </p>
                 </div>
 
@@ -162,8 +163,8 @@
                 <!-- Wordle++ -->
                 <a href="projects/wordlepp.html"
                     class="group flex flex-col sm:flex-row gap-0 sm:gap-8 py-8 text-primary hover:bg-surface transition-colors duration-150 -mx-6 px-6">
-                    <div class="shrink-0 w-full sm:w-64 aspect-video bg-surface border border-line rounded overflow-hidden mb-5 sm:mb-0">
-                        <img src="assets/images/projects/wordlepp/wordlepp_guest_menu.png" alt="Wordle++ guest menu"
+                    <div class="self-start shrink-0 w-full sm:w-64 aspect-video bg-surface border border-line rounded overflow-hidden mb-5 sm:mb-0">
+                        <img src="assets/images/projects/wordlepp/wordlepp_guest_menu.png" alt="Wordle++ guest menu" width="1322" height="743"
                             class="w-full h-full object-cover" />
                     </div>
                     <div class="flex-1 min-w-0 flex flex-col justify-between">
@@ -188,8 +189,8 @@
                 <!-- PyDFile -->
                 <a href="projects/pydfile.html"
                     class="group flex flex-col sm:flex-row gap-0 sm:gap-8 py-8 text-primary hover:bg-surface transition-colors duration-150 -mx-6 px-6">
-                    <div class="shrink-0 w-full sm:w-64 aspect-video bg-surface border border-line rounded overflow-hidden mb-5 sm:mb-0">
-                        <img src="assets/images/projects/pydfile/pydfile_dark.jpg" alt="PyDFile dark mode dashboard"
+                    <div class="self-start shrink-0 w-full sm:w-64 aspect-video bg-surface border border-line rounded overflow-hidden mb-5 sm:mb-0">
+                        <img src="assets/images/projects/pydfile/pydfile_dark.jpg" alt="PyDFile dark mode dashboard" width="1102" height="749"
                             class="w-full h-full object-cover" />
                     </div>
                     <div class="flex-1 min-w-0 flex flex-col justify-between">
@@ -199,7 +200,7 @@
                                 <span class="text-sm text-muted">2026 · Windows · Python</span>
                             </div>
                             <p class="text-base text-sub leading-relaxed mb-5">
-                                A local-first desktop PDF utility built in Python. Handles merging, splitting, page reordering, compression, watermarking, page numbering, locking, unlocking, image conversion, and text extraction.
+                                A local-first desktop PDF tool built in Python. Handles merging, splitting, page reordering, compression, watermarking, page numbering, locking, unlocking, image conversion, and text extraction.
                             </p>
                         </div>
                         <div class="flex flex-wrap gap-1.5">
@@ -215,8 +216,8 @@
                 <!-- Genera -->
                 <a href="projects/genera.html"
                     class="group flex flex-col sm:flex-row gap-0 sm:gap-8 py-8 text-primary hover:bg-surface transition-colors duration-150 -mx-6 px-6">
-                    <div class="shrink-0 w-full sm:w-64 aspect-video bg-surface border border-line rounded overflow-hidden mb-5 sm:mb-0">
-                        <img src="assets/images/projects/genera/genera_dashboard.jpg" alt="Genera study dashboard"
+                    <div class="self-start shrink-0 w-full sm:w-64 aspect-video bg-surface border border-line rounded overflow-hidden mb-5 sm:mb-0">
+                        <img src="assets/images/projects/genera/genera_dashboard.jpg" alt="Genera study dashboard" width="1066" height="597"
                             class="w-full h-full object-cover" />
                     </div>
                     <div class="flex-1 min-w-0 flex flex-col justify-between">
@@ -303,11 +304,11 @@
             <div class="space-y-3 text-base">
                 <div class="flex flex-wrap justify-between gap-3">
                     <span class="text-muted">Phone</span>
-                    <a href="tel:0965700151" class="text-sub text-right hover:text-primary transition-colors duration-150">0965700151</a>
+                    <a href="tel:0965700151" class="text-sub text-right underline underline-offset-4 decoration-sub hover:text-primary hover:decoration-primary transition-colors duration-150">0965700151</a>
                 </div>
                 <div class="flex flex-wrap justify-between gap-3">
                     <span class="text-muted">Email</span>
-                    <a href="mailto:tonganwashere@gmail.com" class="text-sub text-right hover:text-primary transition-colors duration-150">tonganwashere@gmail.com</a>
+                    <a href="mailto:tonganwashere@gmail.com" class="text-sub text-right underline underline-offset-4 decoration-sub hover:text-primary hover:decoration-primary transition-colors duration-150">tonganwashere@gmail.com</a>
                 </div>
             </div>
         </section>
@@ -319,7 +320,7 @@
         <p class="text-sm text-muted">
             Designed and built from scratch ·
             <a href="https://github.com/tonganwashere/portfolio" target="_blank" rel="noopener noreferrer"
-                class="hover:text-primary transition-colors duration-150 underline underline-offset-4 decoration-line hover:decoration-muted">Source on GitHub</a>
+                class="hover:text-primary transition-colors duration-150 underline underline-offset-4 decoration-sub hover:decoration-primary">Source on GitHub</a>
         </p>
     </footer>
 
