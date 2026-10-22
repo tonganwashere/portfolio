@@ -25,6 +25,7 @@
     <link rel="apple-touch-icon" sizes="180x180" href="../assets/favicon_io/apple-touch-icon.png" />
     <link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon_io/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="../assets/favicon_io/favicon-16x16.png" />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
     <link rel="manifest" href="../assets/favicon_io/site.webmanifest" />
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
@@ -52,8 +53,7 @@
         const saved = localStorage.getItem("theme");
         if (saved === "light") document.documentElement.classList.remove("dark");
         else document.documentElement.classList.add("dark");
-    </script>
-    <script>
+
         tailwind.config = {
             theme: {
                 extend: {
@@ -70,10 +70,11 @@
                     },
                 },
             },
-        }
+        };
     </script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap" rel="stylesheet" />
 </head>
 
 <body class="bg-base text-primary font-sans antialiased min-h-screen flex flex-col">
@@ -113,7 +114,7 @@
                 <span class="text-primary">Wordle++</span>
             </div>
             <div class="flex gap-4 text-base text-sub">
-                <span class="opacity-30 cursor-not-allowed">← Prev</span>
+                <span class="text-base text-sub opacity-30 cursor-not-allowed">← Prev</span>
                 <a href="flip_decibel.html" class="hover:text-primary transition-colors duration-150">Flip Decibel →</a>
             </div>
         </div>
@@ -128,7 +129,7 @@
                     </p>
                 </div>
                 <img src="../assets/images/projects/wordlepp/wordlepp_logo.png" alt="Wordle++ logo"
-                    class="h-20 w-20 object-contain opacity-90 shrink-0" />
+                    width="80" height="80" class="h-20 w-20 object-contain opacity-90 shrink-0" />
             </div>
             <div class="flex flex-wrap gap-2">
                 <span class="text-sm text-muted border border-line rounded-full px-3 py-1">C++</span>
@@ -189,11 +190,12 @@
 
                 <button type="button"
                     class="relative aspect-video rounded-lg overflow-hidden bg-surface border border-line cursor-pointer hover:opacity-90 transition-opacity duration-150 sm:col-span-2"
-                    data-label="Wordle++ showcase video">
+                    data-label="Wordle++ showcase video"
+                    aria-label="Play Wordle++ showcase video">
                     <video src="../assets/images/projects/wordlepp/wordlepp_vid.mp4"
                         poster="../assets/images/projects/wordlepp/wordlepp_vid_poster.jpg"
                         aria-label="Wordle++ showcase video" playsinline tabindex="-1" preload="metadata"
-                        class="h-full w-full object-cover"></video>
+                        width="1920" height="1080" class="h-full w-full object-cover"></video>
                     <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
                         <div class="flex items-center justify-center w-12 h-12 rounded-full bg-black/50">
                             <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="white"><polygon points="6,3 20,12 6,21"/></svg>
@@ -204,67 +206,67 @@
                 <button type="button"
                     class="aspect-video rounded-lg overflow-hidden bg-surface border border-line cursor-pointer hover:opacity-90 transition-opacity duration-150">
                     <img src="../assets/images/projects/wordlepp/wordlepp_guest_menu.png" alt="Guest menu"
-                        class="h-full w-full object-cover" />
+                        width="1322" height="743" class="h-full w-full object-cover" />
                 </button>
 
                 <button type="button"
                     class="aspect-video rounded-lg overflow-hidden bg-surface border border-line cursor-pointer hover:opacity-90 transition-opacity duration-150">
                     <img src="../assets/images/projects/wordlepp/wordlepp_game_modes.png" alt="Game mode selection"
-                        class="h-full w-full object-cover" />
+                        width="919" height="516" class="h-full w-full object-cover" />
                 </button>
 
                 <button type="button"
                     class="aspect-video rounded-lg overflow-hidden bg-surface border border-line cursor-pointer hover:opacity-90 transition-opacity duration-150">
                     <img src="../assets/images/projects/wordlepp/wordlepp_3_letters.png" alt="3-letter mode"
-                        class="h-full w-full object-cover" />
+                        width="1460" height="821" class="h-full w-full object-cover" />
                 </button>
 
                 <button type="button"
                     class="aspect-video rounded-lg overflow-hidden bg-surface border border-line cursor-pointer hover:opacity-90 transition-opacity duration-150">
                     <img src="../assets/images/projects/wordlepp/wordlepp_5_letters.png" alt="5-letter mode"
-                        class="h-full w-full object-cover" />
+                        width="1460" height="821" class="h-full w-full object-cover" />
                 </button>
 
                 <button type="button"
                     class="aspect-video rounded-lg overflow-hidden bg-surface border border-line cursor-pointer hover:opacity-90 transition-opacity duration-150">
                     <img src="../assets/images/projects/wordlepp/wordlepp_6_letters.png" alt="6-letter mode"
-                        class="h-full w-full object-cover" />
+                        width="1460" height="821" class="h-full w-full object-cover" />
                 </button>
 
                 <button type="button"
                     class="aspect-video rounded-lg overflow-hidden bg-surface border border-line cursor-pointer hover:opacity-90 transition-opacity duration-150">
                     <img src="../assets/images/projects/wordlepp/wordlepp_leaderboard.png" alt="Leaderboard"
-                        class="h-full w-full object-cover" />
+                        width="919" height="516" class="h-full w-full object-cover" />
                 </button>
 
                 <button type="button"
                     class="aspect-video rounded-lg overflow-hidden bg-surface border border-line cursor-pointer hover:opacity-90 transition-opacity duration-150">
                     <img src="../assets/images/projects/wordlepp/wordlepp_admin_menu.png" alt="Admin menu"
-                        class="h-full w-full object-cover" />
+                        width="1460" height="821" class="h-full w-full object-cover" />
                 </button>
 
                 <button type="button"
                     class="aspect-video rounded-lg overflow-hidden bg-surface border border-line cursor-pointer hover:opacity-90 transition-opacity duration-150">
                     <img src="../assets/images/projects/wordlepp/wordlepp_admin_game.png" alt="Admin game panel"
-                        class="h-full w-full object-cover" />
+                        width="1460" height="821" class="h-full w-full object-cover" />
                 </button>
 
                 <button type="button"
                     class="aspect-video rounded-lg overflow-hidden bg-surface border border-line cursor-pointer hover:opacity-90 transition-opacity duration-150">
                     <img src="../assets/images/projects/wordlepp/wordlepp_wordbank.png" alt="Word bank editor"
-                        class="h-full w-full object-cover" />
+                        width="919" height="516" class="h-full w-full object-cover" />
                 </button>
 
                 <button type="button"
                     class="aspect-video rounded-lg overflow-hidden bg-surface border border-line cursor-pointer hover:opacity-90 transition-opacity duration-150">
                     <img src="../assets/images/projects/wordlepp/wordlepp_pause_screen.png" alt="Pause screen"
-                        class="h-full w-full object-cover" />
+                        width="919" height="516" class="h-full w-full object-cover" />
                 </button>
 
                 <button type="button"
                     class="aspect-video rounded-lg overflow-hidden bg-surface border border-line cursor-pointer hover:opacity-90 transition-opacity duration-150">
                     <img src="../assets/images/projects/wordlepp/wordlepp_delete_player.png" alt="Delete player panel"
-                        class="h-full w-full object-cover" />
+                        width="919" height="516" class="h-full w-full object-cover" />
                 </button>
 
             </div>
@@ -279,25 +281,25 @@
     </main>
 
     <!-- Media Viewer -->
-    <div id="media-viewer" class="media-viewer fixed inset-0 z-50 px-6 py-8 sm:px-10 sm:py-10" tabindex="-1"
+    <div id="media-viewer" role="dialog" aria-modal="true" aria-labelledby="viewer-label" class="media-viewer fixed inset-0 z-50 px-6 py-8 sm:px-10 sm:py-10" tabindex="-1"
         style="background-color: rgba(0, 0, 0, 0.85);" hidden>
-        <button type="button" id="viewer-close"
-            class="absolute right-5 top-5 z-20 h-11 w-11 text-lg text-primary hover:text-white transition-colors duration-150">
-            x
+        <button type="button" id="viewer-close" aria-label="Close viewer"
+            class="absolute right-5 top-5 z-20 h-11 w-11 text-lg text-white/80 hover:text-white transition-colors duration-150">
+            ✕
         </button>
-        <button type="button" id="viewer-prev"
-            class="absolute left-5 top-1/2 z-20 h-11 w-11 -translate-y-1/2 text-2xl text-primary hover:text-white transition-colors duration-150">
+        <button type="button" id="viewer-prev" aria-label="Previous media"
+            class="absolute left-5 top-1/2 z-20 h-11 w-11 -translate-y-1/2 text-2xl text-white/80 hover:text-white transition-colors duration-150">
             ←
         </button>
-        <button type="button" id="viewer-next"
-            class="absolute right-5 top-1/2 z-20 h-11 w-11 -translate-y-1/2 text-2xl text-primary hover:text-white transition-colors duration-150">
+        <button type="button" id="viewer-next" aria-label="Next media"
+            class="absolute right-5 top-1/2 z-20 h-11 w-11 -translate-y-1/2 text-2xl text-white/80 hover:text-white transition-colors duration-150">
             →
         </button>
         <div class="mx-auto flex h-full max-w-6xl items-center justify-center">
             <div class="relative flex w-full flex-col items-center justify-center">
                 <div id="viewer-frame" class="flex min-h-[320px] w-full items-center justify-center overflow-hidden">
                 </div>
-                <p id="viewer-label" class="mt-4 text-center text-base text-primary">
+                <p id="viewer-label" class="mt-4 text-center text-base text-white">
                 </p>
             </div>
         </div>
@@ -308,7 +310,7 @@
         <p class="text-sm text-muted">
             Designed and built from scratch ·
             <a href="https://github.com/tonganwashere/portfolio" target="_blank" rel="noopener noreferrer"
-                class="hover:text-primary transition-colors duration-150 underline underline-offset-4 decoration-line hover:decoration-muted">Source on GitHub</a>
+                class="hover:text-primary transition-colors duration-150 underline underline-offset-4 decoration-sub hover:decoration-primary">Source on GitHub</a>
         </p>
     </footer>
 
