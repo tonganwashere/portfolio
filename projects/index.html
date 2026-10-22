@@ -6,11 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Projects - Hor Tongan</title>
     <meta name="description" content="A collection of software projects by Hor Tongan." />
-    <link rel="canonical" href="https://tongan.dev/projects/" />
+    <link rel="canonical" href="https://tongan.dev/projects/index.html" />
 
     <!-- Open Graph / Facebook / LinkedIn / Discord / Telegram -->
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://tongan.dev/projects/" />
+    <meta property="og:url" content="https://tongan.dev/projects/index.html" />
     <meta property="og:title" content="Projects - Hor Tongan" />
     <meta property="og:description" content="A collection of software projects by Hor Tongan." />
     <meta property="og:image" content="https://tongan.dev/assets/images/og_image.png" />
@@ -18,13 +18,14 @@
 
     <!-- Twitter / X -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:url" content="https://tongan.dev/projects/" />
+    <meta name="twitter:url" content="https://tongan.dev/projects/index.html" />
     <meta name="twitter:title" content="Projects - Hor Tongan" />
     <meta name="twitter:description" content="A collection of software projects by Hor Tongan." />
     <meta name="twitter:image" content="https://tongan.dev/assets/images/og_image.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="../assets/favicon_io/apple-touch-icon.png" />
     <link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon_io/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="../assets/favicon_io/favicon-16x16.png" />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
     <link rel="manifest" href="../assets/favicon_io/site.webmanifest" />
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
@@ -49,8 +50,7 @@
         const saved = localStorage.getItem("theme");
         if (saved === "light") document.documentElement.classList.remove("dark");
         else document.documentElement.classList.add("dark");
-    </script>
-    <script>
+
         tailwind.config = {
             theme: {
                 extend: {
@@ -67,10 +67,11 @@
                     },
                 },
             },
-        }
+        };
     </script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap" rel="stylesheet" />
 </head>
 
 <body class="bg-base text-primary font-sans antialiased min-h-screen flex flex-col">
@@ -112,18 +113,23 @@
             <div class="divide-y divide-line">
 
                 <!-- Wordle++ -->
-                <div class="flex flex-col sm:flex-row gap-0 sm:gap-8 py-10">
-                    <a href="wordlepp.html" class="shrink-0 w-full sm:w-80 aspect-video bg-surface border border-line rounded overflow-hidden mb-5 sm:mb-0 block hover:opacity-90 transition-opacity duration-150">
+                <div class="flex flex-col sm:flex-row gap-0 sm:gap-8 py-8 -mx-6 px-6 hover:bg-surface transition-colors duration-150 rounded">
+                    <a href="wordlepp.html" class="self-start shrink-0 w-full sm:w-96 aspect-video bg-surface border border-line rounded overflow-hidden mb-5 sm:mb-0 block hover:opacity-90 transition-opacity duration-150">
                         <img src="../assets/images/projects/wordlepp/wordlepp_guest_menu.png" alt="Wordle++ guest menu"
-                            class="w-full h-full object-cover" />
+                            width="1322" height="743" class="w-full h-full object-cover" />
                     </a>
                     <div class="flex-1 min-w-0 flex flex-col justify-between">
                         <div>
                             <div class="flex flex-wrap items-baseline gap-3 mb-1">
-                                <h2><a href="wordlepp.html" class="text-lg font-medium text-primary hover:text-sub transition-colors duration-150">Wordle++</a></h2>
+                                <h2 class="text-lg font-medium text-primary"><a href="wordlepp.html" class="hover:text-sub transition-colors duration-150">Wordle++</a></h2>
                                 <span class="text-sm text-muted">2026 · Terminal · Finished</span>
                             </div>
-                            <p class="text-base text-muted mb-4">C++ · FTXUI · nlohmann/json · CMake</p>
+                            <div class="flex flex-wrap gap-1.5 mb-4">
+                                <span class="text-xs text-muted border border-line rounded-full px-2 py-0.5">C++</span>
+                                <span class="text-xs text-muted border border-line rounded-full px-2 py-0.5">FTXUI</span>
+                                <span class="text-xs text-muted border border-line rounded-full px-2 py-0.5">nlohmann/json</span>
+                                <span class="text-xs text-muted border border-line rounded-full px-2 py-0.5">CMake</span>
+                            </div>
                             <p class="text-base text-sub leading-relaxed mb-6">
                                 A terminal-based Wordle clone with four game modes: 3, 5, and 6 letter words, plus a daily challenge. Players can create accounts, track wins and streaks on a leaderboard, and there's a built-in admin panel for managing word banks and player records at runtime without touching any files. Written solo over about a month.
                             </p>
@@ -142,18 +148,22 @@
                 </div>
 
                 <!-- Flip Decibel -->
-                <div class="flex flex-col sm:flex-row gap-0 sm:gap-8 py-10">
-                    <a href="flip_decibel.html" class="shrink-0 w-full sm:w-80 aspect-video bg-surface border border-line rounded overflow-hidden mb-5 sm:mb-0 block hover:opacity-90 transition-opacity duration-150">
+                <div class="flex flex-col sm:flex-row gap-0 sm:gap-8 py-8 -mx-6 px-6 hover:bg-surface transition-colors duration-150 rounded">
+                    <a href="flip_decibel.html" class="self-start shrink-0 w-full sm:w-96 aspect-video bg-surface border border-line rounded overflow-hidden mb-5 sm:mb-0 block hover:opacity-90 transition-opacity duration-150">
                         <img src="../assets/images/projects/flip_decibel/flip_decibel_starter_screen.jpg"
-                            alt="Flip Decibel starter screen" class="w-full h-full object-cover" />
+                            alt="Flip Decibel starter screen" width="629" height="1280" class="w-full h-full object-cover" />
                     </a>
                     <div class="flex-1 min-w-0 flex flex-col justify-between">
                         <div>
                             <div class="flex flex-wrap items-baseline gap-3 mb-1">
-                                <h2><a href="flip_decibel.html" class="text-lg font-medium text-primary hover:text-sub transition-colors duration-150">Flip Decibel</a></h2>
+                                <h2 class="text-lg font-medium text-primary"><a href="flip_decibel.html" class="hover:text-sub transition-colors duration-150">Flip Decibel</a></h2>
                                 <span class="text-sm text-muted">2026 · Android · Finished</span>
                             </div>
-                            <p class="text-base text-muted mb-4">Java · Android · OpenGL ES 2.0</p>
+                            <div class="flex flex-wrap gap-1.5 mb-4">
+                                <span class="text-xs text-muted border border-line rounded-full px-2 py-0.5">Java</span>
+                                <span class="text-xs text-muted border border-line rounded-full px-2 py-0.5">Android</span>
+                                <span class="text-xs text-muted border border-line rounded-full px-2 py-0.5">OpenGL ES 2.0</span>
+                            </div>
                             <p class="text-base text-sub leading-relaxed mb-6">
                                 An Android coin-flip app with a 3D coin rendered in OpenGL ES 2.0. The coin has adjustable flip speed and a full skin system, custom labels, images, or animal skins on each side. There's also a hidden Rig Mode that silently ties the result to your phone's volume, so you always get the side you want. My first Android app and first time working with OpenGL, built solo over two months.
                             </p>
@@ -171,18 +181,24 @@
                 </div>
 
                 <!-- PyDFile -->
-                <div class="flex flex-col sm:flex-row gap-0 sm:gap-8 py-10">
-                    <a href="pydfile.html" class="shrink-0 w-full sm:w-80 aspect-video bg-surface border border-line rounded overflow-hidden mb-5 sm:mb-0 block hover:opacity-90 transition-opacity duration-150">
+                <div class="flex flex-col sm:flex-row gap-0 sm:gap-8 py-8 -mx-6 px-6 hover:bg-surface transition-colors duration-150 rounded">
+                    <a href="pydfile.html" class="self-start shrink-0 w-full sm:w-96 aspect-video bg-surface border border-line rounded overflow-hidden mb-5 sm:mb-0 block hover:opacity-90 transition-opacity duration-150">
                         <img src="../assets/images/projects/pydfile/pydfile_dark.jpg" alt="PyDFile dark mode dashboard"
-                            class="w-full h-full object-cover" />
+                            width="1102" height="749" class="w-full h-full object-cover" />
                     </a>
                     <div class="flex-1 min-w-0 flex flex-col justify-between">
                         <div>
                             <div class="flex flex-wrap items-baseline gap-3 mb-1">
-                                <h2><a href="pydfile.html" class="text-lg font-medium text-primary hover:text-sub transition-colors duration-150">PyDFile</a></h2>
+                                <h2 class="text-lg font-medium text-primary"><a href="pydfile.html" class="hover:text-sub transition-colors duration-150">PyDFile</a></h2>
                                 <span class="text-sm text-muted">2026 · Windows · Finished</span>
                             </div>
-                            <p class="text-base text-muted mb-4">Python · CustomTkinter · PyMuPDF · pikepdf · PyInstaller</p>
+                            <div class="flex flex-wrap gap-1.5 mb-4">
+                                <span class="text-xs text-muted border border-line rounded-full px-2 py-0.5">Python</span>
+                                <span class="text-xs text-muted border border-line rounded-full px-2 py-0.5">CustomTkinter</span>
+                                <span class="text-xs text-muted border border-line rounded-full px-2 py-0.5">PyMuPDF</span>
+                                <span class="text-xs text-muted border border-line rounded-full px-2 py-0.5">pikepdf</span>
+                                <span class="text-xs text-muted border border-line rounded-full px-2 py-0.5">PyInstaller</span>
+                            </div>
                             <p class="text-base text-sub leading-relaxed mb-6">
                                 A local-first desktop PDF tool built in Python. Covers merging, splitting, page reordering, compression, watermarking, page numbering, password protection, unlocking, image conversion, and text extraction. Works completely offline and is packaged as a standalone Windows executable via PyInstaller so there's no Python install required to run it.
                             </p>
@@ -205,18 +221,25 @@
                 </div>
 
                 <!-- Genera -->
-                <div class="flex flex-col sm:flex-row gap-0 sm:gap-8 py-10">
-                    <a href="genera.html" class="shrink-0 w-full sm:w-80 aspect-video bg-surface border border-line rounded overflow-hidden mb-5 sm:mb-0 block hover:opacity-90 transition-opacity duration-150">
+                <div class="flex flex-col sm:flex-row gap-0 sm:gap-8 py-8 -mx-6 px-6 hover:bg-surface transition-colors duration-150 rounded">
+                    <a href="genera.html" class="self-start shrink-0 w-full sm:w-96 aspect-video bg-surface border border-line rounded overflow-hidden mb-5 sm:mb-0 block hover:opacity-90 transition-opacity duration-150">
                         <img src="../assets/images/projects/genera/genera_dashboard.jpg" alt="Genera study dashboard"
-                            class="w-full h-full object-cover" />
+                            width="1066" height="597" class="w-full h-full object-cover" />
                     </a>
                     <div class="flex-1 min-w-0 flex flex-col justify-between">
                         <div>
                             <div class="flex flex-wrap items-baseline gap-3 mb-1">
-                                <h2><a href="genera.html" class="text-lg font-medium text-primary hover:text-sub transition-colors duration-150">Genera</a></h2>
+                                <h2 class="text-lg font-medium text-primary"><a href="genera.html" class="hover:text-sub transition-colors duration-150">Genera</a></h2>
                                 <span class="text-sm text-muted">2026 · Web · Actively maintained</span>
                             </div>
-                            <p class="text-base text-muted mb-4">Python · Flask · JavaScript · SQLite · IndexedDB · Service Worker</p>
+                            <div class="flex flex-wrap gap-1.5 mb-4">
+                                <span class="text-xs text-muted border border-line rounded-full px-2 py-0.5">Python</span>
+                                <span class="text-xs text-muted border border-line rounded-full px-2 py-0.5">Flask</span>
+                                <span class="text-xs text-muted border border-line rounded-full px-2 py-0.5">JavaScript</span>
+                                <span class="text-xs text-muted border border-line rounded-full px-2 py-0.5">SQLite</span>
+                                <span class="text-xs text-muted border border-line rounded-full px-2 py-0.5">IndexedDB</span>
+                                <span class="text-xs text-muted border border-line rounded-full px-2 py-0.5">Service Worker</span>
+                            </div>
                             <p class="text-base text-sub leading-relaxed mb-6">
                                 An offline-first flashcard web app built with vanilla JavaScript, Flask, and SQLite. Comes loaded with 4,500+ trivia questions across 24 categories and uses a 5-box Leitner spaced repetition system. Works offline through IndexedDB and a service worker, and syncs cards and review progress across devices with account-based conflict resolution. Built solo in about a month.
                             </p>
@@ -249,7 +272,7 @@
         <p class="text-sm text-muted">
             Designed and built from scratch ·
             <a href="https://github.com/tonganwashere/portfolio" target="_blank" rel="noopener noreferrer"
-                class="hover:text-primary transition-colors duration-150 underline underline-offset-4 decoration-line hover:decoration-muted">Source on GitHub</a>
+                class="hover:text-primary transition-colors duration-150 underline underline-offset-4 decoration-sub hover:decoration-primary">Source on GitHub</a>
         </p>
     </footer>
 
