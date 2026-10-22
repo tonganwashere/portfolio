@@ -125,7 +125,7 @@
                 <div>
                     <h1 class="text-4xl font-medium mb-4">Wordle++</h1>
                     <p class="text-lg text-sub leading-relaxed max-w-xl">
-                        Terminal Wordle clone written in C++. Four game modes, player accounts, a leaderboard, and a built-in admin panel, all running in the command line.
+                        Terminal-based word guessing game written in C++. Four game modes, player accounts, a leaderboard, and a built-in admin panel, all running in the command line.
                     </p>
                 </div>
                 <img src="../assets/images/projects/wordlepp/wordlepp_logo.png" alt="Wordle++ logo"
@@ -144,7 +144,7 @@
             <div class="sm:col-span-2">
                 <p class="text-base text-primary font-medium uppercase tracking-widest mb-6">About</p>
                 <div class="text-base text-sub leading-loose space-y-4">
-                    <p>Wordle++ is a terminal word guessing game written in C++, based on the original Wordle by the New York Times. It runs entirely in the command line via a CMake build with no GUI, no browser, and no external setup beyond building the project. The interface is handled by FTXUI, which gives the game a proper terminal UI with color-coded tile states, real-time keyboard input, and navigable menus.</p>
+                    <p>Wordle++ is a terminal based word guessing game written in C++, based on the original Wordle by the New York Times. It runs entirely in the command line via a CMake build with no GUI, no browser, and no external setup beyond building the project. The interface is handled by FTXUI, which gives the game a proper terminal UI with color-coded tile states, real-time keyboard input, and navigable menus.</p>
                     <p>The game has four modes: 3-letter, 5-letter, 6-letter, and a daily challenge. Players can sign up for an account and their stats (wins and current streak) are tracked on a persistent leaderboard. Word banks are stored as separate JSON files per mode using nlohmann/json, and can be edited directly in the files or managed through the game itself.</p>
                     <p>The built-in Admin Mode is accessible by logging in with username "admin" and password "admin123". From there you get two panels: one for adding or removing words from any word bank, and one for deleting player accounts. It was designed so the game could be managed at runtime without anyone needing to open a file manually.</p>
                     <p>Every line of code was written solo over about a month. Feature ideas and direction came from the team, but the implementation was all mine.</p>

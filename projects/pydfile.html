@@ -125,7 +125,7 @@
                 <div>
                     <h1 class="text-4xl font-medium mb-4">PyDFile</h1>
                     <p class="text-lg text-sub leading-relaxed max-w-xl">
-                        Local-first desktop PDF tool built in Python. Merging, splitting, compressing, watermarking, protecting, converting, extracting, all offline, packaged as a standalone Windows executable.
+                        Local desktop PDF tool built in Python. With merging, splitting, compressing, watermarking, protecting, converting, extracting, all offline, packaged as a standalone Windows executable.
                     </p>
                 </div>
                 <img src="../assets/images/projects/pydfile/pydfile_logo.png" alt="PyDFile logo"
@@ -145,10 +145,10 @@
             <div class="sm:col-span-2">
                 <p class="text-base text-primary font-medium uppercase tracking-widest mb-6">About</p>
                 <div class="text-base text-sub leading-loose space-y-4">
-                    <p>PyDFile is a desktop PDF tool built in Python and packaged as a standalone Windows executable. The core idea is that it runs entirely on your machine with no internet connection needed, no files uploaded to a server, and nothing leaving the computer. Most online PDF tools require you to hand your documents to a third party, which matters when the files are private. PyDFile handles everything locally.</p>
-                    <p>The app covers ten tools: merging multiple PDFs into one, splitting a PDF into separate pages or ranges, reordering pages, compressing file size, adding watermarks, adding page numbers, password-protecting a PDF, unlocking a password-protected PDF (if you own it), converting between PDF and image formats, and extracting all text content from a PDF. Each tool gets its own page in the interface with only the controls relevant to that task.</p>
-                    <p>The interface is built with CustomTkinter, which handles dark and light mode natively. Under the hood, PDF manipulation goes through PyMuPDF for most operations and pikepdf for anything password-related, since the two libraries handle different aspects of the PDF spec more cleanly. The codebase splits into a core layer for PDF and image logic, a UI layer for reusable interface components, and a utilities layer for constants and file helpers, so adding a new tool means writing the logic and dropping in a new page without touching the rest.</p>
-                    <p>The .exe is built with PyInstaller so anyone on Windows can run it without installing Python or any dependencies.</p>
+                    <p>PyDFile is a desktop PDF tool built in Python and packaged as a standalone Windows executable. The core idea is that it runs entirely on your machine with no internet connection needed, no files uploaded to a server, and nothing leaving the computer. Most online PDF tools require an internet connection to use or for you to hand your documents to a third party, which matters when the files are private.</p>
+                    <p>The app covers ten tools: merging multiple PDFs into one, splitting a PDF into separate pages or ranges, reordering pages, compressing file size, adding watermarks, adding page numbers, password-protecting a PDF, unlocking a password-protected PDF (if you own it), converting between PDF and image formats, and extracting all text content from a PDF. Each tool gets its own page in the interface.</p>
+                    <p>The interface is built with CustomTkinter, which handles dark and light mode natively. PDF manipulation goes through PyMuPDF for most operations and pikepdf for anything password-related, since the two libraries handle different aspects of the PDF spec more cleanly. The codebase splits into a core layer for PDF and image logic, a UI layer for reusable interface components, and a utilities layer for constants and file helpers, so adding a new tool means writing the logic and dropping in a new page without touching the rest.</p>
+                    <p>The .exe is built with PyInstaller so anyone on Windows can run it without installing Python or any dependencies. It took me around 2 months to make.</p>
                 </div>
             </div>
 
