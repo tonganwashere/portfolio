@@ -4,6 +4,10 @@ const viewerLabel = document.getElementById("viewer-label");
 const galleryButtons = document.querySelectorAll("#media-gallery button");
 
 if (mediaViewer && viewerFrame && viewerLabel && galleryButtons.length) {
+    const backgroundElements = ["nav", "main", "footer"]
+        .map((selector) => document.querySelector(selector))
+        .filter(Boolean);
+
     const mediaItems = Array.from(galleryButtons).map((button, index) => {
         const media = button.querySelector("img, video");
         const type = media && media.tagName.toLowerCase() === "video" ? "video" : "image";
@@ -33,6 +37,7 @@ if (mediaViewer && viewerFrame && viewerLabel && galleryButtons.length) {
         if (item.type === "video") {
             const video = document.createElement("video");
             video.src = item.src;
+            video.setAttribute("aria-label", item.label);
             if (item.poster) {
                 video.poster = item.poster;
             }
@@ -56,13 +61,22 @@ if (mediaViewer && viewerFrame && viewerLabel && galleryButtons.length) {
         renderViewer(index);
         mediaViewer.hidden = false;
         document.body.classList.add("overflow-hidden");
+        backgroundElements.forEach((el) => el.setAttribute("inert", ""));
         mediaViewer.focus();
     }
 
     function closeViewer() {
+        const activeVideo = viewerFrame.querySelector("video");
+        if (activeVideo) {
+            activeVideo.pause();
+            activeVideo.removeAttribute("src");
+            activeVideo.load();
+        }
+
         mediaViewer.hidden = true;
         viewerFrame.innerHTML = "";
         document.body.classList.remove("overflow-hidden");
+        backgroundElements.forEach((el) => el.removeAttribute("inert"));
 
         if (lastFocusedTrigger && typeof lastFocusedTrigger.focus === "function") {
             lastFocusedTrigger.focus();
@@ -84,7 +98,7 @@ if (mediaViewer && viewerFrame && viewerLabel && galleryButtons.length) {
     document.getElementById("viewer-next")?.addEventListener("click", () => moveViewer(1));
 
     mediaViewer.addEventListener("click", (event) => {
-        if (event.target === mediaViewer) {
+        if (!event.target.closest("img, video, button, #viewer-label")) {
             closeViewer();
         }
     });
@@ -92,10 +106,19 @@ if (mediaViewer && viewerFrame && viewerLabel && galleryButtons.length) {
     document.addEventListener("keydown", (event) => {
         if (mediaViewer.hidden) return;
 
-        if (event.key === "Escape") closeViewer();
+        if (event.key === "Escape") {
+            closeViewer();
+            return;
+        }
+
+        const isVideoActive = document.activeElement?.tagName === "VIDEO" || event.target?.tagName === "VIDEO";
+        if (isVideoActive) return;
+
         if (event.key === "ArrowLeft") moveViewer(-1);
         if (event.key === "ArrowRight") moveViewer(1);
+
         if (event.key === "Enter" || event.key === " " || event.key === "Spacebar") {
+            if (event.target.tagName === "BUTTON") return;
             event.preventDefault();
             moveViewer(1);
         }
