@@ -25,6 +25,7 @@
     <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon_io/apple-touch-icon.png" />
     <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon_io/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon_io/favicon-16x16.png" />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
     <link rel="manifest" href="assets/favicon_io/site.webmanifest" />
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
@@ -44,13 +45,15 @@
             --color-primary: #f0eeea;
             --color-sub: #888888;
         }
+        .media-viewer[hidden] {
+            display: none;
+        }
     </style>
     <script>
         const saved = localStorage.getItem("theme");
         if (saved === "light") document.documentElement.classList.remove("dark");
         else document.documentElement.classList.add("dark");
-    </script>
-    <script>
+
         tailwind.config = {
             theme: {
                 extend: {
@@ -67,15 +70,11 @@
                     },
                 },
             },
-        }
+        };
     </script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
-    <style>
-        .media-viewer[hidden] {
-            display: none;
-        }
-    </style>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap" rel="stylesheet" />
 </head>
 
 <body class="bg-base text-primary font-sans antialiased min-h-screen flex flex-col">
@@ -118,20 +117,21 @@
 
                 <button type="button"
                     class="aspect-video rounded-lg overflow-hidden bg-surface border border-line cursor-pointer hover:opacity-90 transition-opacity duration-150">
-                    <img src="assets/images/about/ISTAD_top.jpg" alt="ISTAD Top Student" class="h-full w-full object-cover" />
+                    <img src="assets/images/about/ISTAD_top.jpg" alt="ISTAD Top Student" width="2048" height="1392" class="h-full w-full object-cover" />
                 </button>
 
                 <button type="button"
                     class="aspect-video rounded-lg overflow-hidden bg-surface border border-line cursor-pointer hover:opacity-90 transition-opacity duration-150">
-                    <img src="assets/images/about/UC_scholarship.jpg" alt="University of Cambodia Scholarship"
+                    <img src="assets/images/about/UC_scholarship.jpg" alt="University of Cambodia Scholarship" width="1084" height="610"
                         class="h-full w-full object-cover" />
                 </button>
 
                 <button type="button"
                     class="relative aspect-video rounded-lg overflow-hidden bg-surface border border-line cursor-pointer hover:opacity-90 transition-opacity duration-150"
-                    data-label="ISTAD Presentation 1">
+                    data-label="ISTAD Presentation 1" aria-label="Play ISTAD presentation video 1">
                     <video src="assets/images/about/ISTAD_present.mp4"
                         poster="assets/images/about/ISTAD_present_poster.jpg"
+                        width="1920" height="1080"
                         aria-label="ISTAD Presentation 1" playsinline tabindex="-1" preload="metadata"
                         class="h-full w-full object-cover"></video>
                     <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
@@ -143,9 +143,10 @@
 
                 <button type="button"
                     class="relative aspect-video rounded-lg overflow-hidden bg-surface border border-line cursor-pointer hover:opacity-90 transition-opacity duration-150"
-                    data-label="ISTAD Presentation 2">
+                    data-label="ISTAD Presentation 2" aria-label="Play ISTAD presentation video 2">
                     <video src="assets/images/about/ISTAD_present2.mp4"
                         poster="assets/images/about/ISTAD_present2_poster.jpg"
+                        width="1920" height="1080"
                         aria-label="ISTAD Presentation 2" playsinline tabindex="-1" preload="metadata"
                         class="h-full w-full object-cover"></video>
                     <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
@@ -157,27 +158,42 @@
 
                 <button type="button"
                     class="aspect-video rounded-lg overflow-hidden bg-surface border border-line cursor-pointer hover:opacity-90 transition-opacity duration-150">
-                    <img src="assets/images/about/ISTAD_interview.jpg" alt="ISTAD Interview" class="h-full w-full object-cover" />
+                    <img src="assets/images/about/ISTAD_interview.jpg" alt="ISTAD Interview" width="724" height="414" class="h-full w-full object-cover" />
                 </button>
 
                 <button type="button"
                     class="aspect-video rounded-lg overflow-hidden bg-surface border border-line cursor-pointer hover:opacity-90 transition-opacity duration-150">
-                    <img src="assets/images/about/ISTAD_team.jpg" alt="ISTAD Team Photo" class="h-full w-full object-cover" />
+                    <img src="assets/images/about/ISTAD_team_pre_uni.jpg" alt="ISTAD Pre-University Team Photo" width="2048" height="1264" class="h-full w-full object-cover" />
                 </button>
 
                 <button type="button"
                     class="aspect-video rounded-lg overflow-hidden bg-surface border border-line cursor-pointer hover:opacity-90 transition-opacity duration-150">
-                    <img src="assets/images/about/ISTAD_pose.jpg" alt="ISTAD Event Photo" class="h-full w-full object-cover" />
+                    <img src="assets/images/about/ISTAD_team_foundation.jpg" alt="ISTAD Foundation Team Photo" width="2048" height="1365" class="h-full w-full object-cover" />
                 </button>
 
                 <button type="button"
                     class="aspect-video rounded-lg overflow-hidden bg-surface border border-line cursor-pointer hover:opacity-90 transition-opacity duration-150">
-                    <img src="assets/images/about/ISTAD_exam.jpg" alt="ISTAD Exam" class="h-full w-full object-cover" />
+                    <img src="assets/images/about/ISTAD_explain.jpg" alt="ISTAD Group Discussion" width="1280" height="960" class="h-full w-full object-cover" />
                 </button>
 
                 <button type="button"
                     class="aspect-video rounded-lg overflow-hidden bg-surface border border-line cursor-pointer hover:opacity-90 transition-opacity duration-150">
-                    <img src="assets/images/about/ISTAD_cook.jpg" alt="ISTAD Cooking Activity" class="h-full w-full object-cover" />
+                    <img src="assets/images/about/ISTAD_pose.jpg" alt="ISTAD Event Photo" width="2560" height="1706" class="h-full w-full object-cover" />
+                </button>
+
+                <button type="button"
+                    class="aspect-video rounded-lg overflow-hidden bg-surface border border-line cursor-pointer hover:opacity-90 transition-opacity duration-150">
+                    <img src="assets/images/about/ISTAD_exam.jpg" alt="ISTAD Exam" width="2048" height="1478" class="h-full w-full object-cover" />
+                </button>
+
+                <button type="button"
+                    class="aspect-video rounded-lg overflow-hidden bg-surface border border-line cursor-pointer hover:opacity-90 transition-opacity duration-150">
+                    <img src="assets/images/about/ISTAD_cook.jpg" alt="ISTAD Cooking Activity" width="2048" height="1365" class="h-full w-full object-cover" />
+                </button>
+
+                <button type="button"
+                    class="aspect-video rounded-lg overflow-hidden bg-surface border border-line cursor-pointer hover:opacity-90 transition-opacity duration-150">
+                    <img src="assets/images/about/ISTAD_freestyle.jpg" alt="ISTAD Freestyle" width="1920" height="2560" class="h-full w-full object-cover" />
                 </button>
 
             </div>
@@ -202,12 +218,12 @@
                         <div>
                             <div class="flex flex-wrap items-baseline justify-between gap-2 mb-1">
                                 <h2 class="text-base font-medium text-primary">ISTAD · Foundation Course</h2>
-                                <span class="text-sm text-muted">May 2026 · Present</span>
+                                <span class="text-sm text-muted">May 2026 · Oct 2026</span>
                             </div>
                             <p class="text-sm text-sub mb-3">Phnom Penh · Software Development & Capstone</p>
                             <div class="text-base text-sub leading-relaxed space-y-2">
-                                <p>Placed in the top 3 students individually out of 24, and our team took top 1 for our group project, <a href="https://github.com/FOUNDATION-G06/nexa-frontend" target="_blank" rel="noopener noreferrer" class="text-sub hover:text-primary underline underline-offset-4 decoration-sub hover:decoration-primary transition-colors duration-150">NEXA</a>, a forum community website similar to Stack Overflow with a built-in lost and found section.</p>
-                                <p class="text-sm text-muted">Covered Java programming, database modeling, React web design, UI/UX, Git, and full deployment.</p>
+                                <p>Placed in the top 3 students individually out of 24, and our team took top 1 for our group project, <a href="https://github.com/FOUNDATION-G06/nexa-frontend" target="_blank" rel="noopener noreferrer" class="text-sub underline underline-offset-4 decoration-sub hover:text-primary hover:decoration-primary transition-colors duration-150">NEXA</a>, a forum community website similar to Stack Overflow with a built-in lost and found section.</p>
+                                <p>Course covered: Java programming, database modeling, React web design, UI/UX, Git, and full deployment.</p>
                             </div>
                         </div>
 
@@ -218,8 +234,8 @@
                             </div>
                             <p class="text-sm text-sub mb-3">Phnom Penh · C++ Programming</p>
                             <div class="text-base text-sub leading-relaxed space-y-2">
-                                <p>Placed in the top 3 students individually out of 42, and took top 1 for my solo final project, <a href="projects/wordlepp.html" class="text-sub underline underline-offset-4 decoration-sub hover:text-primary hover:decoration-primary transition-colors duration-150">Wordle++</a>, a terminal word guessing game with four game modes and a live admin panel.</p>
-                                <p class="text-sm text-muted">Covered programming fundamentals, control flow, OOP concepts, data structures, algorithms, and project building.</p>
+                                <p>Placed in the top 3 students individually out of 42, and took top 1 for the project, <a href="projects/wordlepp.html" class="text-sub underline underline-offset-4 decoration-sub hover:text-primary hover:decoration-primary transition-colors duration-150">Wordle++</a>, a terminal word guessing game with four game modes and a live admin panel.</p>
+                                <p>Course covered: Programming fundamentals, control flow, OOP concepts, data structures, algorithms, and project building.</p>
                             </div>
                         </div>
 
@@ -228,7 +244,7 @@
                                 <h2 class="text-base font-medium text-primary">The University of Cambodia</h2>
                                 <span class="text-sm text-muted">Dec 2024 · Present</span>
                             </div>
-                            <p class="text-sm text-sub mb-3">Phnom Penh · Bachelor of Science in Information Technology</p>
+                            <p class="text-sm text-sub mb-3">Phnom Penh · Bachelor in Information Technology</p>
                             <p class="text-base text-sub leading-relaxed">
                                 Currently in my third year studying Information Technology, focusing on core programming, systems design, and computer science foundations.
                             </p>
@@ -260,8 +276,8 @@
                             <p class="text-base text-sub leading-relaxed mb-2">
                                 Helped with day-to-day library operations while taking care of public and staff computers. Whenever someone had hardware or software issues, I troubleshoot and sorted them out so students always had working machines.
                             </p>
-                            <p class="text-sm text-muted">
-                                <span class="text-sub font-medium">What it taught me:</span> Real hands-on hardware and system troubleshooting, staying calm when things break, and solving technical problems fast for users.
+                            <p class="text-base text-sub leading-relaxed">
+                                What it taught me: Real hands-on hardware and system troubleshooting, staying calm when things break, and solving technical problems fast for users.
                             </p>
                         </div>
 
@@ -274,8 +290,8 @@
                             <p class="text-base text-sub leading-relaxed mb-2">
                                 Worked remotely with a tech professional helping manage tasks across different client projects. Prepared blog posts, handled social media updates, did web research, and kept client schedules organized.
                             </p>
-                            <p class="text-sm text-muted">
-                                <span class="text-sub font-medium">What it taught me:</span> Working independently without direct supervision, managing my own time, doing fast research, and keeping a remote workflow organized.
+                            <p class="text-base text-sub leading-relaxed">
+                                What it taught me: Working independently without direct supervision, managing my own time, doing fast research, and keeping a remote workflow organized.
                             </p>
                         </div>
 
@@ -288,8 +304,8 @@
                             <p class="text-base text-sub leading-relaxed mb-2">
                                 Taught middle school students intermediate English at a private school, helping them get more confident in speaking, reading, and writing.
                             </p>
-                            <p class="text-sm text-muted">
-                                <span class="text-sub font-medium">What it taught me:</span> A lot of patience, how to explain complicated ideas in simple terms, and being confident speaking in front of people.
+                            <p class="text-base text-sub leading-relaxed">
+                                What it taught me: A lot of patience, how to explain complicated ideas in simple terms, and being confident speaking in front of people.
                             </p>
                         </div>
                     </div>
@@ -363,20 +379,21 @@
 
     </main>
 
-    <div id="media-viewer" class="media-viewer fixed inset-0 z-50 px-6 py-8 sm:px-10 sm:py-10" tabindex="-1"
+    <!-- Media Viewer -->
+    <div id="media-viewer" role="dialog" aria-modal="true" aria-labelledby="viewer-label" class="media-viewer fixed inset-0 z-50 px-6 py-8 sm:px-10 sm:py-10" tabindex="-1"
         style="background-color: rgba(0, 0, 0, 0.85);" hidden>
-        <button type="button" id="viewer-close"
-            class="absolute right-5 top-5 z-20 h-11 w-11 text-lg text-primary hover:text-white transition-colors duration-150">
-            x
+        <button type="button" id="viewer-close" aria-label="Close viewer"
+            class="absolute right-5 top-5 z-20 h-11 w-11 text-lg text-white/80 hover:text-white transition-colors duration-150">
+            ✕
         </button>
 
-        <button type="button" id="viewer-prev"
-            class="absolute left-5 top-1/2 z-20 h-11 w-11 -translate-y-1/2 text-2xl text-primary hover:text-white transition-colors duration-150">
+        <button type="button" id="viewer-prev" aria-label="Previous media"
+            class="absolute left-5 top-1/2 z-20 h-11 w-11 -translate-y-1/2 text-2xl text-white/80 hover:text-white transition-colors duration-150">
             ←
         </button>
 
-        <button type="button" id="viewer-next"
-            class="absolute right-5 top-1/2 z-20 h-11 w-11 -translate-y-1/2 text-2xl text-primary hover:text-white transition-colors duration-150">
+        <button type="button" id="viewer-next" aria-label="Next media"
+            class="absolute right-5 top-1/2 z-20 h-11 w-11 -translate-y-1/2 text-2xl text-white/80 hover:text-white transition-colors duration-150">
             →
         </button>
 
@@ -384,7 +401,7 @@
             <div class="relative flex w-full flex-col items-center justify-center">
                 <div id="viewer-frame" class="flex min-h-[320px] w-full items-center justify-center overflow-hidden">
                 </div>
-                <p id="viewer-label" class="mt-4 text-center text-base text-primary">
+                <p id="viewer-label" class="mt-4 text-center text-base text-white">
                 </p>
             </div>
         </div>
