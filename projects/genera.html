@@ -80,7 +80,7 @@
 
     <!-- Navigation Bar -->
     <nav class="sticky top-0 z-50 bg-base max-w-7xl mx-auto w-full px-6 py-5 flex items-center justify-between border-b border-line">
-        <div class="flex gap-6 text-sm text-sub">
+        <div class="flex gap-6 text-base text-sub">
             <a href="../index.html" class="hover:text-primary transition-colors duration-150">Home</a>
             <a href="index.html" class="text-primary">Projects</a>
             <a href="../about.html" class="hover:text-primary transition-colors duration-150">About</a>
@@ -107,12 +107,12 @@
 
         <!-- Breadcrumb + Prev/Next -->
         <div class="flex flex-wrap items-center justify-between py-8 gap-3 border-b border-line">
-            <div class="flex items-center gap-2 text-sm text-sub">
+            <div class="flex items-center gap-2 text-base text-sub">
                 <a href="index.html" class="hover:text-primary transition-colors duration-150">Projects</a>
                 <span class="text-muted">/</span>
                 <span class="text-primary">Genera</span>
             </div>
-            <div class="flex gap-4 text-sm text-sub">
+            <div class="flex gap-4 text-base text-sub">
                 <a href="pydfile.html" class="hover:text-primary transition-colors duration-150">← PyDFile</a>
                 <span class="opacity-30 cursor-not-allowed">Next →</span>
             </div>
@@ -123,7 +123,7 @@
             <div class="flex flex-col gap-6 sm:flex-row sm:items-start sm:justify-between mb-6">
                 <div>
                     <h1 class="text-4xl font-medium mb-4">Genera</h1>
-                    <p class="text-base text-sub leading-relaxed max-w-xl">
+                    <p class="text-lg text-sub leading-relaxed max-w-xl">
                         An offline-first flashcard web app. Study pre-loaded trivia, make your own cards, and sync everything across devices with account-based conflict resolution.
                     </p>
                 </div>
@@ -131,20 +131,20 @@
                     class="h-20 w-20 object-contain opacity-90 shrink-0" />
             </div>
             <div class="flex flex-wrap gap-2">
-                <span class="text-xs text-muted border border-line rounded-full px-3 py-1">Python</span>
-                <span class="text-xs text-muted border border-line rounded-full px-3 py-1">Flask</span>
-                <span class="text-xs text-muted border border-line rounded-full px-3 py-1">JavaScript</span>
-                <span class="text-xs text-muted border border-line rounded-full px-3 py-1">SQLite</span>
-                <span class="text-xs text-muted border border-line rounded-full px-3 py-1">IndexedDB</span>
-                <span class="text-xs text-muted border border-line rounded-full px-3 py-1">Service Worker</span>
+                <span class="text-sm text-muted border border-line rounded-full px-3 py-1">Python</span>
+                <span class="text-sm text-muted border border-line rounded-full px-3 py-1">Flask</span>
+                <span class="text-sm text-muted border border-line rounded-full px-3 py-1">JavaScript</span>
+                <span class="text-sm text-muted border border-line rounded-full px-3 py-1">SQLite</span>
+                <span class="text-sm text-muted border border-line rounded-full px-3 py-1">IndexedDB</span>
+                <span class="text-sm text-muted border border-line rounded-full px-3 py-1">Service Worker</span>
             </div>
         </section>
 
         <!-- About + Details -->
         <section class="py-10 border-b border-line grid grid-cols-1 sm:grid-cols-3 gap-10">
             <div class="sm:col-span-2">
-                <p class="text-sm text-primary font-medium uppercase tracking-widest mb-6">About</p>
-                <div class="text-sm text-sub leading-loose space-y-4">
+                <p class="text-base text-primary font-medium uppercase tracking-widest mb-6">About</p>
+                <div class="text-base text-sub leading-loose space-y-4">
                     <p>Genera is a flashcard study app I built to get better at general knowledge trivia. It comes loaded with 4,500+ questions across 24 categories pulled from Open Trivia DB, and you can also write your own cards or import them from a CSV or JSON file. The main study mechanic is a 5-box Leitner system: cards you get right move up a box, cards you get wrong drop back to box 1, and each box has a longer review interval. You work through cards due today, and the app tracks your progress over time.</p>
                     <p>The whole thing is offline-first where a service worker caches the app shell so it loads without a connection, and all study data lives in IndexedDB on the device. If you create an account, your cards and progress sync to a Flask backend with a SQLite database on Render. The sync uses a dirty-flag and last-write-wins strategy per record, and there's a notification banner if a conflict is detected so you can choose which version to keep. You can also sign up anonymously and merge your data into a real account later without losing anything.</p>
                     <p>The frontend is vanilla JavaScript organized in an MVC structure with no framework. The backend is Flask with Gunicorn, and the database schema covers users, cards, progress, settings, and rate limiting. The whole thing took about a month to build.</p>
@@ -152,8 +152,8 @@
             </div>
 
             <div>
-                <p class="text-sm text-primary font-medium uppercase tracking-widest mb-6">Details</p>
-                <div class="space-y-3 text-sm">
+                <p class="text-base text-primary font-medium uppercase tracking-widest mb-6">Details</p>
+                <div class="space-y-3 text-base">
                     <div class="flex justify-between gap-4">
                         <span class="text-muted">Year</span>
                         <span class="text-sub">2026</span>
@@ -190,7 +190,7 @@
 
         <!-- Screenshots -->
         <section class="py-10 border-b border-line">
-            <p class="text-sm text-primary font-medium uppercase tracking-widest mb-6">Screenshots</p>
+            <p class="text-base text-primary font-medium uppercase tracking-widest mb-6">Screenshots</p>
             <div id="media-gallery" class="space-y-6">
 
                 <!-- Desktop Grid -->
@@ -240,7 +240,7 @@
 
                 <!-- Mobile Views -->
                 <div class="pt-4">
-                    <p class="text-xs text-muted uppercase tracking-wider mb-3">Mobile view</p>
+                    <p class="text-sm text-muted uppercase tracking-wider mb-3">Mobile view</p>
                     <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
                         <button type="button"
                             class="aspect-[9/19] rounded-lg overflow-hidden bg-surface border border-line cursor-pointer hover:opacity-90 transition-opacity duration-150">
@@ -261,8 +261,8 @@
 
         <!-- Bottom Prev/Next -->
         <div class="flex flex-wrap items-center justify-between py-8 gap-3">
-            <a href="pydfile.html" class="text-sm text-sub hover:text-primary transition-colors duration-150">← PyDFile</a>
-            <span class="text-sm text-sub opacity-30 cursor-not-allowed">Next →</span>
+            <a href="pydfile.html" class="text-base text-sub hover:text-primary transition-colors duration-150">← PyDFile</a>
+            <span class="text-base text-sub opacity-30 cursor-not-allowed">Next →</span>
         </div>
 
     </main>
@@ -286,15 +286,15 @@
             <div class="relative flex w-full flex-col items-center justify-center">
                 <div id="viewer-frame" class="flex min-h-[320px] w-full items-center justify-center overflow-hidden">
                 </div>
-                <p id="viewer-label" class="mt-4 text-center text-sm text-primary">
+                <p id="viewer-label" class="mt-4 text-center text-base text-primary">
                 </p>
             </div>
         </div>
     </div>
 
     <footer class="max-w-7xl mx-auto w-full px-6 py-6 flex flex-wrap justify-between items-center gap-3 border-t border-line">
-        <p class="text-xs text-muted">© 2026 Hor Tongan</p>
-        <p class="text-xs text-muted">
+        <p class="text-sm text-muted">© 2026 Hor Tongan</p>
+        <p class="text-sm text-muted">
             Designed and built from scratch ·
             <a href="https://github.com/tonganwashere/portfolio" target="_blank" rel="noopener noreferrer"
                 class="hover:text-primary transition-colors duration-150 underline underline-offset-4 decoration-line hover:decoration-muted">Source on GitHub</a>
