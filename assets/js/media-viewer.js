@@ -15,6 +15,7 @@ if (mediaViewer && viewerFrame && viewerLabel && galleryButtons.length) {
         return {
             type,
             src: media?.getAttribute("src") || "",
+            poster: media?.getAttribute("poster") || "",
             label,
         };
     });
@@ -32,6 +33,9 @@ if (mediaViewer && viewerFrame && viewerLabel && galleryButtons.length) {
         if (item.type === "video") {
             const video = document.createElement("video");
             video.src = item.src;
+            if (item.poster) {
+                video.poster = item.poster;
+            }
             video.controls = true;
             video.playsInline = true;
             video.preload = "metadata";
