@@ -4,29 +4,29 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Flip Decibel - Hor Tongan</title>
-    <meta name="description" content="Flip Decibel, an Android coin-flip app with 3D OpenGL ES rendering and a hidden volume-based rigging mechanic." />
-    <link rel="canonical" href="https://tongan.dev/projects/flip_decibel.html" />
+    <title>PyDFile - Hor Tongan</title>
+    <meta name="description" content="PyDFile, a local-first desktop PDF utility built in Python. Merge, split, compress, protect, convert, and more, all offline." />
+    <link rel="canonical" href="https://tongan.dev/projects/pydfile/" />
 
     <!-- Open Graph / Facebook / LinkedIn / Discord / Telegram -->
     <meta property="og:type" content="article" />
-    <meta property="og:url" content="https://tongan.dev/projects/flip_decibel.html" />
-    <meta property="og:title" content="Flip Decibel - Hor Tongan" />
-    <meta property="og:description" content="Flip Decibel, an Android coin-flip app with 3D OpenGL ES rendering and a hidden volume-based rigging mechanic." />
-    <meta property="og:image" content="https://tongan.dev/assets/images/projects/flip_decibel/flip_decibel_starter_screen.jpg" />
+    <meta property="og:url" content="https://tongan.dev/projects/pydfile/" />
+    <meta property="og:title" content="PyDFile - Hor Tongan" />
+    <meta property="og:description" content="PyDFile, a local-first desktop PDF utility built in Python. Merge, split, compress, protect, convert, and more, all offline." />
+    <meta property="og:image" content="https://tongan.dev/assets/images/projects/pydfile/pydfile_dark.jpg" />
     <meta property="og:site_name" content="Hor Tongan" />
 
     <!-- Twitter / X -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:url" content="https://tongan.dev/projects/flip_decibel.html" />
-    <meta name="twitter:title" content="Flip Decibel - Hor Tongan" />
-    <meta name="twitter:description" content="Flip Decibel, an Android coin-flip app with 3D OpenGL ES rendering and a hidden volume-based rigging mechanic." />
-    <meta name="twitter:image" content="https://tongan.dev/assets/images/projects/flip_decibel/flip_decibel_starter_screen.jpg" />
-    <link rel="apple-touch-icon" sizes="180x180" href="../assets/favicon_io/apple-touch-icon.png" />
-    <link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon_io/favicon-32x32.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="../assets/favicon_io/favicon-16x16.png" />
+    <meta name="twitter:url" content="https://tongan.dev/projects/pydfile/" />
+    <meta name="twitter:title" content="PyDFile - Hor Tongan" />
+    <meta name="twitter:description" content="PyDFile, a local-first desktop PDF utility built in Python. Merge, split, compress, protect, convert, and more, all offline." />
+    <meta name="twitter:image" content="https://tongan.dev/assets/images/projects/pydfile/pydfile_dark.jpg" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon_io/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon_io/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon_io/favicon-16x16.png" />
     <link rel="icon" href="/favicon.ico" sizes="any" />
-    <link rel="manifest" href="../assets/favicon_io/site.webmanifest" />
+    <link rel="manifest" href="/assets/favicon_io/site.webmanifest" />
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         :root {
@@ -82,10 +82,10 @@
     <!-- Navigation Bar -->
     <nav class="sticky top-0 z-50 bg-base max-w-7xl mx-auto w-full px-6 py-5 flex items-center justify-between border-b border-line">
         <div class="flex gap-6 text-base text-sub">
-            <a href="../index.html" class="hover:text-primary transition-colors duration-150">Home</a>
-            <a href="index.html" class="text-primary">Projects</a>
-            <a href="../about.html" class="hover:text-primary transition-colors duration-150">About</a>
-            <a href="../cv.html" class="hover:text-primary transition-colors duration-150">CV</a>
+            <a href="/" class="hover:text-primary transition-colors duration-150">Home</a>
+            <a href="/projects/" class="text-primary">Projects</a>
+            <a href="/about/" class="hover:text-primary transition-colors duration-150">About</a>
+            <a href="/cv/" class="hover:text-primary transition-colors duration-150">CV</a>
         </div>
         <div class="flex items-center gap-4 text-sub">
             <a href="https://t.me/tonganwashere" target="_blank" rel="noopener noreferrer" class="hover:text-primary transition-colors duration-150" aria-label="Telegram">
@@ -109,13 +109,13 @@
         <!-- Breadcrumb + Prev/Next -->
         <div class="flex flex-wrap items-center justify-between py-8 gap-3 border-b border-line">
             <div class="flex items-center gap-2 text-base text-sub">
-                <a href="index.html" class="hover:text-primary transition-colors duration-150">Projects</a>
+                <a href="/projects/" class="hover:text-primary transition-colors duration-150">Projects</a>
                 <span class="text-muted">/</span>
-                <span class="text-primary">Flip Decibel</span>
+                <span class="text-primary">PyDFile</span>
             </div>
             <div class="flex gap-4 text-base text-sub">
-                <a href="wordlepp.html" class="hover:text-primary transition-colors duration-150">← Wordle++</a>
-                <a href="pydfile.html" class="hover:text-primary transition-colors duration-150">PyDFile →</a>
+                <a href="/projects/genera/" class="hover:text-primary transition-colors duration-150">← Genera</a>
+                <a href="/projects/pitch_flip/" class="hover:text-primary transition-colors duration-150">Pitch Flip →</a>
             </div>
         </div>
 
@@ -123,18 +123,20 @@
         <section class="pt-14 pb-10 border-b border-line">
             <div class="flex flex-col gap-6 sm:flex-row sm:items-start sm:justify-between mb-6">
                 <div>
-                    <h1 class="text-4xl font-medium mb-4">Flip Decibel</h1>
+                    <h1 class="text-4xl font-medium mb-4">PyDFile</h1>
                     <p class="text-lg text-sub leading-relaxed max-w-xl">
-                        Android coin flip app with a 3D coin rendered in OpenGL ES 2.0, a full skin system, and a hidden Rig Mode that ties the result to your phone's volume level.
+                        Local desktop PDF tool built in Python. With merging, splitting, compressing, watermarking, protecting, converting, extracting, all offline, packaged as a standalone Windows executable.
                     </p>
                 </div>
-                <img src="../assets/images/projects/flip_decibel/flip_decibel_logo.png" alt="Flip Decibel logo"
+                <img src="/assets/images/projects/pydfile/pydfile_logo.png" alt="PyDFile logo"
                     width="80" height="80" class="h-20 w-20 object-contain opacity-90 shrink-0" />
             </div>
             <div class="flex flex-wrap gap-2">
-                <span class="text-sm text-muted border border-line rounded-full px-3 py-1">Java</span>
-                <span class="text-sm text-muted border border-line rounded-full px-3 py-1">Android</span>
-                <span class="text-sm text-muted border border-line rounded-full px-3 py-1">OpenGL ES 2.0</span>
+                <span class="text-sm text-muted border border-line rounded-full px-3 py-1">Python</span>
+                <span class="text-sm text-muted border border-line rounded-full px-3 py-1">CustomTkinter</span>
+                <span class="text-sm text-muted border border-line rounded-full px-3 py-1">PyMuPDF</span>
+                <span class="text-sm text-muted border border-line rounded-full px-3 py-1">pikepdf</span>
+                <span class="text-sm text-muted border border-line rounded-full px-3 py-1">PyInstaller</span>
             </div>
         </section>
 
@@ -143,10 +145,10 @@
             <div class="sm:col-span-2">
                 <p class="text-base text-primary font-medium uppercase tracking-widest mb-6">About</p>
                 <div class="text-base text-sub leading-loose space-y-4">
-                    <p>Flip Decibel is a coin-flip app for Android. The coin is rendered in 3D using OpenGL ES 2.0 with a smooth flip animation, and you can adjust the animation speed with a slider in settings. On the surface it's a simple coin flipper but it's actually a pranking tool.</p>
-                    <p>The app has a hidden Rig Mode that when enabled, the coin result is quietly tied to the phone's volume level: anything above 50% volume lands heads, anything below lands tails. The person being pranked sees a normal coin flip with no indication that anything is rigged. You control the outcome by adjusting your volume before each flip.</p>
-                    <p>Each side of the coin can be customized independently through a skin system. Options include custom text labels, uploaded images, and a set of animal skins: dog, cat, monkey, bear, duck, and chicken, with more planned. All settings and skin choices are stored locally using SharedPreferences so they persist between sessions.</p>
-                    <p>This was my first Android project and my first time working with OpenGL. I had no prior experience in either before starting it. It took about 2 months to build solo.</p>
+                    <p>PyDFile is a desktop PDF tool built in Python and packaged as a standalone Windows executable. The core idea is that it runs entirely on your machine with no internet connection needed, no files uploaded to a server, and nothing leaving the computer. Most online PDF tools require an internet connection to use or for you to hand your documents to a third party, which matters when the files are private.</p>
+                    <p>The app covers 10 tools: merging multiple PDFs into one, splitting a PDF into separate pages or ranges, reordering pages, compressing file size, adding watermarks, adding page numbers, password-protecting a PDF, unlocking a password-protected PDF (if you own it), converting between PDF and image formats, and extracting all text content from a PDF. Each tool gets its own page in the interface.</p>
+                    <p>The interface is built with CustomTkinter, which handles dark and light mode natively. PDF manipulation goes through PyMuPDF for most operations and pikepdf for anything password-related, since the 2 libraries handle different aspects of the PDF spec more cleanly. The codebase splits into a core layer for PDF and image logic, a UI layer for reusable interface components, and a utilities layer for constants and file helpers, so adding a new tool means writing the logic and dropping in a new page without touching the rest.</p>
+                    <p>The .exe is built with PyInstaller so anyone on Windows can run it without installing Python or any dependencies. It took me around 2 months to make.</p>
                 </div>
             </div>
 
@@ -155,11 +157,11 @@
                 <div class="space-y-3 text-base">
                     <div class="flex justify-between gap-4">
                         <span class="text-muted">Year</span>
-                        <span class="text-sub">May–Jun 2026</span>
+                        <span class="text-sub">Jul–Aug 2026</span>
                     </div>
                     <div class="flex justify-between gap-4">
                         <span class="text-muted">Platform</span>
-                        <span class="text-sub">Android</span>
+                        <span class="text-sub">Windows</span>
                     </div>
                     <div class="flex justify-between gap-4">
                         <span class="text-muted">Role</span>
@@ -174,8 +176,14 @@
                         <span class="text-sub">Finished</span>
                     </div>
                     <div class="flex justify-between gap-4">
-                        <span class="text-muted">Play Store</span>
-                        <span class="text-sub">Coming soon</span>
+                        <span class="text-muted">GitHub</span>
+                        <a href="https://github.com/tonganwashere/pydfile" target="_blank" rel="noopener noreferrer"
+                            class="text-sub underline underline-offset-4 decoration-sub hover:text-primary hover:decoration-primary transition-colors duration-150">repo →</a>
+                    </div>
+                    <div class="flex justify-between gap-4">
+                        <span class="text-muted">Download</span>
+                        <a href="https://github.com/tonganwashere/pydfile/releases/tag/v1.0.0" target="_blank" rel="noopener noreferrer"
+                            class="text-sub underline underline-offset-4 decoration-sub hover:text-primary hover:decoration-primary transition-colors duration-150">v1.0.0 →</a>
                     </div>
                 </div>
             </div>
@@ -184,63 +192,42 @@
         <!-- Screenshots -->
         <section class="py-10 border-b border-line">
             <p class="text-base text-primary font-medium uppercase tracking-widest mb-6">Screenshots</p>
-            <div id="media-gallery" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
+            <div id="media-gallery" class="grid grid-cols-1 sm:grid-cols-2 gap-3">
 
                 <button type="button"
-                    class="relative aspect-[9/16] rounded-lg overflow-hidden bg-surface border border-line cursor-pointer hover:opacity-90 transition-opacity duration-150"
-                    data-label="Flip Decibel showcase video"
-                    aria-label="Play Flip Decibel showcase video">
-                    <video src="../assets/images/projects/flip_decibel/flip_decibel_showcase.mp4"
-                        poster="../assets/images/projects/flip_decibel/flip_decibel_showcase_poster.jpg"
-                        aria-label="Flip Decibel showcase video" playsinline tabindex="-1" preload="metadata"
-                        width="590" height="1280" class="h-full w-full object-cover"></video>
-                    <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
-                        <div class="flex items-center justify-center w-12 h-12 rounded-full bg-black/50">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="white"><polygon points="6,3 20,12 6,21"/></svg>
-                        </div>
-                    </div>
+                    class="aspect-video rounded-lg overflow-hidden bg-surface border border-line cursor-pointer hover:opacity-90 transition-opacity duration-150 sm:col-span-2">
+                    <img src="/assets/images/projects/pydfile/pydfile_dark.jpg" alt="Dashboard, dark mode" width="1102" height="749"
+                        class="h-full w-full object-cover" />
                 </button>
 
                 <button type="button"
-                    class="aspect-[9/16] rounded-lg overflow-hidden bg-surface border border-line cursor-pointer hover:opacity-90 transition-opacity duration-150">
-                    <img src="../assets/images/projects/flip_decibel/flip_decibel_starter_screen.jpg"
-                        alt="Starter screen" width="629" height="1280" class="h-full w-full object-cover" />
+                    class="aspect-video rounded-lg overflow-hidden bg-surface border border-line cursor-pointer hover:opacity-90 transition-opacity duration-150">
+                    <img src="/assets/images/projects/pydfile/pydfile_merge.jpg" alt="Merge PDFs" width="1101" height="750"
+                        class="h-full w-full object-cover" />
                 </button>
 
                 <button type="button"
-                    class="aspect-[9/16] rounded-lg overflow-hidden bg-surface border border-line cursor-pointer hover:opacity-90 transition-opacity duration-150">
-                    <img src="../assets/images/projects/flip_decibel/flip_decibel_heads.jpg"
-                        alt="Coin result: heads" width="629" height="1280" class="h-full w-full object-cover" />
+                    class="aspect-video rounded-lg overflow-hidden bg-surface border border-line cursor-pointer hover:opacity-90 transition-opacity duration-150">
+                    <img src="/assets/images/projects/pydfile/pydfile_number.jpg" alt="Page numbering" width="1101" height="752"
+                        class="h-full w-full object-cover" />
                 </button>
 
                 <button type="button"
-                    class="aspect-[9/16] rounded-lg overflow-hidden bg-surface border border-line cursor-pointer hover:opacity-90 transition-opacity duration-150">
-                    <img src="../assets/images/projects/flip_decibel/flip_decibel_settings.jpg"
-                        alt="Settings panel" width="629" height="1280" class="h-full w-full object-cover" />
+                    class="aspect-video rounded-lg overflow-hidden bg-surface border border-line cursor-pointer hover:opacity-90 transition-opacity duration-150">
+                    <img src="/assets/images/projects/pydfile/pydfile_image.jpg" alt="Image conversion" width="1100" height="751"
+                        class="h-full w-full object-cover" />
                 </button>
 
                 <button type="button"
-                    class="aspect-[9/16] rounded-lg overflow-hidden bg-surface border border-line cursor-pointer hover:opacity-90 transition-opacity duration-150">
-                    <img src="../assets/images/projects/flip_decibel/flip_decibel_settings2.jpg"
-                        alt="Settings panel 2" width="629" height="1280" class="h-full w-full object-cover" />
+                    class="aspect-video rounded-lg overflow-hidden bg-surface border border-line cursor-pointer hover:opacity-90 transition-opacity duration-150">
+                    <img src="/assets/images/projects/pydfile/pydfile_extract.jpg" alt="Text extraction" width="1100" height="749"
+                        class="h-full w-full object-cover" />
                 </button>
 
                 <button type="button"
-                    class="aspect-[9/16] rounded-lg overflow-hidden bg-surface border border-line cursor-pointer hover:opacity-90 transition-opacity duration-150">
-                    <img src="../assets/images/projects/flip_decibel/flip_decibel_dog.jpg"
-                        alt="Dog skin" width="629" height="1280" class="h-full w-full object-cover" />
-                </button>
-
-                <button type="button"
-                    class="aspect-[9/16] rounded-lg overflow-hidden bg-surface border border-line cursor-pointer hover:opacity-90 transition-opacity duration-150">
-                    <img src="../assets/images/projects/flip_decibel/flip_decibel_cat.jpg"
-                        alt="Cat skin" width="629" height="1280" class="h-full w-full object-cover" />
-                </button>
-
-                <button type="button"
-                    class="aspect-[9/16] rounded-lg overflow-hidden bg-surface border border-line cursor-pointer hover:opacity-90 transition-opacity duration-150">
-                    <img src="../assets/images/projects/flip_decibel/flip_decibel_altered_text.jpg"
-                        alt="Custom text labels" width="629" height="1280" class="h-full w-full object-cover" />
+                    class="aspect-video rounded-lg overflow-hidden bg-surface border border-line cursor-pointer hover:opacity-90 transition-opacity duration-150">
+                    <img src="/assets/images/projects/pydfile/pydfile_unlock.jpg" alt="Unlock PDF" width="1102" height="750"
+                        class="h-full w-full object-cover" />
                 </button>
 
             </div>
@@ -248,8 +235,8 @@
 
         <!-- Bottom Prev/Next -->
         <div class="flex flex-wrap items-center justify-between py-8 gap-3">
-            <a href="wordlepp.html" class="text-base text-sub hover:text-primary transition-colors duration-150">← Wordle++</a>
-            <a href="pydfile.html" class="text-base text-sub hover:text-primary transition-colors duration-150">PyDFile →</a>
+            <a href="/projects/genera/" class="text-base text-sub hover:text-primary transition-colors duration-150">← Genera</a>
+            <a href="/projects/pitch_flip/" class="text-base text-sub hover:text-primary transition-colors duration-150">Pitch Flip →</a>
         </div>
 
     </main>
@@ -288,8 +275,8 @@
         </p>
     </footer>
 
-    <script src="../assets/js/theme.js"></script>
-    <script src="../assets/js/media-viewer.js"></script>
+    <script src="/assets/js/theme.js"></script>
+    <script src="/assets/js/media-viewer.js"></script>
 
 </body>
 
