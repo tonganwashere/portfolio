@@ -6,10 +6,10 @@ Live at [tongan.dev](https://tongan.dev)
 
 ## Featured Projects
 
-- **[Wordle++](https://tongan.dev/projects/wordlepp.html):** Terminal-based Wordle clone built in C++ with FTXUI, accounts, leaderboards, and an admin panel.
-- **[Flip Decibel](https://tongan.dev/projects/flip_decibel.html):** Android coin-flip app rendered in 3D using OpenGL ES 2.0 with custom skins and a hidden volume-rigged mode.
-- **[PyDFile](https://tongan.dev/projects/pydfile.html):** Offline, local-first desktop PDF utility built in Python and packaged with PyInstaller for Windows.
-- **[Genera](https://tongan.dev/projects/genera.html):** Offline-first flashcard web app built with vanilla JS, Flask, and SQLite using a 5-box Leitner spaced repetition system.
+- **[Genera](https://tongan.dev/projects/genera/):** Offline-first flashcard web app built with vanilla JS, Flask, and SQLite using a 5-box Leitner spaced repetition system.
+- **[PyDFile](https://tongan.dev/projects/pydfile/):** Offline, local-first desktop PDF utility built in Python and packaged with PyInstaller for Windows.
+- **[Pitch Flip](https://tongan.dev/projects/pitch_flip/):** Android coin-flip app rendered in 3D using OpenGL ES 2.0 with custom skins and a hidden volume-rigged mode.
+- **[Wordle++](https://tongan.dev/projects/wordlepp/):** Terminal-based Wordle clone built in C++ with FTXUI, accounts, leaderboards, and an admin panel.
 
 ## Built With
 
@@ -21,10 +21,9 @@ Live at [tongan.dev](https://tongan.dev)
 ## Pages
 
 - `index.html` - Home overview with bio, featured projects, and skills
-- `projects/index.html` - Full project archive
-- `projects/*.html` - Individual projects with screenshot galleries
-- `about.html` - Background, education, and photo highlights
-- `cv.html` - Curriculum vitae view and downloadable PDF
+- `projects/` - Full project archive and individual project detail pages
+- `about/` - Background, education, and photo highlights
+- `cv/` - Curriculum vitae view and downloadable PDF
 
 ## Contact
 
