@@ -1,0 +1,34 @@
+# Hor Tongan
+
+> Personal portfolio and project directory for Hor Tongan, an IT student at The University of Cambodia building web applications, desktop tools, Android games, and terminal software.
+
+## Overview
+
+Hor Tongan builds software across Python, Java, C++, JavaScript, and SQL. His projects emphasize offline functionality, clean architecture, and lightweight performance without unnecessary framework bloat.
+
+- Website: https://tongan.dev/
+- GitHub: https://github.com/tonganwashere
+- Telegram: https://t.me/tonganwashere
+- Facebook: https://facebook.com/TongAnWasHere
+- CV: https://tongan.dev/cv/
+
+## Pages
+
+- [Home](https://tongan.dev/): Portfolio landing page and featured project showcases.
+- [Projects](https://tongan.dev/projects/): Complete directory of software projects.
+- [About](https://tongan.dev/about/): Background, education, technical achievements, and skills.
+- [CV](https://tongan.dev/cv/): Curriculum Vitae with PDF download.
+
+## Featured Projects
+
+- [Genera](https://tongan.dev/projects/genera/): Offline-first flashcard web app built with vanilla JavaScript, Flask, and SQLite. Features 4,500+ trivia questions, 5-box Leitner spaced repetition, IndexedDB caching, Service Worker, and cross-device sync.
+  - GitHub: https://github.com/tonganwashere/genera
+  - Live Demo: https://genera-bvzb.onrender.com/
+- [Proctor](https://tongan.dev/projects/proctor/): Terminal-based examination, quiz, and question bank management platform built in Java with MVC architecture, PostgreSQL, and local AI (Ollama) integration.
+  - GitHub: https://github.com/tonganwashere/proctor
+- [PyDFile](https://tongan.dev/projects/pydfile/): Offline desktop PDF management suite built in Python with CustomTkinter, PyMuPDF, and pikepdf, packaged as a standalone Windows executable.
+  - GitHub: https://github.com/tonganwashere/pydfile
+- [Pitch Flip](https://tongan.dev/projects/pitch_flip/): Android 3D coin flip application rendered using OpenGL ES 2.0 with customizable skins and flip physics.
+  - GitHub: https://github.com/tonganwashere/pitch_flip
+- [Wordle++](https://tongan.dev/projects/wordlepp/): Terminal word-guessing game in C++ using FTXUI with multiple game modes (3, 5, 6 letters and daily challenge), streaks, and an admin panel.
+  - GitHub: https://github.com/tonganwashere/wordle_plus_plus
