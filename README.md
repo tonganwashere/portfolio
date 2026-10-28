@@ -7,6 +7,7 @@ Live at [tongan.dev](https://tongan.dev)
 ## Featured Projects
 
 - **[Genera](https://tongan.dev/projects/genera/):** Offline-first flashcard web app built with vanilla JS, Flask, and SQLite using a 5-box Leitner spaced repetition system.
+- **[Proctor](https://tongan.dev/projects/proctor/):** Terminal-based exam and quiz platform built in Java with MVC architecture, PostgreSQL, and AI grading via Ollama.
 - **[PyDFile](https://tongan.dev/projects/pydfile/):** Offline, local-first desktop PDF utility built in Python and packaged with PyInstaller for Windows.
 - **[Pitch Flip](https://tongan.dev/projects/pitch_flip/):** Android coin-flip app rendered in 3D using OpenGL ES 2.0 with custom skins and a hidden volume-rigged mode.
 - **[Wordle++](https://tongan.dev/projects/wordlepp/):** Terminal-based Wordle clone built in C++ with FTXUI, accounts, leaderboards, and an admin panel.

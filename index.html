@@ -108,19 +108,9 @@
             <h1 class="text-4xl sm:text-5xl font-medium leading-snug mb-6">
                 Hor Tongan
             </h1>
-            <p class="text-lg text-sub leading-relaxed max-w-2xl mb-8">
+            <p class="text-lg text-sub leading-relaxed max-w-2xl">
                 Hello! I'm an IT student at The University of Cambodia. I like building things on the side to learn such as apps, tools, games, and whatever seems cool or interesting next.
             </p>
-            <div class="flex flex-wrap gap-3">
-                <a href="/projects/"
-                    class="text-sm border border-line rounded px-4 py-2 text-sub hover:text-primary hover:border-muted transition-colors duration-150">
-                    View projects →
-                </a>
-                <a href="/assets/images/CV/Hor_Tongan_CV.pdf" target="_blank" rel="noopener noreferrer"
-                    class="text-sm border border-line rounded px-4 py-2 text-sub hover:text-primary hover:border-muted transition-colors duration-150">
-                    Open CV →
-                </a>
-            </div>
         </section>
 
         <!-- Currently Section -->
@@ -163,7 +153,7 @@
                 <!-- Genera -->
                 <a href="/projects/genera/"
                     class="group flex flex-col sm:flex-row gap-0 sm:gap-8 py-8 text-primary hover:bg-surface transition-colors duration-150 -mx-6 px-6">
-                    <div class="self-start shrink-0 w-full sm:w-64 aspect-video bg-surface border border-line rounded overflow-hidden mb-5 sm:mb-0">
+                    <div class="self-start shrink-0 w-full sm:w-64 aspect-[16/10] bg-surface border border-line rounded overflow-hidden mb-5 sm:mb-0">
                         <img src="/assets/images/projects/genera/genera_dashboard.jpg" alt="Genera study dashboard" width="1066" height="597"
                             class="w-full h-full object-cover" />
                     </div>
@@ -188,10 +178,36 @@
                     </div>
                 </a>
 
+                <!-- Proctor -->
+                <a href="/projects/proctor/"
+                    class="group flex flex-col sm:flex-row gap-0 sm:gap-8 py-8 text-primary hover:bg-surface transition-colors duration-150 -mx-6 px-6">
+                    <div class="self-start shrink-0 w-full sm:w-64 aspect-[16/10] bg-surface border border-line rounded overflow-hidden mb-5 sm:mb-0">
+                        <img src="/assets/images/projects/proctor/proctor_quiz_overview.jpg" alt="Proctor quiz overview" width="1920" height="1080"
+                            class="w-full h-full object-cover" />
+                    </div>
+                    <div class="flex-1 min-w-0 flex flex-col justify-between">
+                        <div>
+                            <div class="flex flex-wrap items-baseline gap-3 mb-3">
+                                <h2 class="text-lg font-medium text-primary">Proctor</h2>
+                                <span class="text-sm text-muted">Sep - Oct 2026 · Terminal · Java</span>
+                            </div>
+                            <p class="text-base text-sub leading-relaxed mb-5">
+                                A terminal-based examination and quiz platform built in Java with MVC architecture, question bank management, PostgreSQL database, and built-in AI for quiz generation and grading.
+                            </p>
+                        </div>
+                        <div class="flex flex-wrap gap-1.5">
+                            <span class="text-xs text-muted border border-line rounded-full px-2 py-0.5">Java</span>
+                            <span class="text-xs text-muted border border-line rounded-full px-2 py-0.5">Terminal UI</span>
+                            <span class="text-xs text-muted border border-line rounded-full px-2 py-0.5">PostgreSQL</span>
+                            <span class="text-xs text-muted border border-line rounded-full px-2 py-0.5">Ollama</span>
+                        </div>
+                    </div>
+                </a>
+
                 <!-- PyDFile -->
                 <a href="/projects/pydfile/"
                     class="group flex flex-col sm:flex-row gap-0 sm:gap-8 py-8 text-primary hover:bg-surface transition-colors duration-150 -mx-6 px-6">
-                    <div class="self-start shrink-0 w-full sm:w-64 aspect-video bg-surface border border-line rounded overflow-hidden mb-5 sm:mb-0">
+                    <div class="self-start shrink-0 w-full sm:w-64 aspect-[16/10] bg-surface border border-line rounded overflow-hidden mb-5 sm:mb-0">
                         <img src="/assets/images/projects/pydfile/pydfile_dark.jpg" alt="PyDFile dark mode dashboard" width="1102" height="749"
                             class="w-full h-full object-cover" />
                     </div>
@@ -211,31 +227,6 @@
                             <span class="text-xs text-muted border border-line rounded-full px-2 py-0.5">PyMuPDF</span>
                             <span class="text-xs text-muted border border-line rounded-full px-2 py-0.5">pikepdf</span>
                             <span class="text-xs text-muted border border-line rounded-full px-2 py-0.5">PyInstaller</span>
-                        </div>
-                    </div>
-                </a>
-
-                <!-- Pitch Flip -->
-                <a href="/projects/pitch_flip/"
-                    class="group flex flex-col sm:flex-row gap-0 sm:gap-8 py-8 text-primary hover:bg-surface transition-colors duration-150 -mx-6 px-6">
-                    <div class="self-start shrink-0 w-full sm:w-64 aspect-video bg-surface border border-line rounded overflow-hidden mb-5 sm:mb-0">
-                        <img src="/assets/images/projects/pitch_flip/pitch_flip_starter_screen.jpg" alt="Pitch Flip starter screen" width="629" height="1280"
-                            class="w-full h-full object-cover" />
-                    </div>
-                    <div class="flex-1 min-w-0 flex flex-col justify-between">
-                        <div>
-                            <div class="flex flex-wrap items-baseline gap-3 mb-3">
-                                <h2 class="text-lg font-medium text-primary">Pitch Flip</h2>
-                                <span class="text-sm text-muted">May - Jun 2026 · Android · Java</span>
-                            </div>
-                            <p class="text-base text-sub leading-relaxed mb-5">
-                                An Android coin flip app with a 3D coin rendered in OpenGL ES 2.0, a full skin system with custom labels or images, and a hidden Rig Mode that silently ties the result to your phone's volume level.
-                            </p>
-                        </div>
-                        <div class="flex flex-wrap gap-1.5">
-                            <span class="text-xs text-muted border border-line rounded-full px-2 py-0.5">Java</span>
-                            <span class="text-xs text-muted border border-line rounded-full px-2 py-0.5">Android</span>
-                            <span class="text-xs text-muted border border-line rounded-full px-2 py-0.5">OpenGL ES 2.0</span>
                         </div>
                     </div>
                 </a>
@@ -292,10 +283,6 @@
                     <a href="https://github.com/tonganwashere" target="_blank" rel="noopener noreferrer"
                         class="text-sm border border-line rounded px-4 py-2 text-sub hover:text-primary hover:border-muted transition-colors duration-150">
                         GitHub →
-                    </a>
-                    <a href="/cv/"
-                        class="text-sm border border-line rounded px-4 py-2 text-sub hover:text-primary hover:border-muted transition-colors duration-150">
-                        CV →
                     </a>
                 </div>
             </div>
