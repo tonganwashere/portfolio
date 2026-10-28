@@ -13,7 +13,7 @@
     <meta property="og:url" content="https://tongan.dev/projects/proctor/" />
     <meta property="og:title" content="Proctor - Hor Tongan" />
     <meta property="og:description" content="Proctor, a terminal-based Java examination and quiz platform with question bank management, PostgreSQL, and AI grading." />
-    <meta property="og:image" content="https://tongan.dev/assets/images/projects/proctor/proctor_quiz_overview.jpg" />
+    <meta property="og:image" content="https://tongan.dev/assets/images/projects/proctor/proctor_student_dashboard.jpg" />
     <meta property="og:site_name" content="Hor Tongan" />
 
     <!-- Twitter / X -->
@@ -21,7 +21,7 @@
     <meta name="twitter:url" content="https://tongan.dev/projects/proctor/" />
     <meta name="twitter:title" content="Proctor - Hor Tongan" />
     <meta name="twitter:description" content="Proctor, a terminal-based Java examination and quiz platform with question bank management, PostgreSQL, and AI grading." />
-    <meta name="twitter:image" content="https://tongan.dev/assets/images/projects/proctor/proctor_quiz_overview.jpg" />
+    <meta name="twitter:image" content="https://tongan.dev/assets/images/projects/proctor/proctor_student_dashboard.jpg" />
     <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon_io/apple-touch-icon.png" />
     <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon_io/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon_io/favicon-16x16.png" />
@@ -132,7 +132,7 @@
                     width="80" height="80" class="h-20 w-20 object-contain opacity-90 shrink-0" />
             </div>
             <div class="flex flex-wrap gap-2">
-                <span class="text-sm text-muted border border-line rounded-full px-3 py-1">Java 21</span>
+                <span class="text-sm text-muted border border-line rounded-full px-3 py-1">Java</span>
                 <span class="text-sm text-muted border border-line rounded-full px-3 py-1">Terminal UI</span>
                 <span class="text-sm text-muted border border-line rounded-full px-3 py-1">PostgreSQL</span>
                 <span class="text-sm text-muted border border-line rounded-full px-3 py-1">Ollama</span>
@@ -145,10 +145,10 @@
             <div class="sm:col-span-2">
                 <p class="text-base text-primary font-medium uppercase tracking-widest mb-6">About</p>
                 <div class="text-base text-sub leading-loose space-y-4">
-                    <p>Proctor is a terminal user interface (TUI) examination, quiz, and question bank management platform built in Java. It follows a classic layered Model-View-Controller (MVC) architecture, cleanly separating core domain models, terminal views, and business workflows. Built as a comprehensive assessment tool, it runs in the command line and provides an intuitive, navigable environment for both educators and students.</p>
-                    <p>The platform features multiple assessment modes. Teachers can build and organize question banks, author custom multiple-choice or short-answer questions, and assemble quizzes or full exams. Students can take assessments with real-time prompt feedback, timed modes, and instant score summaries.</p>
-                    <p>Proctor also includes local AI integration via Ollama running Llama 3.2. Teachers can use AI to automatically generate question pools and answer choices from custom prompts or study topics, and students receive AI-assisted grading and correction for free-response submissions without needing external cloud APIs.</p>
-                    <p>All data is persistently stored in PostgreSQL. The application features an automated schema manager that validates, creates, and migrates database tables and constraints upon first startup, removing any need for manual SQL script execution.</p>
+                    <p>Proctor is a terminal user interface (TUI) examination, quiz, and question bank management platform built in Java. Built as a comprehensive assessment tool, it runs in the command line and provides an intuitive, navigable environment for both teachers and students.</p>
+                    <p>The platform features multiple assessment modes such as quizzes, exams, and speed quizzes. Teachers can build and organize question banks, create custom multiple-choice, true/false or short-answer questions. Students can take assessments with real-time prompt feedback, timed modes, and instant score summaries.</p>
+                    <p>Proctor also includes local AI integration via Ollama running Llama 3.2. Teachers can use AI to automatically generate questions and answer choices from custom prompts or study topics, and students receive AI-assisted grading and correction for submissions.</p>
+                    <p>All data is stored in PostgreSQL and the app features an automated schema manager that validates, creates, and migrates database tables and constraints upon first startup.</p>
                     <p>This was developed as a collaborative group project where I took full ownership of the implementation, building the complete architecture, features, and database layers solo over two months.</p>
                 </div>
             </div>
@@ -191,9 +191,9 @@
             <div id="media-gallery" class="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <button type="button"
                     class="aspect-video rounded-lg overflow-hidden bg-surface border border-line cursor-pointer hover:opacity-90 transition-opacity duration-150 sm:col-span-2"
-                    data-label="Quiz overview & rules"
-                    aria-label="Quiz overview & rules">
-                    <img src="/assets/images/projects/proctor/proctor_quiz_overview.jpg" alt="Quiz overview & rules"
+                    data-label="Student dashboard & available exams"
+                    aria-label="Student dashboard & available exams">
+                    <img src="/assets/images/projects/proctor/proctor_student_dashboard.jpg" alt="Student dashboard & available exams"
                         width="1920" height="1080" class="h-full w-full object-cover" />
                 </button>
 
@@ -223,9 +223,9 @@
 
                 <button type="button"
                     class="aspect-video rounded-lg overflow-hidden bg-surface border border-line cursor-pointer hover:opacity-90 transition-opacity duration-150"
-                    data-label="Student dashboard & available exams"
-                    aria-label="Student dashboard & available exams">
-                    <img src="/assets/images/projects/proctor/proctor_student_dashboard.jpg" alt="Student dashboard & available exams"
+                    data-label="Quiz overview & rules"
+                    aria-label="Quiz overview & rules">
+                    <img src="/assets/images/projects/proctor/proctor_quiz_overview.jpg" alt="Quiz overview & rules"
                         width="1920" height="1080" class="h-full w-full object-cover" />
                 </button>
 
