@@ -1,0 +1,27 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+    --color-base: #f8f7f4;
+    --color-surface: #f0eeea;
+    --color-line: #e0deda;
+    --color-muted: #7f7d76;
+    --color-primary: #141414;
+    --color-sub: #6b6a65;
+}
+
+.dark {
+    --color-base: #141414;
+    --color-surface: #161616;
+    --color-line: #222222;
+    --color-muted: #777777;
+    --color-primary: #f0eeea;
+    --color-sub: #888888;
+}
+
+.media-viewer[hidden] {
+    display: none;
+}
