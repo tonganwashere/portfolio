@@ -4,7 +4,7 @@
 
 ## Overview
 
-Hor Tongan builds software across Python, Java, C++, JavaScript, and SQL. His projects emphasize offline functionality, clean architecture, and lightweight performance without unnecessary framework bloat.
+Hor Tongan builds software across Python, Java, Kotlin, C++, JavaScript, and SQL. His projects emphasize offline functionality, clean architecture, and lightweight performance without unnecessary framework bloat.
 
 - Website: https://tongan.dev/
 - GitHub: https://github.com/tonganwashere
@@ -28,7 +28,7 @@ Hor Tongan builds software across Python, Java, C++, JavaScript, and SQL. His pr
   - GitHub: https://github.com/tonganwashere/proctor
 - [PyDFile](https://tongan.dev/projects/pydfile/): Offline desktop PDF management suite built in Python with CustomTkinter, PyMuPDF, and pikepdf, packaged as a standalone Windows executable.
   - GitHub: https://github.com/tonganwashere/pydfile
-- [Pitch Flip](https://tongan.dev/projects/pitch_flip/): Android 3D coin flip application rendered using OpenGL ES 2.0 with customizable skins and flip physics.
+- [Pitch Flip](https://tongan.dev/projects/pitch_flip/): Android 3D coin flip application built in Kotlin, rendered using OpenGL ES 2.0 with customizable skins and flip physics.
   - GitHub: https://github.com/tonganwashere/pitch_flip
 - [Wordle++](https://tongan.dev/projects/wordlepp/): Terminal word-guessing game in C++ using FTXUI with multiple game modes (3, 5, 6 letters and daily challenge), streaks, and an admin panel.
   - GitHub: https://github.com/tonganwashere/wordle_plus_plus
