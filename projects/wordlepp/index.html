@@ -83,7 +83,7 @@
                     <p>Wordle++ is a terminal based word guessing game written in C++, based on the original Wordle by the New York Times. It runs entirely in the command line via a CMake build with no GUI, no browser, and no external setup beyond building the project. The interface is handled by FTXUI, which gives the game a proper terminal UI with color-coded tile states, real-time keyboard input, and navigable menus.</p>
                     <p>The game has 4 modes: 3-letter, 5-letter, 6-letter, and a daily challenge. Players can sign up for an account and their stats (wins and current streak) are tracked on a persistent leaderboard. Word banks are stored as separate JSON files per mode using nlohmann/json, and can be edited directly in the files or managed through the game itself.</p>
                     <p>The built-in Admin Mode is accessible by logging in with username "admin" and password "admin123". From there you get 2 panels: one for adding or removing words from any word bank, and one for deleting player accounts. It was designed so the game could be managed at runtime without anyone needing to open a file manually.</p>
-                    <p>Every line of code was written solo over about a month. Feature ideas and direction came from the team, but the implementation was all mine.</p>
+                    <p>Every line of code was written solo. Feature ideas and direction came from the team, but the implementation was all mine.</p>
                 </div>
             </div>
 
@@ -125,7 +125,7 @@
             <div id="media-gallery" class="grid grid-cols-1 sm:grid-cols-2 gap-3">
 
                 <button type="button"
-                    class="aspect-video rounded-lg overflow-hidden bg-surface border border-line cursor-pointer hover:opacity-90 transition-opacity duration-150">
+                    class="aspect-video rounded-lg overflow-hidden bg-surface border border-line cursor-pointer hover:opacity-90 transition-opacity duration-150 sm:col-span-2">
                     <img src="/projects/wordlepp/media/guest_menu.png" alt="Guest menu"
                         width="1322" height="743" class="h-full w-full object-cover" />
                 </button>
