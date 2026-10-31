@@ -5,14 +5,14 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Genera - Hor Tongan</title>
-    <meta name="description" content="Genera, an offline-first flashcard web app with 4,500+ trivia questions, custom cards, and account sync." />
+    <meta name="description" content="Genera, a flashcard web app with ~4,500 trivia questions, 5-box Leitner spaced repetition, local IndexedDB storage, and cross-device sync that works completely offline." />
     <link rel="canonical" href="https://tongan.dev/projects/genera/" />
 
     <!-- Open Graph / Facebook / LinkedIn / Discord / Telegram -->
     <meta property="og:type" content="article" />
     <meta property="og:url" content="https://tongan.dev/projects/genera/" />
     <meta property="og:title" content="Genera - Hor Tongan" />
-    <meta property="og:description" content="Genera, an offline-first flashcard web app with 4,500+ trivia questions, custom cards, and account sync." />
+    <meta property="og:description" content="Genera, a flashcard web app with ~4,500 trivia questions, 5-box Leitner spaced repetition, local IndexedDB storage, and cross-device sync that works completely offline." />
     <meta property="og:image" content="https://tongan.dev/projects/genera/media/dashboard.jpg" />
     <meta property="og:site_name" content="Hor Tongan" />
 
@@ -20,7 +20,7 @@
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:url" content="https://tongan.dev/projects/genera/" />
     <meta name="twitter:title" content="Genera - Hor Tongan" />
-    <meta name="twitter:description" content="Genera, an offline-first flashcard web app with 4,500+ trivia questions, custom cards, and account sync." />
+    <meta name="twitter:description" content="Genera, an offline-first flashcard web app with ~4,500 trivia questions, 5-box Leitner spaced repetition, local IndexedDB storage, and cross-device sync that works completely offline." />
     <meta name="twitter:image" content="https://tongan.dev/projects/genera/media/dashboard.jpg" />
     <link rel="apple-touch-icon" sizes="180x180" href="/assets/icons/apple-touch-icon.png?v=2" />
     <link rel="icon" type="image/png" sizes="32x32" href="/assets/icons/favicon-32x32.png?v=2" />
@@ -61,7 +61,7 @@
                 <div>
                     <h1 class="text-4xl font-medium mb-4">Genera</h1>
                     <p class="text-lg text-sub leading-relaxed max-w-xl">
-                        A flashcard study web app that works offline and is pre-loaded with trivia, allows you to create your own cards, and syncs everything across devices with account-based conflict resolution.
+                        An offline-first flashcard web app with ~4,500 trivia questions, 5-box Leitner spaced repetition, local IndexedDB storage, and cross-device sync with conflict resolution.
                     </p>
                 </div>
                 <img src="/projects/genera/media/logo.svg" alt="Genera logo"
@@ -82,9 +82,10 @@
             <div class="sm:col-span-2">
                 <p class="text-base text-primary font-medium uppercase tracking-widest mb-6">About</p>
                 <div class="text-base text-sub leading-loose space-y-4">
-                    <p>Genera is a flashcard study app I built to get better at general knowledge trivia. It comes loaded with 4,500+ questions across 24 categories pulled from Open Trivia DB, and you can also write your own cards or import them from a CSV or JSON file. The main study mechanic is a 5-box Leitner system: cards you get right move up a box, cards you get wrong drop back to box 1, and each box has a longer review interval. You work through cards due today, and the app tracks your progress over time.</p>
-                    <p>The whole thing also works offline where a service worker caches the app shell so it loads without a connection, and all study data lives in IndexedDB on the device. If you create an account, your cards and progress sync to a Flask backend with a SQLite database on Render. The sync uses a dirty-flag and last-write-wins strategy per record, and there's a notification banner if a conflict is detected so you can choose which version to keep. You can also sign up anonymously and merge your data into a real account later without losing anything.</p>
-                    <p>The frontend is vanilla JavaScript organized in an MVC structure with no framework. The backend is Flask with Gunicorn, and the database schema covers users, cards, progress, settings, and rate limiting.</p>
+                    <p>Genera is an offline-first flashcard web app built to make learning general knowledge trivia structured and consistent. It comes pre-loaded with about 4,500 trivia questions across 24 categories sourced from Open Trivia DB, alongside tools to create custom cards or import decks from CSV and JSON files. The core study engine uses a 5-box Leitner spaced repetition system with expanding intervals (1, 2, 4, 8, and 16 days). Answering correctly advances a card toward graduation, while a miss resets it to Box 1 for review the next day. All scheduling runs on pure UTC date strings to prevent timezone shifts when traveling or reviewing late at night, and new official trivia cards are paced with configurable daily limits.</p>
+                    <p>Architecture-wise, Genera prioritizes a Local Mode First workflow: users can study immediately with zero account registration, storing decks, progress, settings, and metadata locally in browser IndexedDB across five object stores. A service worker caches the complete app shell for instant loading offline. When the app detects an internet connection, it checks a catalog manifest to seamlessly download and update trivia decks in IndexedDB without interrupting user progress.</p>
+                    <p>For cross-device study, Genera syncs to a Flask and SQLite backend deployed on Render. Offline mutations are tracked with dirty flags and pushed in batches. Conflicts are resolved via Last-Write-Wins based on ISO UTC timestamps, accompanied by an amber banner notifying the user if an edit was superseded. If someone starts in Local Mode and later creates an account, an intelligent merging pipeline reconciles cards and repoints local progress to canonical server records without duplicates.</p>
+                    <p>Both the frontend and backend are written in a modular MVC pattern without external frontend frameworks. The backend features modular controllers and models, session auth with token versioning, CSRF validation, rate limiting, and email OTP verification powered by the Resend API.</p>
                 </div>
             </div>
 

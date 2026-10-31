@@ -21,7 +21,7 @@ Hor Tongan builds software across Python, Java, Kotlin, C++, JavaScript, and SQL
 
 ## Featured Projects
 
-- [Genera](https://tongan.dev/projects/genera/): Offline-first flashcard web app built with vanilla JavaScript, Flask, and SQLite. Features 4,500+ trivia questions, 5-box Leitner spaced repetition, IndexedDB caching, Service Worker, and cross-device sync.
+- [Genera](https://tongan.dev/projects/genera/): flashcard web app built with vanilla JavaScript, Flask, and SQLite. Works offline and features ~4,500 trivia questions, 5-box Leitner spaced repetition, local IndexedDB storage, service worker caching, and multi-device sync with conflict resolution.
   - GitHub: https://github.com/tonganwashere/genera
   - Live Demo: https://genera-bvzb.onrender.com/
 - [Proctor](https://tongan.dev/projects/proctor/): Terminal-based examination, quiz, and question bank management platform built in Java with MVC architecture, PostgreSQL, and local AI (Ollama) integration.
