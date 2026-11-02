@@ -1,9 +1,55 @@
-const mediaViewer = document.getElementById("media-viewer");
-const viewerFrame = document.getElementById("viewer-frame");
-const viewerLabel = document.getElementById("viewer-label");
-const galleryButtons = document.querySelectorAll("#media-gallery button");
+function initMediaViewer() {
+    const galleryButtons = document.querySelectorAll("#media-gallery button");
+    if (!galleryButtons || !galleryButtons.length) return;
 
-if (mediaViewer && viewerFrame && viewerLabel && galleryButtons.length) {
+    let mediaViewer = document.getElementById("media-viewer");
+    if (!mediaViewer) {
+        mediaViewer = document.createElement("div");
+        mediaViewer.id = "media-viewer";
+        mediaViewer.setAttribute("role", "dialog");
+        mediaViewer.setAttribute("aria-modal", "true");
+        mediaViewer.setAttribute("aria-labelledby", "viewer-label");
+        mediaViewer.className = "media-viewer fixed inset-0 z-50 px-6 py-8 sm:px-10 sm:py-10";
+        mediaViewer.tabIndex = -1;
+        mediaViewer.setAttribute("style", "background-color: rgba(0, 0, 0, 0.85);");
+        if (mediaViewer.style) {
+            mediaViewer.style.backgroundColor = "rgba(0, 0, 0, 0.85)";
+        }
+        mediaViewer.hidden = true;
+        mediaViewer.innerHTML = `
+        <button type="button" id="viewer-close" aria-label="Close viewer"
+            class="absolute right-5 top-5 z-20 h-11 w-11 text-lg text-white/80 hover:text-white transition-colors duration-150">
+            ✕
+        </button>
+        <button type="button" id="viewer-prev" aria-label="Previous media"
+            class="absolute left-5 top-1/2 z-20 h-11 w-11 -translate-y-1/2 text-2xl text-white/80 hover:text-white transition-colors duration-150">
+            ←
+        </button>
+        <button type="button" id="viewer-next" aria-label="Next media"
+            class="absolute right-5 top-1/2 z-20 h-11 w-11 -translate-y-1/2 text-2xl text-white/80 hover:text-white transition-colors duration-150">
+            →
+        </button>
+        <div class="mx-auto flex h-full max-w-6xl items-center justify-center">
+            <div class="relative flex w-full flex-col items-center justify-center">
+                <div id="viewer-frame" class="flex min-h-[320px] w-full items-center justify-center overflow-hidden">
+                </div>
+                <p id="viewer-label" aria-live="polite" class="mt-4 text-center text-base text-white">
+                </p>
+            </div>
+        </div>
+    `;
+        const footer = document.getElementById("site-footer");
+        if (footer && footer.parentNode) {
+            footer.parentNode.insertBefore(mediaViewer, footer);
+        } else if (document.body) {
+            document.body.appendChild(mediaViewer);
+        }
+    }
+
+    const viewerFrame = document.getElementById("viewer-frame");
+    const viewerLabel = document.getElementById("viewer-label");
+    if (!viewerFrame || !viewerLabel) return;
+
     const backgroundElements = ["nav", "main", "footer"]
         .map((selector) => document.querySelector(selector))
         .filter(Boolean);
@@ -28,6 +74,13 @@ if (mediaViewer && viewerFrame && viewerLabel && galleryButtons.length) {
     let lastFocusedTrigger = null;
 
     function renderViewer(index) {
+        const activeVideo = viewerFrame.querySelector("video");
+        if (activeVideo) {
+            activeVideo.pause();
+            activeVideo.removeAttribute("src");
+            activeVideo.load();
+        }
+
         const item = mediaItems[index];
 
         activeMediaIndex = index;
@@ -111,6 +164,26 @@ if (mediaViewer && viewerFrame && viewerLabel && galleryButtons.length) {
             return;
         }
 
+        if (event.key === "Tab") {
+            const focusables = mediaViewer.querySelectorAll('button:not([disabled]), [tabindex]:not([tabindex="-1"]), video[controls]');
+            if (focusables.length > 0) {
+                const first = focusables[0];
+                const last = focusables[focusables.length - 1];
+                if (event.shiftKey) {
+                    if (document.activeElement === first || document.activeElement === mediaViewer) {
+                        event.preventDefault();
+                        last.focus();
+                    }
+                } else {
+                    if (document.activeElement === last) {
+                        event.preventDefault();
+                        first.focus();
+                    }
+                }
+            }
+            return;
+        }
+
         const isVideoActive = document.activeElement?.tagName === "VIDEO" || event.target?.tagName === "VIDEO";
         if (isVideoActive) return;
 
@@ -123,4 +196,10 @@ if (mediaViewer && viewerFrame && viewerLabel && galleryButtons.length) {
             moveViewer(1);
         }
     });
+}
+
+if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initMediaViewer);
+} else {
+    initMediaViewer();
 }

@@ -1,5 +1,3 @@
-// Injects the shared site footer into <footer id="site-footer">
-
 const footer = document.getElementById("site-footer");
 if (footer) {
     footer.innerHTML = `

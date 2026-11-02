@@ -1,6 +1,3 @@
-// Injects the shared navigation bar into <nav id="site-nav">
-// Also handles marking the current page's link as active
-
 const path = window.location.pathname;
 
 const navLinks = [
