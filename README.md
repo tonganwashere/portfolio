@@ -11,11 +11,13 @@ Live at [tongan.dev](https://tongan.dev)
 - **[PyDFile](https://tongan.dev/projects/pydfile/):** Offline, local-first desktop PDF utility built in Python and packaged with PyInstaller for Windows.
 - **[Pitch Flip](https://tongan.dev/projects/pitch_flip/):** Android coin-flip app built with Kotlin, rendered in 3D using OpenGL ES 2.0 with custom skins and a hidden volume-rigged mode.
 - **[Wordle++](https://tongan.dev/projects/wordlepp/):** Terminal-based Wordle clone built in C++ with FTXUI, accounts, leaderboards, and an admin panel.
+- **Tongan AI:** First-person interactive portfolio assistant powered by Google Gemini 3.5 Flash, real-time SSE streaming, and a zero-dependency vanilla JS widget.
 
 ## Built With
 
 - **Markup & Styling:** Semantic HTML5, Tailwind CSS, Inter font
-- **Interactivity:** Vanilla JavaScript (light/dark mode toggle, fullscreen media viewer)
+- **Interactivity:** Vanilla JavaScript (light/dark mode toggle, fullscreen media viewer, Tongan AI assistant widget)
+- **AI Backend:** Google Gemini 3.5 Flash, Vercel Serverless Functions (`iad1` region), Server-Sent Events (SSE)
 - **Assets & Icons:** Lucide SVG icons, custom Open Graph social preview cards
 - **Deployment:** GitHub Pages with custom domain (`tongan.dev`)
 
@@ -31,4 +33,3 @@ Live at [tongan.dev](https://tongan.dev)
 - **Telegram:** [@tonganwashere](https://t.me/tonganwashere)
 - **Facebook:** [TongAn](https://facebook.com/TongAnWasHere)
 - **GitHub:** [tonganwashere](https://github.com/tonganwashere)
-- **Email:** tonganwashere@gmail.com
