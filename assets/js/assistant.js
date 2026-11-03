@@ -3,15 +3,13 @@
 
   const API_ENDPOINT = window.TONGAN_API_URL || (['localhost', '127.0.0.1'].includes(location.hostname) ? '/api/chat' : 'https://portfolio-tongan.vercel.app/api/chat');
 
-  const WELCOME_MESSAGE = `Hey! I'm **Tongan AI**, an AI version of Hor Tongan running directly on my portfolio. I'm trained on all my real software projects, coding habits, tech stack, and daily life.
-
-Ask me anything you want to know about me!`;
+  const WELCOME_MESSAGE = `Hey! I'm **Tongan AI**. Feel free to ask me anything about my projects, tech stack, or background. What would you like to know?`;
 
   const SUGGESTED_QUESTIONS = [
     "What projects have you built?",
+    "What is your tech stack?",
     "Tell me about Bread & Blades",
-    "Tell me about your cats!",
-    "What games do you play?"
+    "Tell me about your cats!"
   ];
 
   let isOpen = false;

@@ -8,8 +8,7 @@ const filesToInclude = [
   'profile.md',
   'projects.md',
   'education_experience.md',
-  'hobbies.md',
-  'faq_and_guardrails.md'
+  'hobbies.md'
 ];
 
 function compileKnowledge() {
@@ -36,7 +35,7 @@ function compileKnowledge() {
   const combinedContent = sections.map(s => s.content).join('\n\n---\n\n');
   const payload = {
     name: 'Tongan AI',
-    persona: 'First-person AI clone of Hor Tongan',
+    persona: 'Tongan AI (First-person)',
     updatedAt: new Date().toISOString(),
     characterCount: totalChars,
     estimatedTokens: Math.ceil(totalChars / 4),
