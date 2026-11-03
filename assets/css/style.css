@@ -40,7 +40,6 @@ body.bg-base {
     --color-dot: rgba(255, 255, 255, 0.04);
 }
 
-/* Scroll-triggered reveal */
 .reveal {
     opacity: 0;
     transform: translateY(14px);
@@ -61,7 +60,6 @@ body.bg-base {
     }
 }
 
-/* Project card left hover accent */
 .project-card-item {
     border-left: 3px solid transparent;
     transition: background-color 0.15s ease, border-left-color 0.2s ease;
@@ -80,7 +78,6 @@ body.bg-base {
     cursor: pointer;
 }
 
-/* Ensure all clickable elements always show pointer cursor */
 button,
 [role="button"],
 a,
@@ -98,7 +95,6 @@ input:disabled {
     cursor: not-allowed;
 }
 
-/* Skill icon badge */
 .skill-badge {
     display: inline-flex;
     align-items: center;
@@ -115,7 +111,6 @@ input:disabled {
     filter: invert(1);
 }
 
-/* Pixel font mode */
 html.pixel {
     --font-sans: "Silkscreen", monospace;
 }

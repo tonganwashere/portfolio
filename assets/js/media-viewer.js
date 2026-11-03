@@ -18,15 +18,15 @@ function initMediaViewer() {
         mediaViewer.hidden = true;
         mediaViewer.innerHTML = `
         <button type="button" id="viewer-close" aria-label="Close viewer"
-            class="absolute right-5 top-5 z-20 h-11 w-11 text-lg text-white/80 hover:text-white transition-colors duration-150">
+            class="absolute right-5 top-5 z-20 h-11 w-11 text-lg text-white/80 hover:text-white transition-colors duration-150 cursor-pointer">
             ✕
         </button>
         <button type="button" id="viewer-prev" aria-label="Previous media"
-            class="absolute left-5 top-1/2 z-20 h-11 w-11 -translate-y-1/2 text-2xl text-white/80 hover:text-white transition-colors duration-150">
+            class="absolute left-5 top-1/2 z-20 h-11 w-11 -translate-y-1/2 text-2xl text-white/80 hover:text-white transition-colors duration-150 cursor-pointer">
             ←
         </button>
         <button type="button" id="viewer-next" aria-label="Next media"
-            class="absolute right-5 top-1/2 z-20 h-11 w-11 -translate-y-1/2 text-2xl text-white/80 hover:text-white transition-colors duration-150">
+            class="absolute right-5 top-1/2 z-20 h-11 w-11 -translate-y-1/2 text-2xl text-white/80 hover:text-white transition-colors duration-150 cursor-pointer">
             →
         </button>
         <div class="mx-auto flex h-full max-w-6xl items-center justify-center">
