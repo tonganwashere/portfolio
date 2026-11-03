@@ -589,6 +589,20 @@
         0%, 80%, 100% { transform: scale(0.6); opacity: 0.4; }
         40% { transform: scale(1.1); opacity: 1; }
       }
+
+      .tongan-cursor {
+        display: inline-block;
+        width: 2px;
+        height: 1.05em;
+        background-color: var(--color-primary);
+        margin-left: 2px;
+        vertical-align: -0.12em;
+        animation: tonganCursorBlink 0.75s infinite;
+      }
+      @keyframes tonganCursorBlink {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0; }
+      }
     `;
     document.head.appendChild(style);
   }
@@ -717,6 +731,7 @@
     }
 
     clearBtn.addEventListener('click', () => {
+      if (isGenerating) return;
       messages = [];
       saveHistory();
       const feed = document.getElementById('tongan-messages-feed');
@@ -768,9 +783,96 @@
     }
   }
 
-  function scrollToBottom() {
+  function scrollToBottom(force = false) {
     const feed = document.getElementById('tongan-messages-feed');
-    if (feed) feed.scrollTop = feed.scrollHeight;
+    if (!feed) return;
+    const isNearBottom = feed.scrollHeight - feed.scrollTop - feed.clientHeight < 80;
+    if (force || isNearBottom) {
+      feed.scrollTop = feed.scrollHeight;
+    }
+  }
+
+  function attachCursor(html) {
+    if (!html) return '<span class="tongan-cursor"></span>';
+    const lastP = html.lastIndexOf('</p>');
+    const lastLi = html.lastIndexOf('</li>');
+    const lastBlockquote = html.lastIndexOf('</blockquote>');
+    const lastCode = html.lastIndexOf('</code>');
+    const targetIdx = Math.max(lastP, lastLi, lastBlockquote, lastCode);
+    if (targetIdx !== -1) {
+      return html.slice(0, targetIdx) + '<span class="tongan-cursor"></span>' + html.slice(targetIdx);
+    }
+    return html + '<span class="tongan-cursor"></span>';
+  }
+
+  class TypewriterStreamer {
+    constructor(bubbleContainer) {
+      this.container = bubbleContainer;
+      this.targetText = '';
+      this.displayedLength = 0;
+      this.isStreamDone = false;
+      this.timer = null;
+      this.resolvePromise = null;
+      this.completionPromise = new Promise(resolve => {
+        this.resolvePromise = resolve;
+      });
+      this.tick = this.tick.bind(this);
+    }
+
+    start() {
+      this.container.innerHTML = '<span class="tongan-cursor"></span>';
+      this.timer = setInterval(this.tick, 16);
+    }
+
+    append(chunk) {
+      this.targetText += chunk;
+    }
+
+    finishStream() {
+      this.isStreamDone = true;
+    }
+
+    tick() {
+      const remaining = this.targetText.length - this.displayedLength;
+
+      if (remaining > 0) {
+        let step = 1;
+        if (remaining > 120) {
+          step = Math.ceil(remaining / 8);
+        } else if (remaining > 50) {
+          step = 3;
+        } else if (remaining > 20) {
+          step = 2;
+        } else {
+          step = 1;
+        }
+
+        this.displayedLength = Math.min(this.targetText.length, this.displayedLength + step);
+        const partial = this.targetText.slice(0, this.displayedLength);
+        this.container.innerHTML = attachCursor(renderMarkdown(partial));
+        scrollToBottom();
+      } else if (this.isStreamDone) {
+        this.stop();
+      }
+    }
+
+    stop() {
+      if (this.timer) {
+        clearInterval(this.timer);
+        this.timer = null;
+      }
+      this.displayedLength = this.targetText.length;
+      this.container.innerHTML = renderMarkdown(this.targetText);
+      scrollToBottom();
+      if (this.resolvePromise) {
+        this.resolvePromise(this.targetText);
+        this.resolvePromise = null;
+      }
+    }
+
+    waitUntilDone() {
+      return this.completionPromise;
+    }
   }
 
   function appendMessageUI(role, content) {
@@ -799,7 +901,7 @@
     }
 
     feed.appendChild(wrapper);
-    scrollToBottom();
+    scrollToBottom(true);
     return wrapper;
   }
 
@@ -835,9 +937,11 @@
       </div>
     `;
     feed.appendChild(assistantBubble);
-    scrollToBottom();
+    scrollToBottom(true);
 
     const bubbleContainer = assistantBubble.querySelector('.tongan-msg-assistant-bubble');
+    let typewriter = null;
+    let fullResponse = '';
 
     try {
       const response = await fetch(API_ENDPOINT, {
@@ -852,8 +956,6 @@
 
       const reader = response.body.getReader();
       const decoder = new TextDecoder();
-      let fullResponse = '';
-      bubbleContainer.innerHTML = '';
 
       while (true) {
         const { done, value } = await reader.read();
@@ -865,21 +967,35 @@
           if (line.startsWith('data: ')) {
             const dataStr = line.slice(6).trim();
             if (dataStr === '[DONE]') break;
+
+            let parsed = null;
             try {
-              const parsed = JSON.parse(dataStr);
-              if (parsed.text) {
-                fullResponse += parsed.text;
-                bubbleContainer.innerHTML = renderMarkdown(fullResponse);
-                scrollToBottom();
-              }
+              parsed = JSON.parse(dataStr);
             } catch (e) {}
+
+            if (parsed) {
+              if (parsed.error) {
+                throw new Error(parsed.error);
+              }
+              if (parsed.text) {
+                if (!typewriter) {
+                  bubbleContainer.innerHTML = '';
+                  typewriter = new TypewriterStreamer(bubbleContainer);
+                  typewriter.start();
+                }
+                typewriter.append(parsed.text);
+              }
+            }
           }
         }
       }
 
-      if (!fullResponse.trim()) {
-        fullResponse = "I haven't loaded that specific detail into my AI memory yet! Feel free to reach out to me directly on Telegram [@tonganwashere](https://t.me/tonganwashere)!";
+      if (!typewriter) {
+        fullResponse = "I'm not sure how to respond to that, but feel free to reach out to me directly on Telegram [@tonganwashere](https://t.me/tonganwashere)!";
         bubbleContainer.innerHTML = renderMarkdown(fullResponse);
+      } else {
+        typewriter.finishStream();
+        fullResponse = await typewriter.waitUntilDone();
       }
 
       messages.push({ role: 'assistant', content: fullResponse });
@@ -887,6 +1003,9 @@
 
     } catch (err) {
       console.error('AI chat error:', err);
+      if (typewriter) {
+        typewriter.stop();
+      }
       const fallbackMsg = "I couldn't reach the AI service right now. Please try again in a moment, or reach out to me directly on Telegram [@tonganwashere](https://t.me/tonganwashere)!";
       bubbleContainer.innerHTML = renderMarkdown(fallbackMsg);
       messages.push({ role: 'assistant', content: fallbackMsg });
@@ -894,7 +1013,7 @@
     } finally {
       isGenerating = false;
       if (sendBtn) sendBtn.disabled = false;
-      scrollToBottom();
+      scrollToBottom(true);
     }
   }
 
