@@ -1,6 +1,10 @@
 (function () {
   'use strict';
 
+  if (window.location.pathname.startsWith('/chat')) {
+    return;
+  }
+
   const API_ENDPOINT = window.TONGAN_API_URL || (['localhost', '127.0.0.1'].includes(location.hostname) ? '/api/chat' : 'https://portfolio-tongan.vercel.app/api/chat');
 
   const WELCOME_MESSAGE = `Hey! I'm **Tongan AI**. Feel free to ask me anything about my projects, tech stack, or background. What would you like to know?`;

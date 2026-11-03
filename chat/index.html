@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ask AI · Hor Tongan</title>
+    <meta name="description" content="Ask AI anything about Hor Tongan's projects, background, and tech stack." />
+    <link rel="canonical" href="https://tongan.dev/chat/" />
+
+    <!-- Open Graph / Facebook / LinkedIn / Discord / Telegram -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://tongan.dev/chat/" />
+    <meta property="og:title" content="Ask AI · Hor Tongan" />
+    <meta property="og:description" content="Ask AI about Hor Tongan's projects, background, and skills." />
+    <meta property="og:image" content="https://tongan.dev/assets/media/og_image.png" />
+    <meta property="og:site_name" content="Hor Tongan" />
+
+    <!-- Twitter / X -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://tongan.dev/chat/" />
+    <meta name="twitter:title" content="Ask AI · Hor Tongan" />
+    <meta name="twitter:description" content="Ask AI about Hor Tongan's projects, background, and skills." />
+    <meta name="twitter:image" content="https://tongan.dev/assets/media/og_image.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/icons/apple-touch-icon.png?v=2" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/icons/favicon-32x32.png?v=2" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/icons/favicon-16x16.png?v=2" />
+    <link rel="icon" href="/favicon.ico?v=2" sizes="any" />
+    <link rel="manifest" href="/assets/icons/site.webmanifest" />
+    <link rel="stylesheet" href="/assets/css/output.css" />
+    <script>
+        try {
+            const saved = localStorage.getItem("theme");
+            if (saved === "light") document.documentElement.classList.remove("dark");
+            else document.documentElement.classList.add("dark");
+            if (localStorage.getItem("tongan_font_pixel") === "true") {
+                document.documentElement.classList.add("pixel");
+                const link = document.createElement("link");
+                link.id = "pixel-font-link";
+                link.rel = "stylesheet";
+                link.href = "https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&display=swap";
+                document.head.appendChild(link);
+            }
+        } catch (e) {}
+    </script>
+</head>
+
+<body class="bg-base text-primary font-sans antialiased min-h-screen flex flex-col">
+
+    <!-- Navigation Bar -->
+    <nav id="site-nav" class="sticky top-0 z-50 bg-base max-w-7xl mx-auto w-full px-6 py-5 flex items-center justify-between border-b border-line"></nav>
+
+    <main class="max-w-4xl mx-auto w-full px-6 flex-1 flex flex-col py-8">
+        <div class="flex flex-wrap items-center justify-between gap-4 pb-6 border-b border-line mb-6">
+            <div class="flex items-center gap-3.5">
+                <div class="relative w-11 h-11 rounded-lg border border-line bg-surface p-1 flex items-center justify-center shrink-0">
+                    <img src="/assets/icons/tongan-pixelart.png" alt="Tongan AI" class="w-full h-full object-contain [image-rendering:pixelated]" style="image-rendering: pixelated;" />
+                    <span class="absolute -bottom-0.5 -right-0.5 w-3 h-3 rounded-full bg-emerald-500 border-2 border-base"></span>
+                </div>
+                <div>
+                    <h1 class="text-xl sm:text-2xl font-medium text-primary leading-tight">Ask AI</h1>
+                    <p class="text-xs sm:text-sm text-sub">Conversational assistant · Ask me anything</p>
+                </div>
+            </div>
+
+            <button type="button" id="chat-page-clear"
+                class="text-xs sm:text-sm border border-line rounded px-3 py-1.5 text-sub hover:text-primary hover:border-muted transition-colors duration-150 flex items-center gap-1.5 cursor-pointer"
+                title="Reset conversation">
+                <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/><path d="M8 16H3v5"/></svg>
+                <span>Reset Chat</span>
+            </button>
+        </div>
+
+        <div class="flex-1 flex flex-col rounded-xl border border-line bg-surface/30 overflow-hidden min-h-[520px]">
+            <div id="chat-page-feed" class="flex-1 overflow-y-auto p-4 sm:p-6 space-y-4"></div>
+
+            <div id="chat-page-chips" class="px-4 sm:px-6 py-2 border-t border-line/60 bg-base/50"></div>
+
+            <form id="chat-page-form" class="p-3 sm:p-4 border-t border-line bg-surface flex items-center gap-2">
+                <input type="text" id="chat-page-input"
+                    placeholder="Ask about my projects, tech stack, or background..."
+                    autocomplete="off"
+                    class="flex-1 bg-base border border-line rounded-lg px-4 py-2.5 text-sm sm:text-base text-primary placeholder:text-muted focus:outline-none focus:border-muted transition-colors" />
+                <button type="submit" id="chat-page-send" aria-label="Send message"
+                    class="px-4 py-2.5 rounded-lg bg-primary text-[var(--color-base)] hover:opacity-90 cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed transition-opacity flex items-center justify-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+                </button>
+            </form>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer id="site-footer" class="max-w-7xl mx-auto w-full px-6 py-6 flex flex-wrap justify-between items-center gap-3 border-t border-line"></footer>
+
+    <script src="/assets/js/nav.js"></script>
+    <script src="/assets/js/footer.js"></script>
+    <script src="/assets/js/theme.js"></script>
+    <script src="/assets/js/pixel-font.js"></script>
+    <script src="/assets/js/animations.js"></script>
+    <script src="/assets/js/chat-page.js"></script>
+</body>
+
+</html>

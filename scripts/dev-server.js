@@ -309,7 +309,7 @@ server.listen(PORT, () => {
   console.log(`\n======================================================`);
   console.log(`  Portfolio Dev Server Running!`);
   console.log(`  Local URL:   http://localhost:${PORT}`);
-  console.log(`  AI Model:    ${MODEL} (Live Streaming)`);
+  console.log(`  AI Model:    ${MODELS[0]} (Fallback: ${MODELS.slice(1).join(', ')})`);
   console.log(`  Knowledge:   Loaded ${knowledgeContext.length} chars into system prompt`);
   console.log(`======================================================\n`);
 });
