@@ -951,7 +951,12 @@
       });
 
       if (!response.ok) {
-        throw new Error(`AI service returned ${response.status}`);
+        let errMsg = `AI service returned ${response.status}`;
+        try {
+          const errData = await response.json();
+          if (errData && errData.error) errMsg = errData.error;
+        } catch (e) {}
+        throw new Error(errMsg);
       }
 
       const reader = response.body.getReader();
@@ -1006,9 +1011,16 @@
       if (typewriter) {
         typewriter.stop();
       }
-      const fallbackMsg = "I couldn't reach the AI service right now. Please try again in a moment, or reach out to me directly on Telegram [@tonganwashere](https://t.me/tonganwashere)!";
-      bubbleContainer.innerHTML = renderMarkdown(fallbackMsg);
-      messages.push({ role: 'assistant', content: fallbackMsg });
+      let displayError = '';
+      if (!navigator.onLine) {
+        displayError = "It looks like you're offline. Please check your internet connection and try again!";
+      } else if (err && err.message && !err.message.includes('Failed to fetch') && !err.message.includes('AI service returned')) {
+        displayError = err.message;
+      } else {
+        displayError = "I couldn't reach the AI service right now. Please try again in a moment, or reach out to me directly on Telegram [@tonganwashere](https://t.me/tonganwashere)!";
+      }
+      bubbleContainer.innerHTML = renderMarkdown(displayError);
+      messages.push({ role: 'assistant', content: displayError });
       saveHistory();
     } finally {
       isGenerating = false;

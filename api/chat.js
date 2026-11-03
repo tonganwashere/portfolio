@@ -92,7 +92,7 @@ module.exports = async function handler(req, res) {
   // IP rate limiting
   const clientIp = req.headers['x-forwarded-for']?.split(',')[0]?.trim() || req.socket?.remoteAddress || 'unknown';
   if (isRateLimited(clientIp)) {
-    return res.status(429).json({ error: 'Too many requests. Please wait a moment before sending another message.' });
+    return res.status(429).json({ error: "You're sending messages a bit too fast! Please wait a moment before sending another message." });
   }
 
   const apiKey = (process.env.GEMINI_API_KEY || '').trim();
@@ -151,8 +151,11 @@ module.exports = async function handler(req, res) {
     ]
   });
 
-  const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3.5-flash:streamGenerateContent?alt=sse&key=${apiKey}`;
-  const urlObj = new URL(url);
+  const MODELS = [
+    'gemini-3.5-flash-lite',
+    'gemini-flash-lite-latest',
+    'gemini-3.5-flash'
+  ];
 
   res.writeHead(200, {
     'Content-Type': 'text/event-stream',
@@ -161,68 +164,88 @@ module.exports = async function handler(req, res) {
     'Access-Control-Allow-Origin': '*'
   });
 
-  const geminiReq = https.request({
-    hostname: urlObj.hostname,
-    port: 443,
-    path: urlObj.pathname + urlObj.search,
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'Content-Length': Buffer.byteLength(payload)
+  let lastStatusCode = 200;
+
+  function tryModel(index) {
+    if (index >= MODELS.length) {
+      let userMsg = 'AI service is temporarily busy. Please try again in a moment, or reach out to me directly on Telegram [@tonganwashere](https://t.me/tonganwashere).';
+      if (lastStatusCode === 429) {
+        userMsg = 'I have reached my daily AI message limit for today! Feel free to reach out to me directly on Telegram [@tonganwashere](https://t.me/tonganwashere).';
+      } else if (lastStatusCode === 503) {
+        userMsg = 'Google AI service is currently experiencing high traffic. Please try again in a moment!';
+      }
+      res.write(`data: ${JSON.stringify({ error: userMsg })}\n\n`);
+      res.write('data: [DONE]\n\n');
+      return res.end();
     }
-  }, (geminiRes) => {
-    if (geminiRes.statusCode !== 200) {
-      let errBody = '';
-      geminiRes.on('data', chunk => { errBody += chunk; });
+
+    const currentModel = MODELS[index];
+    const url = `https://generativelanguage.googleapis.com/v1beta/models/${currentModel}:streamGenerateContent?alt=sse&key=${apiKey}`;
+    const urlObj = new URL(url);
+
+    const geminiReq = https.request({
+      hostname: urlObj.hostname,
+      port: 443,
+      path: urlObj.pathname + urlObj.search,
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Content-Length': Buffer.byteLength(payload)
+      }
+    }, (geminiRes) => {
+      lastStatusCode = geminiRes.statusCode;
+
+      if (geminiRes.statusCode !== 200) {
+        let errBody = '';
+        geminiRes.on('data', chunk => { errBody += chunk; });
+        geminiRes.on('end', () => {
+          console.warn(`Gemini model ${currentModel} returned ${geminiRes.statusCode}. Attempting fallback...`);
+          tryModel(index + 1);
+        });
+        return;
+      }
+
+      let buffer = '';
+      geminiRes.on('data', chunk => {
+        buffer += chunk.toString();
+        const lines = buffer.split('\n');
+        buffer = lines.pop() || '';
+
+        for (const line of lines) {
+          if (line.startsWith('data: ')) {
+            const jsonStr = line.slice(6).trim();
+            if (jsonStr === '[DONE]') {
+              res.write('data: [DONE]\n\n');
+              continue;
+            }
+            try {
+              const parsed = JSON.parse(jsonStr);
+              const text = parsed?.candidates?.[0]?.content?.parts?.[0]?.text;
+              if (text) {
+                // Redact prompt leaks if present
+                if (!text.includes('SYSTEM_INSTRUCTION') && !text.includes('VERIFIED KNOWLEDGE BASE')) {
+                  res.write(`data: ${JSON.stringify({ text })}\n\n`);
+                }
+              }
+            } catch (e) {}
+          }
+        }
+      });
+
       geminiRes.on('end', () => {
-        console.error('Gemini error:', geminiRes.statusCode, errBody);
-        res.write(`data: ${JSON.stringify({ error: 'AI service is temporarily busy. Please try again in a moment.' })}\n\n`);
         res.write('data: [DONE]\n\n');
         res.end();
       });
-      return;
-    }
-
-    let buffer = '';
-    geminiRes.on('data', chunk => {
-      buffer += chunk.toString();
-      const lines = buffer.split('\n');
-      buffer = lines.pop() || '';
-
-      for (const line of lines) {
-        if (line.startsWith('data: ')) {
-          const jsonStr = line.slice(6).trim();
-          if (jsonStr === '[DONE]') {
-            res.write('data: [DONE]\n\n');
-            continue;
-          }
-          try {
-            const parsed = JSON.parse(jsonStr);
-            const text = parsed?.candidates?.[0]?.content?.parts?.[0]?.text;
-            if (text) {
-              // Redact prompt leaks if present
-              if (!text.includes('SYSTEM_INSTRUCTION') && !text.includes('VERIFIED KNOWLEDGE BASE')) {
-                res.write(`data: ${JSON.stringify({ text })}\n\n`);
-              }
-            }
-          } catch (e) {}
-        }
-      }
     });
 
-    geminiRes.on('end', () => {
-      res.write('data: [DONE]\n\n');
-      res.end();
+    geminiReq.on('error', (err) => {
+      console.warn(`Request to ${currentModel} failed:`, err.message);
+      tryModel(index + 1);
     });
-  });
 
-  geminiReq.on('error', (err) => {
-    console.error('Gemini request error:', err);
-    res.write(`data: ${JSON.stringify({ error: 'Failed to connect to AI service' })}\n\n`);
-    res.write('data: [DONE]\n\n');
-    res.end();
-  });
+    geminiReq.write(payload);
+    geminiReq.end();
+  }
 
-  geminiReq.write(payload);
-  geminiReq.end();
+  tryModel(0);
 };

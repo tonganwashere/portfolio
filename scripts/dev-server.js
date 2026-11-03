@@ -21,7 +21,11 @@ if (fs.existsSync(envPath)) {
 }
 
 const API_KEY = process.env.GEMINI_API_KEY || '';
-const MODEL = 'gemini-3.5-flash';
+const MODELS = [
+  'gemini-3.5-flash-lite',
+  'gemini-flash-lite-latest',
+  'gemini-3.5-flash'
+];
 
 let knowledgeContext = '';
 try {
@@ -196,9 +200,6 @@ function handleChat(req, res) {
         ]
       });
 
-      const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/${MODEL}:streamGenerateContent?alt=sse&key=${API_KEY}`;
-      const urlObj = new URL(geminiUrl);
-
       res.writeHead(200, {
         'Content-Type': 'text/event-stream',
         'Cache-Control': 'no-cache',
@@ -206,56 +207,87 @@ function handleChat(req, res) {
         'Access-Control-Allow-Origin': '*'
       });
 
-      const geminiReq = https.request({
-        hostname: urlObj.hostname,
-        port: 443,
-        path: urlObj.pathname + urlObj.search,
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Content-Length': Buffer.byteLength(payload)
-        }
-      }, (geminiRes) => {
-        let buffer = '';
+      let lastStatusCode = 200;
 
-        geminiRes.on('data', (chunk) => {
-          buffer += chunk.toString('utf8');
-          const lines = buffer.split('\n');
-          buffer = lines.pop();
-
-          for (const line of lines) {
-            if (line.startsWith('data: ')) {
-              const dataStr = line.slice(6).trim();
-              if (dataStr === '[DONE]') continue;
-              try {
-                const data = JSON.parse(dataStr);
-                const candidate = data.candidates?.[0];
-                const text = candidate?.content?.parts?.[0]?.text;
-                if (text) {
-                  if (!text.includes('SYSTEM_INSTRUCTION') && !text.includes('VERIFIED KNOWLEDGE BASE')) {
-                    res.write(`data: ${JSON.stringify({ text })}\n\n`);
-                  }
-                }
-              } catch (e) {}
-            }
+      function tryModel(index) {
+        if (index >= MODELS.length) {
+          let userMsg = 'AI service is temporarily busy. Please try again in a moment, or reach out to me directly on Telegram [@tonganwashere](https://t.me/tonganwashere).';
+          if (lastStatusCode === 429) {
+            userMsg = 'I have reached my daily AI message limit for today! Feel free to reach out to me directly on Telegram [@tonganwashere](https://t.me/tonganwashere).';
+          } else if (lastStatusCode === 503) {
+            userMsg = 'Google AI service is currently experiencing high traffic. Please try again in a moment!';
           }
-        });
-
-        geminiRes.on('end', () => {
+          res.write(`data: ${JSON.stringify({ error: userMsg })}\n\n`);
           res.write('data: [DONE]\n\n');
-          res.end();
+          return res.end();
+        }
+
+        const currentModel = MODELS[index];
+        const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/${currentModel}:streamGenerateContent?alt=sse&key=${API_KEY}`;
+        const urlObj = new URL(geminiUrl);
+
+        const geminiReq = https.request({
+          hostname: urlObj.hostname,
+          port: 443,
+          path: urlObj.pathname + urlObj.search,
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Content-Length': Buffer.byteLength(payload)
+          }
+        }, (geminiRes) => {
+          lastStatusCode = geminiRes.statusCode;
+
+          if (geminiRes.statusCode !== 200) {
+            let errBody = '';
+            geminiRes.on('data', chunk => { errBody += chunk; });
+            geminiRes.on('end', () => {
+              console.warn(`[dev-server] Model ${currentModel} returned ${geminiRes.statusCode}. Attempting fallback...`);
+              tryModel(index + 1);
+            });
+            return;
+          }
+
+          let buffer = '';
+          geminiRes.on('data', (chunk) => {
+            buffer += chunk.toString('utf8');
+            const lines = buffer.split('\n');
+            buffer = lines.pop();
+
+            for (const line of lines) {
+              if (line.startsWith('data: ')) {
+                const dataStr = line.slice(6).trim();
+                if (dataStr === '[DONE]') continue;
+                try {
+                  const data = JSON.parse(dataStr);
+                  const candidate = data.candidates?.[0];
+                  const text = candidate?.content?.parts?.[0]?.text;
+                  if (text) {
+                    if (!text.includes('SYSTEM_INSTRUCTION') && !text.includes('VERIFIED KNOWLEDGE BASE')) {
+                      res.write(`data: ${JSON.stringify({ text })}\n\n`);
+                    }
+                  }
+                } catch (e) {}
+              }
+            }
+          });
+
+          geminiRes.on('end', () => {
+            res.write('data: [DONE]\n\n');
+            res.end();
+          });
         });
-      });
 
-      geminiReq.on('error', (err) => {
-        console.error('Gemini proxy error:', err);
-        res.write(`data: ${JSON.stringify({ text: "\n\n*(Connection to AI service failed. Feel free to contact Tongan on Telegram @tonganwashere)*" })}\n\n`);
-        res.write('data: [DONE]\n\n');
-        res.end();
-      });
+        geminiReq.on('error', (err) => {
+          console.warn(`[dev-server] Request to ${currentModel} failed:`, err.message);
+          tryModel(index + 1);
+        });
 
-      geminiReq.write(payload);
-      geminiReq.end();
+        geminiReq.write(payload);
+        geminiReq.end();
+      }
+
+      tryModel(0);
 
     } catch (err) {
       console.error('Chat error:', err);
