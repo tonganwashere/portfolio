@@ -33,6 +33,14 @@
             const saved = localStorage.getItem("theme");
             if (saved === "light") document.documentElement.classList.remove("dark");
             else document.documentElement.classList.add("dark");
+            if (localStorage.getItem("tongan_font_pixel") === "true") {
+                document.documentElement.classList.add("pixel");
+                const link = document.createElement("link");
+                link.id = "pixel-font-link";
+                link.rel = "stylesheet";
+                link.href = "https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&display=swap";
+                document.head.appendChild(link);
+            }
         } catch (e) {}
     </script>
 
@@ -76,7 +84,7 @@
     <main class="max-w-7xl mx-auto w-full px-6 flex-1">
 
         <!-- Hero Section -->
-        <section class="pt-20 pb-16 border-b border-line">
+        <section class="pt-20 pb-16 border-b border-line reveal">
             <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-8">
                 <div>
                     <h1 class="text-4xl sm:text-5xl font-medium leading-snug mb-6">
@@ -97,33 +105,48 @@
         </section>
 
         <!-- Currently Section -->
-        <section class="py-14 border-b border-line">
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
-                <div>
-                    <p class="text-base text-primary font-medium uppercase tracking-widest mb-6">Studying</p>
-                    <p class="text-base text-sub leading-relaxed">
-                        Third-year Information Technology at The University of Cambodia.
-                    </p>
+        <section class="py-14 border-b border-line reveal">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+                <div class="p-6 rounded-lg border border-line bg-surface/50 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center gap-2.5 mb-3.5">
+                            <span class="inline-block w-2 h-2 rounded-full bg-primary ring-2 ring-primary/20"></span>
+                            <p class="text-xs text-primary font-medium uppercase tracking-widest">Studying</p>
+                        </div>
+                        <p class="text-base text-sub leading-relaxed">
+                            Third-year Information Technology at The University of Cambodia.
+                        </p>
+                    </div>
                 </div>
 
-                <div>
-                    <p class="text-base text-primary font-medium uppercase tracking-widest mb-6">Learning</p>
-                    <p class="text-base text-sub leading-relaxed">
-                        Java, C++, Python, Android development, and better ways to optimize my code.
-                    </p>
+                <div class="p-6 rounded-lg border border-line bg-surface/50 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center gap-2.5 mb-3.5">
+                            <span class="inline-block w-2 h-2 rounded-full bg-primary ring-2 ring-primary/20"></span>
+                            <p class="text-xs text-primary font-medium uppercase tracking-widest">Learning</p>
+                        </div>
+                        <p class="text-base text-sub leading-relaxed">
+                            Java, C++, Python, Android development, and better ways to optimize my code.
+                        </p>
+                    </div>
                 </div>
 
-                <div>
-                    <p class="text-base text-primary font-medium uppercase tracking-widest mb-6">Open to</p>
-                    <p class="text-base text-sub leading-relaxed">
-                        Developer internships, junior roles, collaborations, and useful projects.
-                    </p>
+                <div class="p-6 rounded-lg border border-line bg-surface/50 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center gap-2.5 mb-3.5">
+                            <span class="inline-block w-2 h-2 rounded-full bg-primary ring-2 ring-primary/20"></span>
+                            <p class="text-xs text-primary font-medium uppercase tracking-widest">Open to</p>
+                        </div>
+                        <p class="text-base text-sub leading-relaxed">
+                            Developer internships, junior roles, collaborations, and useful projects.
+                        </p>
+                    </div>
                 </div>
             </div>
         </section>
 
         <!-- Projects Section -->
-        <section class="py-14 border-b border-line">
+        <section class="py-14 border-b border-line reveal">
             <div class="flex flex-wrap items-baseline justify-between gap-4 mb-10">
                 <p class="text-base text-primary font-medium uppercase tracking-widest">Latest Projects</p>
                 <a href="/projects/" class="text-sm text-sub hover:text-primary transition-colors duration-150">
@@ -135,7 +158,7 @@
 
                 <!-- Genera -->
                 <a href="/projects/genera/"
-                    class="group flex flex-col sm:flex-row gap-0 sm:gap-8 py-8 text-primary hover:bg-surface transition-colors duration-150 rounded -mx-6 px-6">
+                    class="group project-card-item flex flex-col sm:flex-row gap-0 sm:gap-8 py-8 text-primary hover:bg-surface transition-colors duration-150 rounded -mx-6 px-6">
                     <div class="self-start shrink-0 w-full sm:w-64 aspect-[16/10] bg-surface border border-line rounded overflow-hidden mb-5 sm:mb-0">
                         <img src="/projects/genera/media/dashboard.jpg" alt="Genera study dashboard" width="1066" height="597"
                             class="w-full h-full object-cover" />
@@ -167,7 +190,7 @@
 
                 <!-- Proctor -->
                 <a href="/projects/proctor/"
-                    class="group flex flex-col sm:flex-row gap-0 sm:gap-8 py-8 text-primary hover:bg-surface transition-colors duration-150 rounded -mx-6 px-6">
+                    class="group project-card-item flex flex-col sm:flex-row gap-0 sm:gap-8 py-8 text-primary hover:bg-surface transition-colors duration-150 rounded -mx-6 px-6">
                     <div class="self-start shrink-0 w-full sm:w-64 aspect-[16/10] bg-surface border border-line rounded overflow-hidden mb-5 sm:mb-0">
                         <img src="/projects/proctor/media/startup.jpg" alt="Proctor startup screen" width="1920" height="1080"
                             class="w-full h-full object-cover" />
@@ -197,7 +220,7 @@
 
                 <!-- PyDFile -->
                 <a href="/projects/pydfile/"
-                    class="group flex flex-col sm:flex-row gap-0 sm:gap-8 py-8 text-primary hover:bg-surface transition-colors duration-150 rounded -mx-6 px-6">
+                    class="group project-card-item flex flex-col sm:flex-row gap-0 sm:gap-8 py-8 text-primary hover:bg-surface transition-colors duration-150 rounded -mx-6 px-6">
                     <div class="self-start shrink-0 w-full sm:w-64 aspect-[16/10] bg-surface border border-line rounded overflow-hidden mb-5 sm:mb-0">
                         <img src="/projects/pydfile/media/dark_theme.jpg" alt="PyDFile dark mode dashboard" width="1102" height="749"
                             class="w-full h-full object-cover" />
@@ -230,7 +253,7 @@
         </section>
 
         <!-- Skills Section -->
-        <section class="py-14 border-b border-line">
+        <section class="py-14 border-b border-line reveal">
             <div class="flex flex-wrap items-baseline justify-between gap-4 mb-8">
                 <p class="text-base text-primary font-medium uppercase tracking-widest">Technical Skills</p>
                 <a href="/about/" class="text-sm text-sub hover:text-primary transition-colors duration-150">
@@ -238,36 +261,65 @@
                 </a>
             </div>
 
-            <div class="space-y-3 text-base">
-                <div class="grid grid-cols-1 sm:grid-cols-[180px_1fr] gap-2">
-                    <span class="text-muted">Languages</span>
-                    <span class="text-sub sm:text-right">C++, Java, Kotlin, Python, JavaScript</span>
+            <div class="space-y-6 text-base">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                    <span class="text-muted font-medium w-36 shrink-0">Languages</span>
+                    <div class="flex flex-wrap items-center gap-2 sm:justify-end">
+                        <span class="skill-badge"><img src="/assets/icons/skills/cplusplus.svg" width="16" height="16" alt="" class="w-4 h-4" /> C++</span>
+                        <span class="skill-badge"><img src="/assets/icons/skills/openjdk.svg" width="16" height="16" alt="" class="w-4 h-4" /> Java</span>
+                        <span class="skill-badge"><img src="/assets/icons/skills/kotlin.svg" width="16" height="16" alt="" class="w-4 h-4" /> Kotlin</span>
+                        <span class="skill-badge"><img src="/assets/icons/skills/python.svg" width="16" height="16" alt="" class="w-4 h-4" /> Python</span>
+                        <span class="skill-badge"><img src="/assets/icons/skills/javascript.svg" width="16" height="16" alt="" class="w-4 h-4" /> JavaScript</span>
+                    </div>
                 </div>
-                <div class="grid grid-cols-1 sm:grid-cols-[180px_1fr] gap-2">
-                    <span class="text-muted">Web</span>
-                    <span class="text-sub sm:text-right">HTML, CSS</span>
+
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                    <span class="text-muted font-medium w-36 shrink-0">Web</span>
+                    <div class="flex flex-wrap items-center gap-2 sm:justify-end">
+                        <span class="skill-badge"><img src="/assets/icons/skills/html5.svg" width="16" height="16" alt="" class="w-4 h-4" /> HTML</span>
+                        <span class="skill-badge"><img src="/assets/icons/skills/css.svg" width="16" height="16" alt="" class="w-4 h-4" /> CSS</span>
+                        <span class="skill-badge"><img src="/assets/icons/skills/tailwindcss.svg" width="16" height="16" alt="" class="w-4 h-4" /> Tailwind CSS</span>
+                    </div>
                 </div>
-                <div class="grid grid-cols-1 sm:grid-cols-[180px_1fr] gap-2">
-                    <span class="text-muted">Frameworks</span>
-                    <span class="text-sub sm:text-right">FTXUI, Android, CustomTkinter, Tailwind CSS</span>
+
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                    <span class="text-muted font-medium w-36 shrink-0">Frameworks</span>
+                    <div class="flex flex-wrap items-center gap-2 sm:justify-end">
+                        <span class="skill-badge"><img src="/assets/icons/skills/android.svg" width="16" height="16" alt="" class="w-4 h-4" /> Android</span>
+                        <span class="skill-badge"><span class="font-mono text-xs text-muted font-bold">&gt;_</span> FTXUI</span>
+                        <span class="skill-badge"><span class="font-mono text-xs text-muted font-bold">Tk</span> CustomTkinter</span>
+                    </div>
                 </div>
-                <div class="grid grid-cols-1 sm:grid-cols-[180px_1fr] gap-2">
-                    <span class="text-muted">Database</span>
-                    <span class="text-sub sm:text-right">SQL, PostgreSQL, SQLite</span>
+
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                    <span class="text-muted font-medium w-36 shrink-0">Database</span>
+                    <div class="flex flex-wrap items-center gap-2 sm:justify-end">
+                        <span class="skill-badge"><svg class="w-4 h-4 text-muted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg> SQL</span>
+                        <span class="skill-badge"><img src="/assets/icons/skills/postgresql.svg" width="16" height="16" alt="" class="w-4 h-4" /> PostgreSQL</span>
+                        <span class="skill-badge"><img src="/assets/icons/skills/sqlite.svg" width="16" height="16" alt="" class="w-4 h-4 dark:brightness-150" /> SQLite</span>
+                    </div>
                 </div>
-                <div class="grid grid-cols-1 sm:grid-cols-[180px_1fr] gap-2">
-                    <span class="text-muted">Graphics</span>
-                    <span class="text-sub sm:text-right">OpenGL ES 2.0</span>
+
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                    <span class="text-muted font-medium w-36 shrink-0">Graphics</span>
+                    <div class="flex flex-wrap items-center gap-2 sm:justify-end">
+                        <span class="skill-badge"><img src="/assets/icons/skills/opengl.svg" width="16" height="16" alt="" class="w-4 h-4" /> OpenGL ES 2.0</span>
+                    </div>
                 </div>
-                <div class="grid grid-cols-1 sm:grid-cols-[180px_1fr] gap-2">
-                    <span class="text-muted">Tools</span>
-                    <span class="text-sub sm:text-right">Git, GitHub, PyInstaller</span>
+
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                    <span class="text-muted font-medium w-36 shrink-0">Tools</span>
+                    <div class="flex flex-wrap items-center gap-2 sm:justify-end">
+                        <span class="skill-badge"><img src="/assets/icons/skills/git.svg" width="16" height="16" alt="" class="w-4 h-4" /> Git</span>
+                        <span class="skill-badge"><img src="/assets/icons/skills/github.svg" width="16" height="16" alt="" class="w-4 h-4 icon-monochrome" /> GitHub</span>
+                        <span class="skill-badge"><svg class="w-4 h-4 text-muted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m7.5 4.27 9 5.15"/><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/></svg> PyInstaller</span>
+                    </div>
                 </div>
             </div>
         </section>
 
         <!-- Contact Section -->
-        <section class="py-14">
+        <section class="py-14 reveal">
             <div class="flex flex-wrap items-baseline justify-between gap-4 mb-8">
                 <p class="text-base text-primary font-medium uppercase tracking-widest">Contact</p>
                 <div class="flex flex-wrap gap-3">
@@ -305,6 +357,8 @@
     <script src="/assets/js/nav.js"></script>
     <script src="/assets/js/footer.js"></script>
     <script src="/assets/js/theme.js"></script>
+    <script src="/assets/js/pixel-font.js"></script>
+    <script src="/assets/js/animations.js"></script>
     <script src="/assets/js/assistant.js" defer></script>
 </body>
 

@@ -4,14 +4,14 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Pitch Flip - Hor Tongan</title>
+    <title>Pitch Flip · Hor Tongan</title>
     <meta name="description" content="Pitch Flip, an Android coin-flip app with 3D OpenGL ES rendering and a hidden volume-based rigging mechanic." />
     <link rel="canonical" href="https://tongan.dev/projects/pitch_flip/" />
 
     <!-- Open Graph / Facebook / LinkedIn / Discord / Telegram -->
     <meta property="og:type" content="article" />
     <meta property="og:url" content="https://tongan.dev/projects/pitch_flip/" />
-    <meta property="og:title" content="Pitch Flip - Hor Tongan" />
+    <meta property="og:title" content="Pitch Flip · Hor Tongan" />
     <meta property="og:description" content="Pitch Flip, an Android coin-flip app with 3D OpenGL ES rendering and a hidden volume-based rigging mechanic." />
     <meta property="og:image" content="https://tongan.dev/projects/pitch_flip/media/starter_screen.jpg" />
     <meta property="og:site_name" content="Hor Tongan" />
@@ -19,7 +19,7 @@
     <!-- Twitter / X -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:url" content="https://tongan.dev/projects/pitch_flip/" />
-    <meta name="twitter:title" content="Pitch Flip - Hor Tongan" />
+    <meta name="twitter:title" content="Pitch Flip · Hor Tongan" />
     <meta name="twitter:description" content="Pitch Flip, an Android coin-flip app with 3D OpenGL ES rendering and a hidden volume-based rigging mechanic." />
     <meta name="twitter:image" content="https://tongan.dev/projects/pitch_flip/media/starter_screen.jpg" />
     <link rel="apple-touch-icon" sizes="180x180" href="/assets/icons/apple-touch-icon.png?v=2" />
@@ -33,6 +33,14 @@
             const saved = localStorage.getItem("theme");
             if (saved === "light") document.documentElement.classList.remove("dark");
             else document.documentElement.classList.add("dark");
+            if (localStorage.getItem("tongan_font_pixel") === "true") {
+                document.documentElement.classList.add("pixel");
+                const link = document.createElement("link");
+                link.id = "pixel-font-link";
+                link.rel = "stylesheet";
+                link.href = "https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&display=swap";
+                document.head.appendChild(link);
+            }
         } catch (e) {}
     </script>
 
@@ -80,7 +88,7 @@
         </div>
 
         <!-- Project Header -->
-        <section class="pt-14 pb-10 border-b border-line">
+        <section class="pt-14 pb-10 border-b border-line reveal">
             <div class="flex flex-col gap-6 sm:flex-row sm:items-start sm:justify-between mb-6">
                 <div>
                     <h1 class="text-4xl font-medium mb-4">Pitch Flip</h1>
@@ -210,6 +218,8 @@
     <script src="/assets/js/footer.js"></script>
     <script src="/assets/js/theme.js"></script>
     <script src="/assets/js/media-viewer.js"></script>
+    <script src="/assets/js/pixel-font.js"></script>
+    <script src="/assets/js/animations.js"></script>
     <script src="/assets/js/assistant.js" defer></script>
 </body>
 

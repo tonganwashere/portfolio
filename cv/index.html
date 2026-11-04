@@ -4,14 +4,14 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>CV - Hor Tongan</title>
+    <title>CV · Hor Tongan</title>
     <meta name="description" content="View and download my curriculum vitae." />
     <link rel="canonical" href="https://tongan.dev/cv/" />
 
     <!-- Open Graph / Facebook / LinkedIn / Discord / Telegram -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://tongan.dev/cv/" />
-    <meta property="og:title" content="CV - Hor Tongan" />
+    <meta property="og:title" content="CV · Hor Tongan" />
     <meta property="og:description" content="View and download my curriculum vitae." />
     <meta property="og:image" content="https://tongan.dev/cv/media/preview.jpg" />
     <meta property="og:site_name" content="Hor Tongan" />
@@ -19,7 +19,7 @@
     <!-- Twitter / X -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:url" content="https://tongan.dev/cv/" />
-    <meta name="twitter:title" content="CV - Hor Tongan" />
+    <meta name="twitter:title" content="CV · Hor Tongan" />
     <meta name="twitter:description" content="View and download my curriculum vitae." />
     <meta name="twitter:image" content="https://tongan.dev/cv/media/preview.jpg" />
     <link rel="apple-touch-icon" sizes="180x180" href="/assets/icons/apple-touch-icon.png?v=2" />
@@ -33,6 +33,14 @@
             const saved = localStorage.getItem("theme");
             if (saved === "light") document.documentElement.classList.remove("dark");
             else document.documentElement.classList.add("dark");
+            if (localStorage.getItem("tongan_font_pixel") === "true") {
+                document.documentElement.classList.add("pixel");
+                const link = document.createElement("link");
+                link.id = "pixel-font-link";
+                link.rel = "stylesheet";
+                link.href = "https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&display=swap";
+                document.head.appendChild(link);
+            }
         } catch (e) {}
     </script>
 </head>
@@ -45,7 +53,7 @@
     <main class="max-w-7xl mx-auto w-full px-6 flex-1">
 
         <!-- Page Header -->
-        <section class="pt-16 pb-10 border-b border-line flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+        <section class="pt-16 pb-10 border-b border-line flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 reveal">
             <h1 class="text-4xl font-medium">Curriculum Vitae</h1>
             <a href="/cv/media/Hor_Tongan_CV.pdf" download="HorTongan_CV.pdf"
                 class="self-start sm:self-auto text-sm border border-line rounded px-4 py-2 text-sub hover:text-primary hover:border-muted transition-colors duration-150">
@@ -54,7 +62,7 @@
         </section>
 
         <!-- CV preview -->
-        <section class="py-14">
+        <section class="py-14 reveal">
             <div class="max-w-4xl mx-auto rounded-lg border border-line overflow-hidden bg-surface">
                 <img src="/cv/media/preview.jpg?v=2" alt="Hor Tongan CV" width="800" height="1132"
                     class="w-full h-auto block" loading="eager" />
@@ -69,6 +77,8 @@
     <script src="/assets/js/nav.js"></script>
     <script src="/assets/js/footer.js"></script>
     <script src="/assets/js/theme.js"></script>
+    <script src="/assets/js/pixel-font.js"></script>
+    <script src="/assets/js/animations.js"></script>
     <script src="/assets/js/assistant.js" defer></script>
 </body>
 

@@ -4,14 +4,14 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Projects - Hor Tongan</title>
+    <title>Projects · Hor Tongan</title>
     <meta name="description" content="A collection of software projects by Hor Tongan." />
     <link rel="canonical" href="https://tongan.dev/projects/" />
 
     <!-- Open Graph / Facebook / LinkedIn / Discord / Telegram -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://tongan.dev/projects/" />
-    <meta property="og:title" content="Projects - Hor Tongan" />
+    <meta property="og:title" content="Projects · Hor Tongan" />
     <meta property="og:description" content="A collection of software projects by Hor Tongan." />
     <meta property="og:image" content="https://tongan.dev/assets/media/og_image.png" />
     <meta property="og:site_name" content="Hor Tongan" />
@@ -19,7 +19,7 @@
     <!-- Twitter / X -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:url" content="https://tongan.dev/projects/" />
-    <meta name="twitter:title" content="Projects - Hor Tongan" />
+    <meta name="twitter:title" content="Projects · Hor Tongan" />
     <meta name="twitter:description" content="A collection of software projects by Hor Tongan." />
     <meta name="twitter:image" content="https://tongan.dev/assets/media/og_image.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="/assets/icons/apple-touch-icon.png?v=2" />
@@ -33,6 +33,14 @@
             const saved = localStorage.getItem("theme");
             if (saved === "light") document.documentElement.classList.remove("dark");
             else document.documentElement.classList.add("dark");
+            if (localStorage.getItem("tongan_font_pixel") === "true") {
+                document.documentElement.classList.add("pixel");
+                const link = document.createElement("link");
+                link.id = "pixel-font-link";
+                link.rel = "stylesheet";
+                link.href = "https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&display=swap";
+                document.head.appendChild(link);
+            }
         } catch (e) {}
     </script>
 </head>
@@ -45,30 +53,28 @@
     <main class="max-w-7xl mx-auto w-full px-6 flex-1">
 
         <!-- Page Header -->
-        <section class="pt-16 pb-10 border-b border-line">
+        <section class="pt-16 pb-10 border-b border-line reveal">
             <h1 class="text-4xl font-medium">Projects</h1>
         </section>
 
         <!-- Projects List -->
-        <section class="py-4">
-            <div class="divide-y divide-line">
+        <section class="py-4 reveal">
+            <div class="space-y-0 divide-y divide-line">
 
                 <!-- Genera -->
-                <div class="flex flex-col sm:flex-row gap-0 sm:gap-8 py-8 -mx-6 px-6 hover:bg-surface transition-colors duration-150 rounded">
-                    <a href="/projects/genera/" class="self-start shrink-0 w-full sm:w-96 aspect-[16/10] bg-surface border border-line rounded overflow-hidden mb-5 sm:mb-0 block hover:opacity-90 transition-opacity duration-150">
-                        <img src="/projects/genera/media/dashboard.jpg" alt="Genera study dashboard"
-                            width="1066" height="597" class="w-full h-full object-cover" />
-                    </a>
+                <div class="group project-card-item relative flex flex-col sm:flex-row gap-0 sm:gap-8 py-8 hover:bg-surface transition-colors duration-150 rounded -mx-6 px-6">
+                    <div class="self-start shrink-0 w-full sm:w-96 aspect-[16/10] bg-surface border border-line rounded overflow-hidden mb-5 sm:mb-0">
+                        <img src="/projects/genera/media/dashboard.jpg" alt="Genera study dashboard" width="1066" height="597"
+                            class="w-full h-full object-cover" />
+                    </div>
                     <div class="flex-1 min-w-0 flex flex-col justify-between">
                         <div>
                             <div class="flex items-start gap-4 mb-4">
-                                <a href="/projects/genera/" class="shrink-0 block hover:opacity-80 transition-opacity duration-150">
-                                    <img src="/projects/genera/media/logo.svg" alt="" width="56" height="56"
-                                        class="w-14 h-14 object-contain" />
-                                </a>
+                                <img src="/projects/genera/media/logo.svg" alt="" width="56" height="56"
+                                    class="w-14 h-14 object-contain shrink-0" />
                                 <div class="flex-1 min-w-0">
                                     <div class="flex flex-wrap items-baseline gap-3 mb-1.5">
-                                        <h2 class="text-lg font-medium text-primary"><a href="/projects/genera/" class="hover:text-sub transition-colors duration-150">Genera</a></h2>
+                                        <h2 class="text-lg font-medium text-primary"><a href="/projects/genera/" class="card-clickable-link">Genera</a></h2>
                                         <span class="text-sm text-muted">Oct 2026 · Web · Finished</span>
                                     </div>
                                     <div class="flex flex-wrap gap-1.5">
@@ -82,42 +88,36 @@
                                 </div>
                             </div>
                             <p class="text-base text-sub leading-relaxed mb-6">
-                                A flashcard web app built with vanilla JavaScript, Flask, and SQLite using a 5-box Leitner spaced repetition system. It comes pre-loaded with ~4,500 trivia questions across 24 categories, works completely offline via IndexedDB and a service worker, and features account merging, background catalog updates, and multi-device sync with conflict resolution. 
+                                A flashcard web app built with vanilla JavaScript, Flask, and SQLite using a 5-box Leitner spaced repetition system. It comes pre-loaded with ~4,500 trivia questions across 24 categories, works completely offline via IndexedDB and a service worker, and features account merging, background catalog updates, and multi-device sync with conflict resolution.
                             </p>
                         </div>
-                        <div class="flex flex-wrap gap-3">
-                            <a href="/projects/genera/"
-                                class="text-sm border border-line rounded px-4 py-2 text-sub hover:text-primary hover:border-muted transition-colors duration-150">
-                                View project →
-                            </a>
+                        <div class="relative z-10 flex flex-wrap gap-3">
                             <a href="https://github.com/tonganwashere/genera" target="_blank" rel="noopener noreferrer"
                                 class="text-sm border border-line rounded px-4 py-2 text-sub hover:text-primary hover:border-muted transition-colors duration-150">
                                 GitHub →
                             </a>
-                            <a href="https://genera-bvzb.onrender.com/" target="_blank" rel="noopener noreferrer"
+                            <a href="https://genera.tongan.dev" target="_blank" rel="noopener noreferrer"
                                 class="text-sm border border-line rounded px-4 py-2 text-sub hover:text-primary hover:border-muted transition-colors duration-150">
-                                Live demo →
+                                Live demo ↗
                             </a>
                         </div>
                     </div>
                 </div>
 
                 <!-- Proctor -->
-                <div class="flex flex-col sm:flex-row gap-0 sm:gap-8 py-8 -mx-6 px-6 hover:bg-surface transition-colors duration-150 rounded">
-                    <a href="/projects/proctor/" class="self-start shrink-0 w-full sm:w-96 aspect-[16/10] bg-surface border border-line rounded overflow-hidden mb-5 sm:mb-0 block hover:opacity-90 transition-opacity duration-150">
-                        <img src="/projects/proctor/media/startup.jpg" alt="Proctor startup screen"
-                            width="1920" height="1080" class="w-full h-full object-cover" />
-                    </a>
+                <div class="group project-card-item relative flex flex-col sm:flex-row gap-0 sm:gap-8 py-8 hover:bg-surface transition-colors duration-150 rounded -mx-6 px-6">
+                    <div class="self-start shrink-0 w-full sm:w-96 aspect-[16/10] bg-surface border border-line rounded overflow-hidden mb-5 sm:mb-0">
+                        <img src="/projects/proctor/media/startup.jpg" alt="Proctor startup screen" width="1920" height="1080"
+                            class="w-full h-full object-cover" />
+                    </div>
                     <div class="flex-1 min-w-0 flex flex-col justify-between">
                         <div>
                             <div class="flex items-start gap-4 mb-4">
-                                <a href="/projects/proctor/" class="shrink-0 block hover:opacity-80 transition-opacity duration-150">
-                                    <img src="/projects/proctor/media/logo.svg" alt="" width="56" height="56"
-                                        class="w-14 h-14 object-contain" />
-                                </a>
+                                <img src="/projects/proctor/media/logo.svg" alt="" width="56" height="56"
+                                    class="w-14 h-14 object-contain shrink-0" />
                                 <div class="flex-1 min-w-0">
                                     <div class="flex flex-wrap items-baseline gap-3 mb-1.5">
-                                        <h2 class="text-lg font-medium text-primary"><a href="/projects/proctor/" class="hover:text-sub transition-colors duration-150">Proctor</a></h2>
+                                        <h2 class="text-lg font-medium text-primary"><a href="/projects/proctor/" class="card-clickable-link">Proctor</a></h2>
                                         <span class="text-sm text-muted">Sep - Oct 2026 · Terminal · Finished</span>
                                     </div>
                                     <div class="flex flex-wrap gap-1.5">
@@ -132,11 +132,7 @@
                                 A terminal-based examination, quiz, and question bank management platform built in Java with MVC architecture. Teachers can author questions, assemble quizzes or exams, and students can take timed assessments with scoring. It also features local AI integration with Ollama for generating questions and grading answers, with automatic PostgreSQL schema migrations.
                             </p>
                         </div>
-                        <div class="flex flex-wrap gap-3">
-                            <a href="/projects/proctor/"
-                                class="text-sm border border-line rounded px-4 py-2 text-sub hover:text-primary hover:border-muted transition-colors duration-150">
-                                View project →
-                            </a>
+                        <div class="relative z-10 flex flex-wrap gap-3">
                             <a href="https://github.com/tonganwashere/proctor" target="_blank" rel="noopener noreferrer"
                                 class="text-sm border border-line rounded px-4 py-2 text-sub hover:text-primary hover:border-muted transition-colors duration-150">
                                 GitHub →
@@ -146,21 +142,19 @@
                 </div>
 
                 <!-- PyDFile -->
-                <div class="flex flex-col sm:flex-row gap-0 sm:gap-8 py-8 -mx-6 px-6 hover:bg-surface transition-colors duration-150 rounded">
-                    <a href="/projects/pydfile/" class="self-start shrink-0 w-full sm:w-96 aspect-[16/10] bg-surface border border-line rounded overflow-hidden mb-5 sm:mb-0 block hover:opacity-90 transition-opacity duration-150">
-                        <img src="/projects/pydfile/media/dark_theme.jpg" alt="PyDFile dark mode dashboard"
-                            width="1102" height="749" class="w-full h-full object-cover" />
-                    </a>
+                <div class="group project-card-item relative flex flex-col sm:flex-row gap-0 sm:gap-8 py-8 hover:bg-surface transition-colors duration-150 rounded -mx-6 px-6">
+                    <div class="self-start shrink-0 w-full sm:w-96 aspect-[16/10] bg-surface border border-line rounded overflow-hidden mb-5 sm:mb-0">
+                        <img src="/projects/pydfile/media/dark_theme.jpg" alt="PyDFile dark mode dashboard" width="1102" height="749"
+                            class="w-full h-full object-cover" />
+                    </div>
                     <div class="flex-1 min-w-0 flex flex-col justify-between">
                         <div>
                             <div class="flex items-start gap-4 mb-4">
-                                <a href="/projects/pydfile/" class="shrink-0 block hover:opacity-80 transition-opacity duration-150">
-                                    <img src="/projects/pydfile/media/logo.svg" alt="" width="56" height="56"
-                                        class="w-14 h-14 object-contain" />
-                                </a>
+                                <img src="/projects/pydfile/media/logo.svg" alt="" width="56" height="56"
+                                    class="w-14 h-14 object-contain shrink-0" />
                                 <div class="flex-1 min-w-0">
                                     <div class="flex flex-wrap items-baseline gap-3 mb-1.5">
-                                        <h2 class="text-lg font-medium text-primary"><a href="/projects/pydfile/" class="hover:text-sub transition-colors duration-150">PyDFile</a></h2>
+                                        <h2 class="text-lg font-medium text-primary"><a href="/projects/pydfile/" class="card-clickable-link">PyDFile</a></h2>
                                         <span class="text-sm text-muted">Jul - Aug 2026 · Windows · Finished</span>
                                     </div>
                                     <div class="flex flex-wrap gap-1.5">
@@ -176,39 +170,33 @@
                                 A local desktop PDF tool built in Python that covers merging, splitting, page reordering, compression, watermarking, page numbering, password protection, unlocking, image conversion, and text extraction all in one lightweight app. It works completely offline and is packaged as a standalone Windows executable via PyInstaller so Python isn't required to run it.
                             </p>
                         </div>
-                        <div class="flex flex-wrap gap-3">
-                            <a href="/projects/pydfile/"
-                                class="text-sm border border-line rounded px-4 py-2 text-sub hover:text-primary hover:border-muted transition-colors duration-150">
-                                View project →
-                            </a>
+                        <div class="relative z-10 flex flex-wrap gap-3">
                             <a href="https://github.com/tonganwashere/pydfile" target="_blank" rel="noopener noreferrer"
                                 class="text-sm border border-line rounded px-4 py-2 text-sub hover:text-primary hover:border-muted transition-colors duration-150">
                                 GitHub →
                             </a>
-                            <a href="https://github.com/tonganwashere/pydfile/releases/tag/v1.0.0" target="_blank" rel="noopener noreferrer"
+                            <a href="https://github.com/tonganwashere/pydfile/releases" target="_blank" rel="noopener noreferrer"
                                 class="text-sm border border-line rounded px-4 py-2 text-sub hover:text-primary hover:border-muted transition-colors duration-150">
-                                Download →
+                                Download (.exe) →
                             </a>
                         </div>
                     </div>
                 </div>
 
                 <!-- Pitch Flip -->
-                <div class="flex flex-col sm:flex-row gap-0 sm:gap-8 py-8 -mx-6 px-6 hover:bg-surface transition-colors duration-150 rounded">
-                    <a href="/projects/pitch_flip/" class="self-start shrink-0 w-full sm:w-96 aspect-[16/10] bg-surface border border-line rounded overflow-hidden mb-5 sm:mb-0 block hover:opacity-90 transition-opacity duration-150">
-                        <img src="/projects/pitch_flip/media/starter_screen.jpg"
-                            alt="Pitch Flip starter screen" width="629" height="1280" class="w-full h-full object-cover" />
-                    </a>
+                <div class="group project-card-item relative flex flex-col sm:flex-row gap-0 sm:gap-8 py-8 hover:bg-surface transition-colors duration-150 rounded -mx-6 px-6">
+                    <div class="self-start shrink-0 w-full sm:w-96 aspect-[16/10] bg-surface border border-line rounded overflow-hidden mb-5 sm:mb-0">
+                        <img src="/projects/pitch_flip/media/starter_screen.jpg" alt="Pitch Flip starter screen" width="629" height="1280"
+                            class="w-full h-full object-cover" />
+                    </div>
                     <div class="flex-1 min-w-0 flex flex-col justify-between">
                         <div>
                             <div class="flex items-start gap-4 mb-4">
-                                <a href="/projects/pitch_flip/" class="shrink-0 block hover:opacity-80 transition-opacity duration-150">
-                                    <img src="/projects/pitch_flip/media/logo.svg" alt="" width="56" height="56"
-                                        class="w-14 h-14 object-contain" />
-                                </a>
+                                <img src="/projects/pitch_flip/media/logo.svg" alt="" width="56" height="56"
+                                    class="w-14 h-14 object-contain shrink-0" />
                                 <div class="flex-1 min-w-0">
                                     <div class="flex flex-wrap items-baseline gap-3 mb-1.5">
-                                        <h2 class="text-lg font-medium text-primary"><a href="/projects/pitch_flip/" class="hover:text-sub transition-colors duration-150">Pitch Flip</a></h2>
+                                        <h2 class="text-lg font-medium text-primary"><a href="/projects/pitch_flip/" class="card-clickable-link">Pitch Flip</a></h2>
                                         <span class="text-sm text-muted">May - Jun 2026 · Android · Finished</span>
                                     </div>
                                     <div class="flex flex-wrap gap-1.5">
@@ -222,11 +210,7 @@
                                 An Android coin flip app with a 3D coin rendered in OpenGL ES 2.0. The coin has adjustable flip speed and a full skin system along with custom labels or images. There's also a hidden Rig Mode that silently ties the result to your phone's volume, so you always get the side you want. This is my first Android app and first time ever working with OpenGL.
                             </p>
                         </div>
-                        <div class="flex flex-wrap gap-3">
-                            <a href="/projects/pitch_flip/"
-                                class="text-sm border border-line rounded px-4 py-2 text-sub hover:text-primary hover:border-muted transition-colors duration-150">
-                                View project →
-                            </a>
+                        <div class="relative z-10 flex flex-wrap gap-3">
                             <a href="https://github.com/tonganwashere/pitch_flip" target="_blank" rel="noopener noreferrer"
                                 class="text-sm border border-line rounded px-4 py-2 text-sub hover:text-primary hover:border-muted transition-colors duration-150">
                                 GitHub →
@@ -239,21 +223,19 @@
                 </div>
 
                 <!-- Wordle++ -->
-                <div class="flex flex-col sm:flex-row gap-0 sm:gap-8 py-8 -mx-6 px-6 hover:bg-surface transition-colors duration-150 rounded">
-                    <a href="/projects/wordlepp/" class="self-start shrink-0 w-full sm:w-96 aspect-[16/10] bg-surface border border-line rounded overflow-hidden mb-5 sm:mb-0 block hover:opacity-90 transition-opacity duration-150">
-                        <img src="/projects/wordlepp/media/guest_menu.png" alt="Wordle++ guest menu"
-                            width="1322" height="743" class="w-full h-full object-cover" />
-                    </a>
+                <div class="group project-card-item relative flex flex-col sm:flex-row gap-0 sm:gap-8 py-8 hover:bg-surface transition-colors duration-150 rounded -mx-6 px-6">
+                    <div class="self-start shrink-0 w-full sm:w-96 aspect-[16/10] bg-surface border border-line rounded overflow-hidden mb-5 sm:mb-0">
+                        <img src="/projects/wordlepp/media/guest_menu.png" alt="Wordle++ guest menu" width="1322" height="743"
+                            class="w-full h-full object-cover" />
+                    </div>
                     <div class="flex-1 min-w-0 flex flex-col justify-between">
                         <div>
                             <div class="flex items-start gap-4 mb-4">
-                                <a href="/projects/wordlepp/" class="shrink-0 block hover:opacity-80 transition-opacity duration-150">
-                                    <img src="/projects/wordlepp/media/logo.svg" alt="" width="56" height="56"
-                                        class="w-14 h-14 object-contain" />
-                                </a>
+                                <img src="/projects/wordlepp/media/logo.svg" alt="" width="56" height="56"
+                                    class="w-14 h-14 object-contain shrink-0" />
                                 <div class="flex-1 min-w-0">
                                     <div class="flex flex-wrap items-baseline gap-3 mb-1.5">
-                                        <h2 class="text-lg font-medium text-primary"><a href="/projects/wordlepp/" class="hover:text-sub transition-colors duration-150">Wordle++</a></h2>
+                                        <h2 class="text-lg font-medium text-primary"><a href="/projects/wordlepp/" class="card-clickable-link">Wordle++</a></h2>
                                         <span class="text-sm text-muted">Mar - Apr 2026 · Terminal · Finished</span>
                                     </div>
                                     <div class="flex flex-wrap gap-1.5">
@@ -268,11 +250,7 @@
                                 A terminal-based word guessing game with 4 game modes: 3, 5, and 6 letter words, plus a daily challenge mode. Players can create accounts, track wins and streaks on a leaderboard, and there's also a built-in admin panel for managing word banks and player records without having to edit any code.
                             </p>
                         </div>
-                        <div class="flex flex-wrap gap-3">
-                            <a href="/projects/wordlepp/"
-                                class="text-sm border border-line rounded px-4 py-2 text-sub hover:text-primary hover:border-muted transition-colors duration-150">
-                                View project →
-                            </a>
+                        <div class="relative z-10 flex flex-wrap gap-3">
                             <a href="https://github.com/tonganwashere/wordle_plus_plus" target="_blank" rel="noopener noreferrer"
                                 class="text-sm border border-line rounded px-4 py-2 text-sub hover:text-primary hover:border-muted transition-colors duration-150">
                                 GitHub →
@@ -292,6 +270,8 @@
     <script src="/assets/js/nav.js"></script>
     <script src="/assets/js/footer.js"></script>
     <script src="/assets/js/theme.js"></script>
+    <script src="/assets/js/pixel-font.js"></script>
+    <script src="/assets/js/animations.js"></script>
     <script src="/assets/js/assistant.js" defer></script>
 </body>
 

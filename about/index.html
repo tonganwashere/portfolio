@@ -4,14 +4,14 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>About - Hor Tongan</title>
+    <title>About · Hor Tongan</title>
     <meta name="description" content="Learn more about me, my background, education, skills, and interests." />
     <link rel="canonical" href="https://tongan.dev/about/" />
 
     <!-- Open Graph / Facebook / LinkedIn / Discord / Telegram -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://tongan.dev/about/" />
-    <meta property="og:title" content="About - Hor Tongan" />
+    <meta property="og:title" content="About · Hor Tongan" />
     <meta property="og:description" content="Learn more about me, my background, education, skills, and interests." />
     <meta property="og:image" content="https://tongan.dev/assets/media/og_image.png" />
     <meta property="og:site_name" content="Hor Tongan" />
@@ -19,7 +19,7 @@
     <!-- Twitter / X -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:url" content="https://tongan.dev/about/" />
-    <meta name="twitter:title" content="About - Hor Tongan" />
+    <meta name="twitter:title" content="About · Hor Tongan" />
     <meta name="twitter:description" content="Learn more about me, my background, education, skills, and interests." />
     <meta name="twitter:image" content="https://tongan.dev/assets/media/og_image.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="/assets/icons/apple-touch-icon.png?v=2" />
@@ -33,6 +33,14 @@
             const saved = localStorage.getItem("theme");
             if (saved === "light") document.documentElement.classList.remove("dark");
             else document.documentElement.classList.add("dark");
+            if (localStorage.getItem("tongan_font_pixel") === "true") {
+                document.documentElement.classList.add("pixel");
+                const link = document.createElement("link");
+                link.id = "pixel-font-link";
+                link.rel = "stylesheet";
+                link.href = "https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&display=swap";
+                document.head.appendChild(link);
+            }
         } catch (e) {}
     </script>
 </head>
@@ -45,12 +53,12 @@
     <main class="max-w-7xl mx-auto w-full px-6 flex-1">
 
         <!-- Page Header -->
-        <section class="pt-16 pb-10 border-b border-line">
+        <section class="pt-16 pb-10 border-b border-line reveal">
             <h1 class="text-4xl font-medium">About Me</h1>
         </section>
 
         <!-- Image Section -->
-        <section class="py-10 border-b border-line">
+        <section class="py-10 border-b border-line reveal">
             <div id="media-gallery" class="grid grid-cols-2 sm:grid-cols-3 gap-3">
 
                 <button type="button"
@@ -138,7 +146,7 @@
         </section>
 
         <!-- Bio + Details -->
-        <section class="py-14 grid grid-cols-1 sm:grid-cols-3 gap-10">
+        <section class="py-14 grid grid-cols-1 sm:grid-cols-3 gap-10 reveal">
             <div class="sm:col-span-2 space-y-12">
                 <!-- Intro / About -->
                 <div>
@@ -289,30 +297,59 @@
                 <div>
                     <p class="text-base text-primary font-medium uppercase tracking-widest mb-6">Technical Skills</p>
 
-                    <div class="space-y-3 text-base">
-                        <div class="flex justify-between gap-6">
-                            <span class="text-muted">Languages</span>
-                            <span class="text-sub text-right">C++, Java, Kotlin, Python, JavaScript</span>
+                    <div class="space-y-5 text-sm">
+                        <div>
+                            <span class="text-muted text-xs uppercase tracking-wider block mb-2 font-medium">Languages</span>
+                            <div class="flex flex-wrap gap-1.5">
+                                <span class="skill-badge"><img src="/assets/icons/skills/cplusplus.svg" width="14" height="14" alt="" class="w-3.5 h-3.5" /> C++</span>
+                                <span class="skill-badge"><img src="/assets/icons/skills/openjdk.svg" width="14" height="14" alt="" class="w-3.5 h-3.5" /> Java</span>
+                                <span class="skill-badge"><img src="/assets/icons/skills/kotlin.svg" width="14" height="14" alt="" class="w-3.5 h-3.5" /> Kotlin</span>
+                                <span class="skill-badge"><img src="/assets/icons/skills/python.svg" width="14" height="14" alt="" class="w-3.5 h-3.5" /> Python</span>
+                                <span class="skill-badge"><img src="/assets/icons/skills/javascript.svg" width="14" height="14" alt="" class="w-3.5 h-3.5" /> JavaScript</span>
+                            </div>
                         </div>
-                        <div class="flex justify-between gap-6">
-                            <span class="text-muted">Web</span>
-                            <span class="text-sub text-right">HTML, CSS</span>
+
+                        <div>
+                            <span class="text-muted text-xs uppercase tracking-wider block mb-2 font-medium">Web</span>
+                            <div class="flex flex-wrap gap-1.5">
+                                <span class="skill-badge"><img src="/assets/icons/skills/html5.svg" width="14" height="14" alt="" class="w-3.5 h-3.5" /> HTML</span>
+                                <span class="skill-badge"><img src="/assets/icons/skills/css.svg" width="14" height="14" alt="" class="w-3.5 h-3.5" /> CSS</span>
+                                <span class="skill-badge"><img src="/assets/icons/skills/tailwindcss.svg" width="14" height="14" alt="" class="w-3.5 h-3.5" /> Tailwind CSS</span>
+                            </div>
                         </div>
-                        <div class="flex justify-between gap-6">
-                            <span class="text-muted">Frameworks</span>
-                            <span class="text-sub text-right">FTXUI, Android, CustomTkinter, Tailwind CSS</span>
+
+                        <div>
+                            <span class="text-muted text-xs uppercase tracking-wider block mb-2 font-medium">Frameworks</span>
+                            <div class="flex flex-wrap gap-1.5">
+                                <span class="skill-badge"><img src="/assets/icons/skills/android.svg" width="14" height="14" alt="" class="w-3.5 h-3.5" /> Android</span>
+                                <span class="skill-badge"><span class="font-mono text-[10px] text-muted font-bold">&gt;_</span> FTXUI</span>
+                                <span class="skill-badge"><span class="font-mono text-[10px] text-muted font-bold">Tk</span> CustomTkinter</span>
+                            </div>
                         </div>
-                        <div class="flex justify-between gap-6">
-                            <span class="text-muted">Database</span>
-                            <span class="text-sub text-right">SQL, PostgreSQL, SQLite</span>
+
+                        <div>
+                            <span class="text-muted text-xs uppercase tracking-wider block mb-2 font-medium">Database</span>
+                            <div class="flex flex-wrap gap-1.5">
+                                <span class="skill-badge"><svg class="w-3.5 h-3.5 text-muted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg> SQL</span>
+                                <span class="skill-badge"><img src="/assets/icons/skills/postgresql.svg" width="14" height="14" alt="" class="w-3.5 h-3.5" /> PostgreSQL</span>
+                                <span class="skill-badge"><img src="/assets/icons/skills/sqlite.svg" width="14" height="14" alt="" class="w-3.5 h-3.5 dark:brightness-150" /> SQLite</span>
+                            </div>
                         </div>
-                        <div class="flex justify-between gap-6">
-                            <span class="text-muted">Graphics</span>
-                            <span class="text-sub text-right">OpenGL ES 2.0</span>
+
+                        <div>
+                            <span class="text-muted text-xs uppercase tracking-wider block mb-2 font-medium">Graphics</span>
+                            <div class="flex flex-wrap gap-1.5">
+                                <span class="skill-badge"><img src="/assets/icons/skills/opengl.svg" width="14" height="14" alt="" class="w-3.5 h-3.5" /> OpenGL ES 2.0</span>
+                            </div>
                         </div>
-                        <div class="flex justify-between gap-6">
-                            <span class="text-muted">Tools</span>
-                            <span class="text-sub text-right">Git, GitHub, PyInstaller</span>
+
+                        <div>
+                            <span class="text-muted text-xs uppercase tracking-wider block mb-2 font-medium">Tools</span>
+                            <div class="flex flex-wrap gap-1.5">
+                                <span class="skill-badge"><img src="/assets/icons/skills/git.svg" width="14" height="14" alt="" class="w-3.5 h-3.5" /> Git</span>
+                                <span class="skill-badge"><img src="/assets/icons/skills/github.svg" width="14" height="14" alt="" class="w-3.5 h-3.5 icon-monochrome" /> GitHub</span>
+                                <span class="skill-badge"><svg class="w-3.5 h-3.5 text-muted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m7.5 4.27 9 5.15"/><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/></svg> PyInstaller</span>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -328,6 +365,8 @@
     <script src="/assets/js/footer.js"></script>
     <script src="/assets/js/theme.js"></script>
     <script src="/assets/js/media-viewer.js"></script>
+    <script src="/assets/js/pixel-font.js"></script>
+    <script src="/assets/js/animations.js"></script>
     <script src="/assets/js/assistant.js" defer></script>
 </body>
 
