@@ -88,7 +88,7 @@
         </div>
 
         <!-- Project Header -->
-        <section class="pt-14 pb-10 border-b border-line reveal">
+        <section class="pt-14 pb-10">
             <div class="flex flex-col gap-6 sm:flex-row sm:items-start sm:justify-between mb-6">
                 <div>
                     <h1 class="text-4xl font-medium mb-4">Wordle++</h1>
@@ -99,18 +99,18 @@
                 <img src="/projects/wordlepp/media/logo.svg" alt="Wordle++ logo"
                     width="80" height="80" class="h-20 w-20 object-contain opacity-90 shrink-0" />
             </div>
-            <div class="flex flex-wrap gap-2">
-                <span class="text-sm text-muted border border-line rounded-full px-3 py-1">C++</span>
-                <span class="text-sm text-muted border border-line rounded-full px-3 py-1">FTXUI</span>
-                <span class="text-sm text-muted border border-line rounded-full px-3 py-1">nlohmann/json</span>
-                <span class="text-sm text-muted border border-line rounded-full px-3 py-1">CMake</span>
+            <div class="flex flex-wrap gap-1.5">
+                <span class="tech-tag">C++</span>
+                <span class="tech-tag">FTXUI</span>
+                <span class="tech-tag">nlohmann/json</span>
+                <span class="tech-tag">CMake</span>
             </div>
         </section>
 
         <!-- About + Details -->
-        <section class="py-10 border-b border-line grid grid-cols-1 sm:grid-cols-3 gap-10">
+        <section class="py-10 grid grid-cols-1 sm:grid-cols-3 gap-10 reveal">
             <div class="sm:col-span-2">
-                <p class="text-base text-primary font-medium uppercase tracking-widest mb-6">About</p>
+                <h2 class="text-xl font-medium text-primary mb-6">About</h2>
                 <div class="text-base text-sub leading-loose space-y-4">
                     <p>Wordle++ is a terminal based word guessing game written in C++, based on the original Wordle by the New York Times. It runs entirely in the command line via a CMake build with no GUI, no browser, and no external setup beyond building the project. The interface is handled by FTXUI, which gives the game a proper terminal UI with color-coded tile states, real-time keyboard input, and navigable menus.</p>
                     <p>The game has 4 modes: 3-letter, 5-letter, 6-letter, and a daily challenge. Players can sign up for an account and their stats (wins and current streak) are tracked on a persistent leaderboard. Word banks are stored as separate JSON files per mode using nlohmann/json, and can be edited directly in the files or managed through the game itself.</p>
@@ -119,7 +119,7 @@
             </div>
 
             <div>
-                <p class="text-base text-primary font-medium uppercase tracking-widest mb-6">Details</p>
+                <h2 class="text-xl font-medium text-primary mb-6">Details</h2>
                 <div class="space-y-3 text-base">
                     <div class="flex justify-between gap-4">
                         <span class="text-muted">Year</span>
@@ -151,8 +151,8 @@
         </section>
 
         <!-- Screenshots -->
-        <section class="py-10 border-b border-line">
-            <p class="text-base text-primary font-medium uppercase tracking-widest mb-6">Screenshots</p>
+        <section class="py-10 reveal">
+            <h2 class="text-xl font-medium text-primary mb-6">Screenshots</h2>
             <div id="media-gallery" class="grid grid-cols-1 sm:grid-cols-2 gap-3">
 
                 <button type="button"

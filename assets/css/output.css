@@ -304,9 +304,6 @@
   .mb-3 {
     margin-bottom: calc(var(--spacing) * 3);
   }
-  .mb-3\.5 {
-    margin-bottom: calc(var(--spacing) * 3.5);
-  }
   .mb-4 {
     margin-bottom: calc(var(--spacing) * 4);
   }
@@ -318,9 +315,6 @@
   }
   .mb-8 {
     margin-bottom: calc(var(--spacing) * 8);
-  }
-  .mb-10 {
-    margin-bottom: calc(var(--spacing) * 10);
   }
   .ml-\[2px\] {
     margin-left: 2px;
@@ -345,6 +339,9 @@
   }
   .inline-block {
     display: inline-block;
+  }
+  .table {
+    display: table;
   }
   .aspect-\[9\/16\] {
     aspect-ratio: 9/16;
@@ -560,9 +557,6 @@
   .gap-2 {
     gap: calc(var(--spacing) * 2);
   }
-  .gap-2\.5 {
-    gap: calc(var(--spacing) * 2.5);
-  }
   .gap-3 {
     gap: calc(var(--spacing) * 3);
   }
@@ -572,9 +566,6 @@
   .gap-4 {
     gap: calc(var(--spacing) * 4);
   }
-  .gap-5 {
-    gap: calc(var(--spacing) * 5);
-  }
   .gap-6 {
     gap: calc(var(--spacing) * 6);
   }
@@ -583,11 +574,6 @@
   }
   .gap-10 {
     gap: calc(var(--spacing) * 10);
-  }
-  :where(.space-y-0 > :not(:last-child)) {
-    --tw-space-y-reverse: 0;
-    margin-block-start: 0;
-    margin-block-end: 0;
   }
   :where(.space-y-1 > :not(:last-child)) {
     --tw-space-y-reverse: 0;
@@ -674,9 +660,6 @@
   .rounded-xl {
     border-radius: var(--radius-xl);
   }
-  .rounded-tl-sm {
-    border-top-left-radius: var(--radius-sm);
-  }
   .rounded-tr-sm {
     border-top-right-radius: var(--radius-sm);
   }
@@ -731,12 +714,6 @@
     background-color: var(--color-surface);
     @supports (color: color-mix(in lab, red, red)) {
       background-color: color-mix(in oklab, var(--color-surface) 30%, transparent);
-    }
-  }
-  .bg-surface\/50 {
-    background-color: var(--color-surface);
-    @supports (color: color-mix(in lab, red, red)) {
-      background-color: color-mix(in oklab, var(--color-surface) 50%, transparent);
     }
   }
   .bg-surface\/60 {
@@ -823,6 +800,9 @@
   .py-14 {
     padding-block: calc(var(--spacing) * 14);
   }
+  .py-16 {
+    padding-block: calc(var(--spacing) * 16);
+  }
   .py-20 {
     padding-block: calc(var(--spacing) * 20);
   }
@@ -841,8 +821,8 @@
   .pt-20 {
     padding-top: calc(var(--spacing) * 20);
   }
-  .pb-6 {
-    padding-bottom: calc(var(--spacing) * 6);
+  .pb-4 {
+    padding-bottom: calc(var(--spacing) * 4);
   }
   .pb-10 {
     padding-bottom: calc(var(--spacing) * 10);
@@ -899,8 +879,8 @@
     font-size: var(--text-xs);
     line-height: var(--tw-leading, var(--text-xs--line-height));
   }
-  .text-\[10px\] {
-    font-size: 10px;
+  .text-\[13px\] {
+    font-size: 13px;
   }
   .leading-loose {
     --tw-leading: var(--leading-loose);
@@ -933,6 +913,9 @@
   .tracking-widest {
     --tw-tracking: var(--tracking-widest);
     letter-spacing: var(--tracking-widest);
+  }
+  .whitespace-nowrap {
+    white-space: nowrap;
   }
   .text-\[var\(--color-base\)\] {
     color: var(--color-base);
@@ -979,6 +962,10 @@
   }
   .opacity-90 {
     opacity: 90%;
+  }
+  .ring {
+    --tw-ring-shadow: var(--tw-ring-inset,) 0 0 0 calc(1px + var(--tw-ring-offset-width)) var(--tw-ring-color, currentcolor);
+    box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
   }
   .ring-2 {
     --tw-ring-shadow: var(--tw-ring-inset,) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color, currentcolor);
@@ -1062,6 +1049,9 @@
     .sm\:mb-0 {
       margin-bottom: 0px;
     }
+    .sm\:inline-flex {
+      display: inline-flex;
+    }
     .sm\:h-\[158px\] {
       height: 158px;
     }
@@ -1100,6 +1090,12 @@
     }
     .sm\:justify-end {
       justify-content: flex-end;
+    }
+    .sm\:gap-3\.5 {
+      gap: calc(var(--spacing) * 3.5);
+    }
+    .sm\:gap-6 {
+      gap: calc(var(--spacing) * 6);
     }
     .sm\:gap-8 {
       gap: calc(var(--spacing) * 8);
@@ -1159,34 +1155,26 @@
 .bg-base {
   background-color: var(--color-base);
 }
-body.bg-base {
-  background-image: radial-gradient(circle, var(--color-dot) 1px, transparent 1px);
-  background-size: 24px 24px;
-  background-attachment: fixed;
-}
 :root {
   --color-base: #f8f7f4;
   --color-surface: #f0eeea;
   --color-line: #e0deda;
-  --color-muted: #7f7d76;
+  --color-muted: #5e5c56;
   --color-primary: #141414;
   --color-sub: #6b6a65;
-  --color-dot: rgba(20, 20, 20, 0.06);
 }
 .dark {
   --color-base: #141414;
-  --color-surface: #161616;
-  --color-line: #222222;
-  --color-muted: #777777;
+  --color-surface: #181818;
+  --color-line: #272727;
+  --color-muted: #9c9a94;
   --color-primary: #f0eeea;
   --color-sub: #888888;
-  --color-dot: rgba(255, 255, 255, 0.04);
 }
 .reveal {
   opacity: 0;
-  transform: translateY(14px);
-  transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-  will-change: opacity, transform;
+  transform: translateY(36px);
+  transition: opacity 0.75s ease-out, transform 0.75s ease-out;
 }
 .reveal.reveal-visible {
   opacity: 1;
@@ -1201,7 +1189,7 @@ body.bg-base {
 }
 .project-card-item {
   border-left: 3px solid transparent;
-  transition: background-color 0.15s ease, border-left-color 0.2s ease;
+  transition: background-color 0.15s ease, border-left-color 0.2s ease, opacity 0.75s ease-out, transform 0.75s ease-out;
   cursor: pointer;
 }
 .project-card-item:hover {
@@ -1223,13 +1211,24 @@ button:disabled, [role="button"][aria-disabled="true"], input:disabled {
 .skill-badge {
   display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
-  padding: 0.35rem 0.65rem;
-  border-radius: 0.375rem;
+  gap: 0.375rem;
+  padding: 0.25rem 0.625rem;
   border: 1px solid var(--color-line);
   background-color: var(--color-surface);
-  color: var(--color-primary);
+  border-radius: 0.375rem;
   font-size: 0.8125rem;
+  color: var(--color-primary);
+}
+.tech-tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.125rem 0.5rem;
+  border: 1px solid var(--color-line);
+  background-color: var(--color-surface);
+  border-radius: 0.375rem;
+  font-size: 0.75rem;
+  color: var(--color-sub);
+  line-height: 1.25rem;
 }
 .dark img.icon-monochrome {
   filter: invert(1);

@@ -11,10 +11,7 @@ function initMediaViewer() {
         mediaViewer.setAttribute("aria-labelledby", "viewer-label");
         mediaViewer.className = "media-viewer fixed inset-0 z-50 px-6 py-8 sm:px-10 sm:py-10";
         mediaViewer.tabIndex = -1;
-        mediaViewer.setAttribute("style", "background-color: rgba(0, 0, 0, 0.85);");
-        if (mediaViewer.style) {
-            mediaViewer.style.backgroundColor = "rgba(0, 0, 0, 0.85)";
-        }
+        mediaViewer.style.backgroundColor = "rgba(0, 0, 0, 0.85)";
         mediaViewer.hidden = true;
         mediaViewer.innerHTML = `
         <button type="button" id="viewer-close" aria-label="Close viewer"

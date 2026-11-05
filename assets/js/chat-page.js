@@ -224,7 +224,7 @@
         <div class="shrink-0 w-8 h-8 rounded-md bg-surface border border-line p-0.5 aspect-square flex items-center justify-center">
           <img src="/assets/icons/tongan-pixelart.png" alt="Tongan AI" class="w-full h-full object-contain [image-rendering:pixelated]" style="image-rendering: pixelated;" />
         </div>
-        <div class="chat-bubble-content flex-1 min-w-0 max-w-[90%] px-4 py-3 rounded-2xl rounded-tl-sm bg-surface/60 border border-line text-primary text-sm sm:text-base leading-relaxed">
+        <div class="chat-bubble-content flex-1 min-w-0 max-w-[90%] px-4 py-3 rounded-lg bg-surface border border-line text-primary text-sm sm:text-base leading-relaxed">
           ${renderMarkdown(text)}
         </div>
       `;
@@ -262,10 +262,10 @@
     }
     chipsBox.classList.remove('hidden');
     chipsBox.innerHTML = `
-      <p class="text-xs uppercase tracking-wider text-muted mb-2 font-medium">Suggested Questions</p>
+      <p class="text-xs text-muted mb-2 font-medium">Suggested questions</p>
       <div class="flex flex-wrap gap-2">
         ${SUGGESTED_QUESTIONS.map(q => `
-          <button type="button" class="chat-chip cursor-pointer text-xs sm:text-sm px-3 py-1.5 rounded-full border border-line bg-surface hover:border-muted text-sub hover:text-primary transition-colors duration-150">
+          <button type="button" class="chat-chip cursor-pointer text-xs sm:text-sm px-3 py-1.5 rounded-md border border-line bg-surface hover:border-muted text-sub hover:text-primary transition-colors duration-150">
             ${q}
           </button>
         `).join('')}
@@ -301,7 +301,7 @@
       <div class="shrink-0 w-8 h-8 rounded-md bg-surface border border-line p-0.5 aspect-square flex items-center justify-center">
         <img src="/assets/icons/tongan-pixelart.png" alt="Tongan AI" class="w-full h-full object-contain [image-rendering:pixelated]" style="image-rendering: pixelated;" />
       </div>
-      <div class="chat-bubble-content flex-1 min-w-0 max-w-[90%] px-4 py-3 rounded-2xl rounded-tl-sm bg-surface/60 border border-line text-primary text-sm sm:text-base leading-relaxed">
+      <div class="chat-bubble-content flex-1 min-w-0 max-w-[90%] px-4 py-3 rounded-lg bg-surface border border-line text-primary text-sm sm:text-base leading-relaxed">
         <span class="inline-block w-[2px] h-[1.05em] bg-[var(--color-primary)] ml-[2px] align-[-0.12em] animate-pulse"></span>
       </div>
     `;

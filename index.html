@@ -84,7 +84,7 @@
     <main class="max-w-7xl mx-auto w-full px-6 flex-1">
 
         <!-- Hero Section -->
-        <section class="pt-20 pb-16 border-b border-line reveal">
+        <section class="pt-20 pb-16">
             <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-8">
                 <div>
                     <h1 class="text-4xl sm:text-5xl font-medium leading-snug mb-6">
@@ -105,38 +105,29 @@
         </section>
 
         <!-- Currently Section -->
-        <section class="py-14 border-b border-line reveal">
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
-                <div class="p-6 rounded-lg border border-line bg-surface/50 flex flex-col justify-between">
+        <section class="py-14 reveal">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="flex flex-col justify-between">
                     <div>
-                        <div class="flex items-center gap-2.5 mb-3.5">
-                            <span class="inline-block w-2 h-2 rounded-full bg-primary ring-2 ring-primary/20"></span>
-                            <p class="text-xs text-primary font-medium uppercase tracking-widest">Studying</p>
-                        </div>
+                        <h2 class="text-base font-medium text-primary mb-2">Studying</h2>
                         <p class="text-base text-sub leading-relaxed">
                             Third-year Information Technology at The University of Cambodia.
                         </p>
                     </div>
                 </div>
 
-                <div class="p-6 rounded-lg border border-line bg-surface/50 flex flex-col justify-between">
+                <div class="flex flex-col justify-between">
                     <div>
-                        <div class="flex items-center gap-2.5 mb-3.5">
-                            <span class="inline-block w-2 h-2 rounded-full bg-primary ring-2 ring-primary/20"></span>
-                            <p class="text-xs text-primary font-medium uppercase tracking-widest">Learning</p>
-                        </div>
+                        <h2 class="text-base font-medium text-primary mb-2">Learning</h2>
                         <p class="text-base text-sub leading-relaxed">
                             Java, C++, Python, Android development, and better ways to optimize my code.
                         </p>
                     </div>
                 </div>
 
-                <div class="p-6 rounded-lg border border-line bg-surface/50 flex flex-col justify-between">
+                <div class="flex flex-col justify-between">
                     <div>
-                        <div class="flex items-center gap-2.5 mb-3.5">
-                            <span class="inline-block w-2 h-2 rounded-full bg-primary ring-2 ring-primary/20"></span>
-                            <p class="text-xs text-primary font-medium uppercase tracking-widest">Open to</p>
-                        </div>
+                        <h2 class="text-base font-medium text-primary mb-2">Open to</h2>
                         <p class="text-base text-sub leading-relaxed">
                             Developer internships, junior roles, collaborations, and useful projects.
                         </p>
@@ -146,19 +137,19 @@
         </section>
 
         <!-- Projects Section -->
-        <section class="py-14 border-b border-line reveal">
-            <div class="flex flex-wrap items-baseline justify-between gap-4 mb-10">
-                <p class="text-base text-primary font-medium uppercase tracking-widest">Latest Projects</p>
+        <section class="py-14">
+            <div class="flex flex-wrap items-baseline justify-between gap-4 mb-8 reveal">
+                <h2 class="text-xl font-medium text-primary">Latest Projects</h2>
                 <a href="/projects/" class="text-sm text-sub hover:text-primary transition-colors duration-150">
                     All projects →
                 </a>
             </div>
 
-            <div class="space-y-0 divide-y divide-line">
+            <div class="space-y-4">
 
                 <!-- Genera -->
                 <a href="/projects/genera/"
-                    class="group project-card-item flex flex-col sm:flex-row gap-0 sm:gap-8 py-8 text-primary hover:bg-surface transition-colors duration-150 rounded -mx-6 px-6">
+                    class="group project-card-item flex flex-col sm:flex-row gap-0 sm:gap-8 py-8 text-primary hover:bg-surface transition-colors duration-150 rounded -mx-6 px-6 reveal">
                     <div class="self-start shrink-0 w-full sm:w-64 aspect-[16/10] bg-surface border border-line rounded overflow-hidden mb-5 sm:mb-0">
                         <img src="/projects/genera/media/dashboard.jpg" alt="Genera study dashboard" width="1066" height="597"
                             class="w-full h-full object-cover" />
@@ -173,12 +164,12 @@
                                     <span class="text-sm text-muted">Oct 2026 · Web · Finished</span>
                                 </div>
                                 <div class="flex flex-wrap gap-1.5">
-                                    <span class="text-xs text-muted border border-line rounded-full px-2 py-0.5">Python</span>
-                                    <span class="text-xs text-muted border border-line rounded-full px-2 py-0.5">Flask</span>
-                                    <span class="text-xs text-muted border border-line rounded-full px-2 py-0.5">JavaScript</span>
-                                    <span class="text-xs text-muted border border-line rounded-full px-2 py-0.5">SQLite</span>
-                                    <span class="text-xs text-muted border border-line rounded-full px-2 py-0.5">IndexedDB</span>
-                                    <span class="text-xs text-muted border border-line rounded-full px-2 py-0.5">Service Worker</span>
+                                    <span class="tech-tag">Python</span>
+                                    <span class="tech-tag">Flask</span>
+                                    <span class="tech-tag">JavaScript</span>
+                                    <span class="tech-tag">SQLite</span>
+                                    <span class="tech-tag">IndexedDB</span>
+                                    <span class="tech-tag">Service Worker</span>
                                 </div>
                             </div>
                         </div>
@@ -190,7 +181,7 @@
 
                 <!-- Proctor -->
                 <a href="/projects/proctor/"
-                    class="group project-card-item flex flex-col sm:flex-row gap-0 sm:gap-8 py-8 text-primary hover:bg-surface transition-colors duration-150 rounded -mx-6 px-6">
+                    class="group project-card-item flex flex-col sm:flex-row gap-0 sm:gap-8 py-8 text-primary hover:bg-surface transition-colors duration-150 rounded -mx-6 px-6 reveal">
                     <div class="self-start shrink-0 w-full sm:w-64 aspect-[16/10] bg-surface border border-line rounded overflow-hidden mb-5 sm:mb-0">
                         <img src="/projects/proctor/media/startup.jpg" alt="Proctor startup screen" width="1920" height="1080"
                             class="w-full h-full object-cover" />
@@ -205,10 +196,10 @@
                                     <span class="text-sm text-muted">Sep - Oct 2026 · Terminal · Finished</span>
                                 </div>
                                 <div class="flex flex-wrap gap-1.5">
-                                    <span class="text-xs text-muted border border-line rounded-full px-2 py-0.5">Java</span>
-                                    <span class="text-xs text-muted border border-line rounded-full px-2 py-0.5">Terminal UI</span>
-                                    <span class="text-xs text-muted border border-line rounded-full px-2 py-0.5">PostgreSQL</span>
-                                    <span class="text-xs text-muted border border-line rounded-full px-2 py-0.5">Ollama</span>
+                                    <span class="tech-tag">Java</span>
+                                    <span class="tech-tag">Terminal UI</span>
+                                    <span class="tech-tag">PostgreSQL</span>
+                                    <span class="tech-tag">Ollama</span>
                                 </div>
                             </div>
                         </div>
@@ -220,7 +211,7 @@
 
                 <!-- PyDFile -->
                 <a href="/projects/pydfile/"
-                    class="group project-card-item flex flex-col sm:flex-row gap-0 sm:gap-8 py-8 text-primary hover:bg-surface transition-colors duration-150 rounded -mx-6 px-6">
+                    class="group project-card-item flex flex-col sm:flex-row gap-0 sm:gap-8 py-8 text-primary hover:bg-surface transition-colors duration-150 rounded -mx-6 px-6 reveal">
                     <div class="self-start shrink-0 w-full sm:w-64 aspect-[16/10] bg-surface border border-line rounded overflow-hidden mb-5 sm:mb-0">
                         <img src="/projects/pydfile/media/dark_theme.jpg" alt="PyDFile dark mode dashboard" width="1102" height="749"
                             class="w-full h-full object-cover" />
@@ -235,11 +226,11 @@
                                     <span class="text-sm text-muted">Jul - Aug 2026 · Windows · Finished</span>
                                 </div>
                                 <div class="flex flex-wrap gap-1.5">
-                                    <span class="text-xs text-muted border border-line rounded-full px-2 py-0.5">Python</span>
-                                    <span class="text-xs text-muted border border-line rounded-full px-2 py-0.5">CustomTkinter</span>
-                                    <span class="text-xs text-muted border border-line rounded-full px-2 py-0.5">PyMuPDF</span>
-                                    <span class="text-xs text-muted border border-line rounded-full px-2 py-0.5">pikepdf</span>
-                                    <span class="text-xs text-muted border border-line rounded-full px-2 py-0.5">PyInstaller</span>
+                                    <span class="tech-tag">Python</span>
+                                    <span class="tech-tag">CustomTkinter</span>
+                                    <span class="tech-tag">PyMuPDF</span>
+                                    <span class="tech-tag">pikepdf</span>
+                                    <span class="tech-tag">PyInstaller</span>
                                 </div>
                             </div>
                         </div>
@@ -253,9 +244,9 @@
         </section>
 
         <!-- Skills Section -->
-        <section class="py-14 border-b border-line reveal">
+        <section class="py-14 reveal">
             <div class="flex flex-wrap items-baseline justify-between gap-4 mb-8">
-                <p class="text-base text-primary font-medium uppercase tracking-widest">Technical Skills</p>
+                <h2 class="text-xl font-medium text-primary">Technical Skills</h2>
                 <a href="/about/" class="text-sm text-sub hover:text-primary transition-colors duration-150">
                     More about me →
                 </a>
@@ -286,15 +277,15 @@
                     <span class="text-muted font-medium w-36 shrink-0">Frameworks</span>
                     <div class="flex flex-wrap items-center gap-2 sm:justify-end">
                         <span class="skill-badge"><img src="/assets/icons/skills/android.svg" width="16" height="16" alt="" class="w-4 h-4" /> Android</span>
-                        <span class="skill-badge"><span class="font-mono text-xs text-muted font-bold">&gt;_</span> FTXUI</span>
-                        <span class="skill-badge"><span class="font-mono text-xs text-muted font-bold">Tk</span> CustomTkinter</span>
+                        <span class="skill-badge"><img src="/assets/icons/skills/ftxui.svg" width="16" height="16" alt="" class="w-4 h-4 icon-monochrome" /> FTXUI</span>
+                        <span class="skill-badge"><img src="/assets/icons/skills/customtkinter.svg" width="16" height="16" alt="" class="w-4 h-4 icon-monochrome" /> CustomTkinter</span>
                     </div>
                 </div>
 
                 <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                     <span class="text-muted font-medium w-36 shrink-0">Database</span>
                     <div class="flex flex-wrap items-center gap-2 sm:justify-end">
-                        <span class="skill-badge"><svg class="w-4 h-4 text-muted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg> SQL</span>
+                        <span class="skill-badge"><img src="/assets/icons/skills/sql.svg" width="16" height="16" alt="" class="w-4 h-4 icon-monochrome" /> SQL</span>
                         <span class="skill-badge"><img src="/assets/icons/skills/postgresql.svg" width="16" height="16" alt="" class="w-4 h-4" /> PostgreSQL</span>
                         <span class="skill-badge"><img src="/assets/icons/skills/sqlite.svg" width="16" height="16" alt="" class="w-4 h-4 dark:brightness-150" /> SQLite</span>
                     </div>
@@ -312,7 +303,7 @@
                     <div class="flex flex-wrap items-center gap-2 sm:justify-end">
                         <span class="skill-badge"><img src="/assets/icons/skills/git.svg" width="16" height="16" alt="" class="w-4 h-4" /> Git</span>
                         <span class="skill-badge"><img src="/assets/icons/skills/github.svg" width="16" height="16" alt="" class="w-4 h-4 icon-monochrome" /> GitHub</span>
-                        <span class="skill-badge"><svg class="w-4 h-4 text-muted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m7.5 4.27 9 5.15"/><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/></svg> PyInstaller</span>
+                        <span class="skill-badge"><img src="/assets/icons/skills/pyinstaller.svg" width="16" height="16" alt="" class="w-4 h-4 icon-monochrome" /> PyInstaller</span>
                     </div>
                 </div>
             </div>
@@ -321,18 +312,18 @@
         <!-- Contact Section -->
         <section class="py-14 reveal">
             <div class="flex flex-wrap items-baseline justify-between gap-4 mb-8">
-                <p class="text-base text-primary font-medium uppercase tracking-widest">Contact</p>
-                <div class="flex flex-wrap gap-3">
+                <h2 class="text-xl font-medium text-primary">Contact</h2>
+                <div class="flex flex-wrap gap-4 text-sm text-sub">
                     <a href="https://t.me/tonganwashere" target="_blank" rel="noopener noreferrer"
-                        class="text-sm border border-line rounded px-4 py-2 text-sub hover:text-primary hover:border-muted transition-colors duration-150">
+                        class="hover:text-primary transition-colors duration-150">
                         Telegram →
                     </a>
                     <a href="https://facebook.com/TongAnWasHere" target="_blank" rel="noopener noreferrer"
-                        class="text-sm border border-line rounded px-4 py-2 text-sub hover:text-primary hover:border-muted transition-colors duration-150">
+                        class="hover:text-primary transition-colors duration-150">
                         Facebook →
                     </a>
                     <a href="https://github.com/tonganwashere" target="_blank" rel="noopener noreferrer"
-                        class="text-sm border border-line rounded px-4 py-2 text-sub hover:text-primary hover:border-muted transition-colors duration-150">
+                        class="hover:text-primary transition-colors duration-150">
                         GitHub →
                     </a>
                 </div>

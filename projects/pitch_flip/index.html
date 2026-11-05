@@ -88,7 +88,7 @@
         </div>
 
         <!-- Project Header -->
-        <section class="pt-14 pb-10 border-b border-line reveal">
+        <section class="pt-14 pb-10">
             <div class="flex flex-col gap-6 sm:flex-row sm:items-start sm:justify-between mb-6">
                 <div>
                     <h1 class="text-4xl font-medium mb-4">Pitch Flip</h1>
@@ -99,17 +99,17 @@
                 <img src="/projects/pitch_flip/media/logo.svg" alt="Pitch Flip logo"
                     width="80" height="80" class="h-20 w-20 object-contain opacity-90 shrink-0" />
             </div>
-            <div class="flex flex-wrap gap-2">
-                <span class="text-sm text-muted border border-line rounded-full px-3 py-1">Kotlin</span>
-                <span class="text-sm text-muted border border-line rounded-full px-3 py-1">Android</span>
-                <span class="text-sm text-muted border border-line rounded-full px-3 py-1">OpenGL ES 2.0</span>
+            <div class="flex flex-wrap gap-1.5">
+                <span class="tech-tag">Kotlin</span>
+                <span class="tech-tag">Android</span>
+                <span class="tech-tag">OpenGL ES 2.0</span>
             </div>
         </section>
 
         <!-- About + Details -->
-        <section class="py-10 border-b border-line grid grid-cols-1 sm:grid-cols-3 gap-10">
+        <section class="py-10 grid grid-cols-1 sm:grid-cols-3 gap-10 reveal">
             <div class="sm:col-span-2">
-                <p class="text-base text-primary font-medium uppercase tracking-widest mb-6">About</p>
+                <h2 class="text-xl font-medium text-primary mb-6">About</h2>
                 <div class="text-base text-sub leading-loose space-y-4">
                     <p>Pitch Flip is a coin-flip app for Android. The coin is rendered in 3D using OpenGL ES 2.0 with a smooth flip animation, and you can adjust the animation speed with a slider in settings. On the surface it's a simple coin flipper but it's actually a pranking tool.</p>
                     <p>The app has a hidden Rig Mode that when enabled, the coin result is quietly tied to the phone's volume level: anything above 50% volume lands heads, anything below lands tails. The person being pranked sees a normal coin flip with no indication that anything is rigged. You control the outcome by adjusting your volume before each flip.</p>
@@ -118,7 +118,7 @@
             </div>
 
             <div>
-                <p class="text-base text-primary font-medium uppercase tracking-widest mb-6">Details</p>
+                <h2 class="text-xl font-medium text-primary mb-6">Details</h2>
                 <div class="space-y-3 text-base">
                     <div class="flex justify-between gap-4">
                         <span class="text-muted">Year</span>
@@ -154,8 +154,8 @@
         </section>
 
         <!-- Screenshots -->
-        <section class="py-10 border-b border-line">
-            <p class="text-base text-primary font-medium uppercase tracking-widest mb-6">Screenshots</p>
+        <section class="py-10 reveal">
+            <h2 class="text-xl font-medium text-primary mb-6">Screenshots</h2>
             <div id="media-gallery" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
 
                 <button type="button"

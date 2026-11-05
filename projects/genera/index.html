@@ -89,41 +89,41 @@
         </div>
 
         <!-- Project Header -->
-        <section class="pt-14 pb-10 border-b border-line reveal">
+        <section class="pt-14 pb-10">
             <div class="flex flex-col gap-6 sm:flex-row sm:items-start sm:justify-between mb-6">
                 <div>
                     <h1 class="text-4xl font-medium mb-4">Genera</h1>
                     <p class="text-lg text-sub leading-relaxed max-w-xl">
-                        A flashcard web app with ~4,500 trivia questions, 5-box Leitner spaced repetition, local IndexedDB storage, and cross-device sync with conflict resolution that works completely offline.
+                        A flashcard web app with ~4,500 trivia questions, 5-box Leitner spaced repetition, local IndexedDB storage, and cross-device sync with conflict resolution.
                     </p>
                 </div>
                 <img src="/projects/genera/media/logo.svg" alt="Genera logo"
                     width="80" height="80" class="h-20 w-20 object-contain opacity-90 shrink-0" />
             </div>
-            <div class="flex flex-wrap gap-2">
-                <span class="text-sm text-muted border border-line rounded-full px-3 py-1">Python</span>
-                <span class="text-sm text-muted border border-line rounded-full px-3 py-1">Flask</span>
-                <span class="text-sm text-muted border border-line rounded-full px-3 py-1">JavaScript</span>
-                <span class="text-sm text-muted border border-line rounded-full px-3 py-1">SQLite</span>
-                <span class="text-sm text-muted border border-line rounded-full px-3 py-1">IndexedDB</span>
-                <span class="text-sm text-muted border border-line rounded-full px-3 py-1">Service Worker</span>
+            <div class="flex flex-wrap gap-1.5">
+                <span class="tech-tag">Python</span>
+                <span class="tech-tag">Flask</span>
+                <span class="tech-tag">JavaScript</span>
+                <span class="tech-tag">SQLite</span>
+                <span class="tech-tag">IndexedDB</span>
+                <span class="tech-tag">Service Worker</span>
             </div>
         </section>
 
         <!-- About + Details -->
-        <section class="py-10 border-b border-line grid grid-cols-1 sm:grid-cols-3 gap-10">
+        <section class="py-10 grid grid-cols-1 sm:grid-cols-3 gap-10 reveal">
             <div class="sm:col-span-2">
-                <p class="text-base text-primary font-medium uppercase tracking-widest mb-6">About</p>
+                <h2 class="text-xl font-medium text-primary mb-6">About</h2>
                 <div class="text-base text-sub leading-loose space-y-4">
                     <p>Genera is a flashcard web app built to make learning general knowledge trivia structured and consistent. It comes pre-loaded with about 4,500 trivia questions across 24 categories sourced from Open Trivia DB, alongside tools to create custom cards or import decks from CSV and JSON files. The core study engine uses a 5-box Leitner spaced repetition system with expanding intervals (1, 2, 4, 8, and 16 days). Answering correctly advances a card toward graduation, while a miss resets it to Box 1 for review the next day. All scheduling runs on pure UTC date strings to prevent timezone shifts when traveling or reviewing late at night, and new official trivia cards are paced with configurable daily limits.</p>
-                    <p>Architecture-wise, Genera prioritizes a Local Mode First workflow: users can study immediately with zero account registration, storing decks, progress, settings, and metadata locally in browser IndexedDB across five object stores. A service worker caches the complete app shell for instant loading offline. When the app detects an internet connection, it checks a catalog manifest to seamlessly download and update trivia decks in IndexedDB without interrupting user progress.</p>
+                    <p>Architecture-wise, Genera prioritizes a Local Mode First workflow: users can study immediately with zero account registration, storing decks, progress, settings, and metadata locally in browser IndexedDB across five object stores. A service worker caches the complete app shell for instant loading offline. When the app detects an internet connection, it checks a catalog manifest to download and update trivia decks in IndexedDB in the background without interrupting progress.</p>
                     <p>For cross-device study, Genera syncs to a Flask and SQLite backend deployed on Render. Offline mutations are tracked with dirty flags and pushed in batches. Conflicts are resolved via Last-Write-Wins based on ISO UTC timestamps, accompanied by an amber banner notifying the user if an edit was superseded. If someone starts in Local Mode and later creates an account, an intelligent merging pipeline reconciles cards and repoints local progress to canonical server records without duplicates.</p>
                     <p>Both the frontend and backend are written in a modular MVC pattern without external frontend frameworks. The backend features modular controllers and models, session auth with token versioning, CSRF validation, rate limiting, and email OTP verification powered by the Resend API.</p>
                 </div>
             </div>
 
             <div>
-                <p class="text-base text-primary font-medium uppercase tracking-widest mb-6">Details</p>
+                <h2 class="text-xl font-medium text-primary mb-6">Details</h2>
                 <div class="space-y-3 text-base">
                     <div class="flex justify-between gap-4">
                         <span class="text-muted">Year</span>
@@ -160,8 +160,8 @@
         </section>
 
         <!-- Screenshots -->
-        <section class="py-10 border-b border-line">
-            <p class="text-base text-primary font-medium uppercase tracking-widest mb-6">Screenshots</p>
+        <section class="py-10 reveal">
+            <h2 class="text-xl font-medium text-primary mb-6">Screenshots</h2>
             <div id="media-gallery" class="space-y-6">
 
                 <!-- Desktop Grid -->
@@ -217,7 +217,7 @@
 
                 <!-- Mobile Views -->
                 <div class="pt-4">
-                    <p class="text-sm text-muted uppercase tracking-wider mb-3">Mobile view</p>
+                    <p class="text-sm text-muted mb-3 font-medium">Mobile views</p>
                     <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
                         <button type="button"
                             class="aspect-[9/19] rounded-lg overflow-hidden bg-surface border border-line cursor-pointer hover:opacity-90 transition-opacity duration-150">

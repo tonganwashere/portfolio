@@ -167,18 +167,22 @@
       }
 
       .tongan-trigger-btn {
+        position: relative;
         display: flex;
         align-items: center;
-        gap: 10px;
+        justify-content: center;
+        width: 132px;
+        height: 74px;
         background-color: var(--color-surface);
         border: 1px solid var(--color-line);
-        border-radius: 9999px;
-        padding: 6px 14px 6px 6px;
+        border-radius: 50%;
         box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
         cursor: pointer;
         transition: transform 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
         user-select: none;
         color: var(--color-primary);
+        gap: 10px;
+        padding: 0 14px;
       }
       .dark .tongan-trigger-btn {
         box-shadow: 0 4px 25px rgba(0, 0, 0, 0.45);
@@ -187,10 +191,44 @@
         border-color: var(--color-muted);
         transform: translateY(-1px);
       }
+      .tongan-trigger-btn::before {
+        content: "";
+        position: absolute;
+        bottom: -8px;
+        right: 25px;
+        width: 19px;
+        height: 13px;
+        border-radius: 50%;
+        background-color: var(--color-surface);
+        border: 1px solid var(--color-line);
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+        transition: border-color 0.15s ease;
+      }
+      .tongan-trigger-btn::after {
+        content: "";
+        position: absolute;
+        bottom: -18px;
+        right: 15px;
+        width: 10.5px;
+        height: 7.5px;
+        border-radius: 50%;
+        background-color: var(--color-surface);
+        border: 1px solid var(--color-line);
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+        transition: border-color 0.15s ease;
+      }
+      .dark .tongan-trigger-btn::before,
+      .dark .tongan-trigger-btn::after {
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+      }
+      .tongan-trigger-btn:hover::before,
+      .tongan-trigger-btn:hover::after {
+        border-color: var(--color-muted);
+      }
       .tongan-avatar-box {
         position: relative;
-        width: 36px;
-        height: 36px;
+        width: 32px;
+        height: 32px;
         flex-shrink: 0;
       }
       .tongan-trigger-avatar {
@@ -199,7 +237,7 @@
         border-radius: 9999px;
         background-color: var(--color-base);
         border: 1px solid var(--color-line);
-        padding: 2px;
+        padding: 1.5px;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -209,12 +247,17 @@
         position: absolute;
         bottom: -1px;
         right: -1px;
-        width: 10px;
-        height: 10px;
+        width: 8.5px;
+        height: 8.5px;
         border-radius: 9999px;
         background-color: #10b981;
-        border: 2px solid var(--color-surface);
+        border: 1.5px solid var(--color-surface);
         z-index: 2;
+      }
+      .tongan-trigger-label {
+        font-size: 13.5px;
+        font-weight: 500;
+        line-height: 1;
       }
 
       .tongan-chat-window {
@@ -294,7 +337,6 @@
         font-weight: 600;
         color: var(--color-primary);
         line-height: 1;
-        letter-spacing: -0.01em;
       }
       .tongan-header-actions {
         display: flex;
@@ -481,10 +523,8 @@
       }
       .tongan-chips-title {
         font-size: 11px;
-        text-transform: uppercase;
-        letter-spacing: 0.06em;
         color: var(--color-muted);
-        margin: 0 0 8px 0;
+        margin: 0 0 6px 0;
         font-weight: 500;
       }
       .tongan-chips-wrap {
@@ -498,8 +538,8 @@
         border: 1px solid var(--color-line);
         color: var(--color-sub);
         font-size: 12.5px;
-        padding: 7px 14px;
-        border-radius: 9999px;
+        padding: 7px 12px;
+        border-radius: 6px;
         cursor: pointer;
         text-align: left;
         transition: all 0.15s ease;
@@ -681,7 +721,7 @@
       </div>
 
       <button type="button" id="tongan-trigger-btn"
-              aria-label="Chat with Tongan AI"
+              aria-label="Ask AI"
               class="tongan-trigger-btn">
         <div class="tongan-avatar-box">
           <div class="tongan-trigger-avatar">
@@ -689,10 +729,7 @@
           </div>
           <span class="tongan-status-dot"></span>
         </div>
-        <div style="text-align: left;">
-          <span style="display: block; font-size: 13px; font-weight: 500; line-height: 1.2;">Chat with Tongan AI</span>
-          <span style="display: block; font-size: 10px; color: var(--color-muted); line-height: 1.2;">Ask me anything</span>
-        </div>
+        <span class="tongan-trigger-label">Ask AI</span>
       </button>
     `;
 

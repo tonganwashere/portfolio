@@ -12,13 +12,15 @@
         var observer = new IntersectionObserver(function (entries, obs) {
             entries.forEach(function (entry) {
                 if (entry.isIntersecting) {
-                    entry.target.classList.add('reveal-visible');
                     obs.unobserve(entry.target);
+                    requestAnimationFrame(function () {
+                        entry.target.classList.add('reveal-visible');
+                    });
                 }
             });
         }, {
             threshold: 0.05,
-            rootMargin: '0px 0px -20px 0px'
+            rootMargin: '0px 0px -30px 0px'
         });
 
         document.querySelectorAll('.reveal').forEach(function (el) {
