@@ -858,11 +858,19 @@
         this.resolvePromise = resolve;
       });
       this.tick = this.tick.bind(this);
+      this.onVisibilityChange = this.onVisibilityChange.bind(this);
     }
 
     start() {
       this.container.innerHTML = '<span class="tongan-cursor"></span>';
       this.timer = setInterval(this.tick, 16);
+      document.addEventListener('visibilitychange', this.onVisibilityChange);
+    }
+
+    onVisibilityChange() {
+      if (document.hidden && this.isStreamDone) {
+        this.stop();
+      }
     }
 
     append(chunk) {
@@ -871,6 +879,9 @@
 
     finishStream() {
       this.isStreamDone = true;
+      if (document.hidden) {
+        this.stop();
+      }
     }
 
     tick() {
@@ -878,7 +889,9 @@
 
       if (remaining > 0) {
         let step = 1;
-        if (remaining > 120) {
+        if (this.isStreamDone) {
+          step = Math.max(step, Math.ceil(remaining / 3));
+        } else if (remaining > 120) {
           step = Math.ceil(remaining / 8);
         } else if (remaining > 50) {
           step = 3;
@@ -890,7 +903,11 @@
 
         this.displayedLength = Math.min(this.targetText.length, this.displayedLength + step);
         const partial = this.targetText.slice(0, this.displayedLength);
-        this.container.innerHTML = attachCursor(renderMarkdown(partial));
+        try {
+          this.container.innerHTML = attachCursor(renderMarkdown(partial));
+        } catch (e) {
+          this.container.textContent = partial;
+        }
         scrollToBottom();
       } else if (this.isStreamDone) {
         this.stop();
@@ -898,12 +915,17 @@
     }
 
     stop() {
+      document.removeEventListener('visibilitychange', this.onVisibilityChange);
       if (this.timer) {
         clearInterval(this.timer);
         this.timer = null;
       }
       this.displayedLength = this.targetText.length;
-      this.container.innerHTML = renderMarkdown(this.targetText);
+      try {
+        this.container.innerHTML = renderMarkdown(this.targetText);
+      } catch (e) {
+        this.container.textContent = this.targetText;
+      }
       scrollToBottom();
       if (this.resolvePromise) {
         this.resolvePromise(this.targetText);
@@ -983,12 +1005,15 @@
     const bubbleContainer = assistantBubble.querySelector('.tongan-msg-assistant-bubble');
     let typewriter = null;
     let fullResponse = '';
+    const controller = new AbortController();
+    let streamTimer = setTimeout(() => controller.abort(), 25000);
 
     try {
       const response = await fetch(API_ENDPOINT, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ messages })
+        signal: controller.signal,
+        body: JSON.stringify({ messages: messages.slice(-8) })
       });
 
       if (!response.ok) {
@@ -1002,42 +1027,55 @@
 
       const reader = response.body.getReader();
       const decoder = new TextDecoder();
+      let buffer = '';
 
-      while (true) {
-        const { done, value } = await reader.read();
-        if (done) break;
-        const chunk = decoder.decode(value, { stream: true });
-        const lines = chunk.split('\n');
+      function handleDataLine(line) {
+        if (!line.startsWith('data: ')) return;
+        const dataStr = line.slice(6).trim();
+        if (dataStr === '[DONE]') return;
 
-        for (const line of lines) {
-          if (line.startsWith('data: ')) {
-            const dataStr = line.slice(6).trim();
-            if (dataStr === '[DONE]') break;
+        let parsed = null;
+        try {
+          parsed = JSON.parse(dataStr);
+        } catch (e) {}
 
-            let parsed = null;
-            try {
-              parsed = JSON.parse(dataStr);
-            } catch (e) {}
-
-            if (parsed) {
-              if (parsed.error) {
-                throw new Error(parsed.error);
-              }
-              if (parsed.text) {
-                if (!typewriter) {
-                  bubbleContainer.innerHTML = '';
-                  typewriter = new TypewriterStreamer(bubbleContainer);
-                  typewriter.start();
-                }
-                typewriter.append(parsed.text);
-              }
+        if (parsed) {
+          if (parsed.error) {
+            throw new Error(parsed.error);
+          }
+          if (parsed.text) {
+            if (!typewriter) {
+              bubbleContainer.innerHTML = '';
+              typewriter = new TypewriterStreamer(bubbleContainer);
+              typewriter.start();
             }
+            typewriter.append(parsed.text);
           }
         }
       }
 
+      while (true) {
+        const { done, value } = await reader.read();
+        if (done) break;
+        clearTimeout(streamTimer);
+        streamTimer = setTimeout(() => controller.abort(), 20000);
+
+        buffer += decoder.decode(value, { stream: true });
+        const lines = buffer.split('\n');
+        buffer = lines.pop() || '';
+
+        for (const line of lines) {
+          handleDataLine(line);
+        }
+      }
+
+      clearTimeout(streamTimer);
+      if (buffer && buffer.trim()) {
+        handleDataLine(buffer.trim());
+      }
+
       if (!typewriter) {
-        fullResponse = "I'm not sure how to respond to that, but feel free to reach out to me directly on Telegram [@tonganwashere](https://t.me/tonganwashere)!";
+        fullResponse = "I am not sure how to respond to that, but feel free to reach out to me directly on Telegram [@tonganwashere](https://t.me/tonganwashere)!";
         bubbleContainer.innerHTML = renderMarkdown(fullResponse);
       } else {
         typewriter.finishStream();
@@ -1048,6 +1086,7 @@
       saveHistory();
 
     } catch (err) {
+      clearTimeout(streamTimer);
       console.error('AI chat error:', err);
       if (typewriter) {
         typewriter.stop();
@@ -1055,6 +1094,8 @@
       let displayError = '';
       if (!navigator.onLine) {
         displayError = "It looks like you're offline. Please check your internet connection and try again!";
+      } else if (err && err.name === 'AbortError') {
+        displayError = "The request timed out. Please try sending your message again in a moment!";
       } else if (err && err.message && !err.message.includes('Failed to fetch') && !err.message.includes('AI service returned')) {
         displayError = err.message;
       } else {
@@ -1064,6 +1105,7 @@
       messages.push({ role: 'assistant', content: displayError });
       saveHistory();
     } finally {
+      clearTimeout(streamTimer);
       isGenerating = false;
       if (sendBtn) sendBtn.disabled = false;
       scrollToBottom(true);

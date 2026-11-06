@@ -151,7 +151,15 @@
       this.renderedChars = 0;
       this.timer = null;
       this.donePushing = false;
+      this.onVisibilityChange = this.onVisibilityChange.bind(this);
       this.container.innerHTML = '<span class="inline-block w-[2px] h-[1.05em] bg-[var(--color-primary)] ml-[2px] align-[-0.12em] animate-pulse"></span>';
+      document.addEventListener('visibilitychange', this.onVisibilityChange);
+    }
+
+    onVisibilityChange() {
+      if (document.hidden && this.donePushing) {
+        this.stop();
+      }
     }
 
     pushChunk(text) {
@@ -163,10 +171,27 @@
 
     finish() {
       this.donePushing = true;
-      if (!this.timer && this.renderedChars >= this.targetText.length) {
-        this.container.innerHTML = renderMarkdown(this.targetText);
-        if (this.onComplete) this.onComplete();
+      if (document.hidden) {
+        this.stop();
+      } else if (!this.timer && this.renderedChars >= this.targetText.length) {
+        this.stop();
       }
+    }
+
+    stop() {
+      document.removeEventListener('visibilitychange', this.onVisibilityChange);
+      if (this.timer) {
+        clearInterval(this.timer);
+        this.timer = null;
+      }
+      this.renderedChars = this.targetText.length;
+      try {
+        this.container.innerHTML = renderMarkdown(this.targetText);
+      } catch (e) {
+        this.container.textContent = this.targetText;
+      }
+      scrollToBottom(true);
+      if (this.onComplete) this.onComplete();
     }
 
     startLoop() {
@@ -175,19 +200,24 @@
         if (self.renderedChars < self.targetText.length) {
           const remaining = self.targetText.length - self.renderedChars;
           let step = 1;
-          if (remaining > 60) step = 3;
-          else if (remaining > 20) step = 2;
+          if (self.donePushing) {
+            step = Math.max(step, Math.ceil(remaining / 3));
+          } else if (remaining > 60) {
+            step = 3;
+          } else if (remaining > 20) {
+            step = 2;
+          }
 
           self.renderedChars = Math.min(self.renderedChars + step, self.targetText.length);
           const partial = self.targetText.slice(0, self.renderedChars);
-          self.container.innerHTML = attachCursor(renderMarkdown(partial));
+          try {
+            self.container.innerHTML = attachCursor(renderMarkdown(partial));
+          } catch (e) {
+            self.container.textContent = partial;
+          }
           scrollToBottom();
         } else if (self.donePushing) {
-          clearInterval(self.timer);
-          self.timer = null;
-          self.container.innerHTML = renderMarkdown(self.targetText);
-          scrollToBottom(true);
-          if (self.onComplete) self.onComplete();
+          self.stop();
         }
       }, 16);
     }
@@ -310,6 +340,9 @@
     scrollToBottom(true);
 
     let fullResponse = '';
+    const controller = new AbortController();
+    let streamTimer = setTimeout(() => controller.abort(), 25000);
+
     const streamer = new TypewriterStreamer(bubble, function () {
       isGenerating = false;
       if (sendBtn) sendBtn.disabled = false;
@@ -327,7 +360,8 @@
       const res = await fetch(API_ENDPOINT, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ messages: messages.slice(-6) })
+        signal: controller.signal,
+        body: JSON.stringify({ messages: messages.slice(-8) })
       });
 
       if (!res.ok) {
@@ -344,9 +378,31 @@
       const decoder = new TextDecoder('utf-8');
       let buffer = '';
 
+      function handleChatLine(line) {
+        if (!line.startsWith('data: ')) return;
+        const dataStr = line.slice(6).trim();
+        if (dataStr === '[DONE]') return;
+        try {
+          const parsed = JSON.parse(dataStr);
+          if (parsed && parsed.error) {
+            throw new Error(parsed.error);
+          }
+          if (parsed && parsed.text) {
+            fullResponse += parsed.text;
+            streamer.pushChunk(parsed.text);
+          }
+        } catch (e) {
+          if (e && e.message && !e.message.includes('JSON')) {
+            throw e;
+          }
+        }
+      }
+
       while (true) {
         const { value, done } = await reader.read();
         if (done) break;
+        clearTimeout(streamTimer);
+        streamTimer = setTimeout(() => controller.abort(), 20000);
 
         buffer += decoder.decode(value, { stream: true });
         const lines = buffer.split('\n');
@@ -354,31 +410,32 @@
 
         for (let i = 0; i < lines.length; i++) {
           const line = lines[i].trim();
-          if (line.startsWith('data: ')) {
-            const dataStr = line.slice(6);
-            if (dataStr === '[DONE]') continue;
-            try {
-              const parsed = JSON.parse(dataStr);
-              if (parsed.text) {
-                fullResponse += parsed.text;
-                streamer.pushChunk(parsed.text);
-              }
-            } catch (e) {}
-          }
+          handleChatLine(line);
         }
+      }
+
+      clearTimeout(streamTimer);
+      if (buffer && buffer.trim()) {
+        handleChatLine(buffer.trim());
       }
 
       streamer.finish();
     } catch (err) {
+      clearTimeout(streamTimer);
       isGenerating = false;
       if (sendBtn) sendBtn.disabled = false;
-      let displayError = "I'm having a little trouble connecting right now. Please try again in a moment!";
-      if (err.message === 'OFFLINE') {
+      streamer.stop();
+      let displayError = "I am having a little trouble connecting right now. Please try again in a moment!";
+      if (err.name === 'AbortError') {
+        displayError = "The request timed out. Please try sending your message again in a moment!";
+      } else if (err.message === 'OFFLINE') {
         displayError = "It looks like you're offline. Please check your internet connection and try again!";
       } else if (err.status === 429) {
         displayError = err.message || "I have reached my daily message limit for today! Feel free to reach out directly on Telegram @tonganwashere.";
       } else if (err.status === 503) {
         displayError = "Google AI service is currently experiencing high traffic. Please try again in a moment!";
+      } else if (err.message && !err.message.includes('Failed to fetch') && !err.message.includes('Request failed')) {
+        displayError = err.message;
       }
       bubble.innerHTML = renderMarkdown(displayError);
     }

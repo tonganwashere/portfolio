@@ -23,7 +23,7 @@ if (fs.existsSync(envPath)) {
 const API_KEY = process.env.GEMINI_API_KEY || '';
 const MODELS = [
   'gemini-3.5-flash-lite',
-  'gemini-flash-lite-latest',
+  'gemini-3.1-flash-lite',
   'gemini-3.5-flash'
 ];
 
@@ -196,10 +196,10 @@ function handleChat(req, res) {
           maxOutputTokens: 800
         },
         safetySettings: [
-          { category: "HARM_CATEGORY_HARASSMENT", threshold: "BLOCK_LOW_AND_ABOVE" },
-          { category: "HARM_CATEGORY_HATE_SPEECH", threshold: "BLOCK_LOW_AND_ABOVE" },
-          { category: "HARM_CATEGORY_SEXUALLY_EXPLICIT", threshold: "BLOCK_LOW_AND_ABOVE" },
-          { category: "HARM_CATEGORY_DANGEROUS_CONTENT", threshold: "BLOCK_LOW_AND_ABOVE" }
+          { category: "HARM_CATEGORY_HARASSMENT", threshold: "BLOCK_MEDIUM_AND_ABOVE" },
+          { category: "HARM_CATEGORY_HATE_SPEECH", threshold: "BLOCK_MEDIUM_AND_ABOVE" },
+          { category: "HARM_CATEGORY_SEXUALLY_EXPLICIT", threshold: "BLOCK_MEDIUM_AND_ABOVE" },
+          { category: "HARM_CATEGORY_DANGEROUS_CONTENT", threshold: "BLOCK_MEDIUM_AND_ABOVE" }
         ]
       });
 
@@ -229,11 +229,15 @@ function handleChat(req, res) {
         const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/${currentModel}:streamGenerateContent?alt=sse&key=${API_KEY}`;
         const urlObj = new URL(geminiUrl);
 
+        let hasStreamedText = false;
+        let isRequestDone = false;
+
         const geminiReq = https.request({
           hostname: urlObj.hostname,
           port: 443,
           path: urlObj.pathname + urlObj.search,
           method: 'POST',
+          timeout: 25000,
           headers: {
             'Content-Type': 'application/json',
             'Content-Length': Buffer.byteLength(payload)
@@ -245,45 +249,84 @@ function handleChat(req, res) {
             let errBody = '';
             geminiRes.on('data', chunk => { errBody += chunk; });
             geminiRes.on('end', () => {
-              console.warn(`[dev-server] Model ${currentModel} returned ${geminiRes.statusCode}. Attempting fallback...`);
-              tryModel(index + 1);
+              if (!isRequestDone) {
+                isRequestDone = true;
+                tryModel(index + 1);
+              }
             });
             return;
           }
 
           let buffer = '';
+
+          function handleSseLine(line) {
+            if (!line.startsWith('data: ')) return;
+            const jsonStr = line.slice(6).trim();
+            if (jsonStr === '[DONE]') {
+              res.write('data: [DONE]\n\n');
+              return;
+            }
+            try {
+              const data = JSON.parse(jsonStr);
+              if (data && data.error) {
+                const msg = data.error.message || 'AI service error';
+                res.write(`data: ${JSON.stringify({ error: msg })}\n\n`);
+                return;
+              }
+              const candidate = data && data.candidates && data.candidates[0];
+              const text = candidate && candidate.content && candidate.content.parts && candidate.content.parts[0] && candidate.content.parts[0].text;
+              if (text) {
+                if (!text.includes('SYSTEM_INSTRUCTION') && !text.includes('VERIFIED KNOWLEDGE BASE')) {
+                  hasStreamedText = true;
+                  res.write(`data: ${JSON.stringify({ text })}\n\n`);
+                }
+              } else if (candidate && candidate.finishReason === 'SAFETY' && !hasStreamedText) {
+                res.write(`data: ${JSON.stringify({ text: "I cannot answer that specific query, but feel free to ask about my software projects or tech stack!" })}\n\n`);
+              }
+            } catch (e) {}
+          }
+
           geminiRes.on('data', (chunk) => {
             buffer += chunk.toString('utf8');
             const lines = buffer.split('\n');
-            buffer = lines.pop();
-
+            buffer = lines.pop() || '';
             for (const line of lines) {
-              if (line.startsWith('data: ')) {
-                const dataStr = line.slice(6).trim();
-                if (dataStr === '[DONE]') continue;
-                try {
-                  const data = JSON.parse(dataStr);
-                  const candidate = data.candidates?.[0];
-                  const text = candidate?.content?.parts?.[0]?.text;
-                  if (text) {
-                    if (!text.includes('SYSTEM_INSTRUCTION') && !text.includes('VERIFIED KNOWLEDGE BASE')) {
-                      res.write(`data: ${JSON.stringify({ text })}\n\n`);
-                    }
-                  }
-                } catch (e) {}
-              }
+              handleSseLine(line);
             }
           });
 
           geminiRes.on('end', () => {
-            res.write('data: [DONE]\n\n');
-            res.end();
+            if (!isRequestDone) {
+              isRequestDone = true;
+              if (buffer && buffer.trim()) {
+                handleSseLine(buffer.trim());
+              }
+              res.write('data: [DONE]\n\n');
+              res.end();
+            }
+          });
+
+          geminiRes.on('error', () => {
+            if (!isRequestDone) {
+              isRequestDone = true;
+              tryModel(index + 1);
+            }
           });
         });
 
-        geminiReq.on('error', (err) => {
-          console.warn(`[dev-server] Request to ${currentModel} failed:`, err.message);
-          tryModel(index + 1);
+        geminiReq.on('timeout', () => {
+          geminiReq.destroy();
+          if (!isRequestDone) {
+            isRequestDone = true;
+            tryModel(index + 1);
+          }
+        });
+
+        geminiReq.on('error', () => {
+          if (!isRequestDone) {
+            isRequestDone = true;
+            tryModel(index + 1);
+          }
         });
 
         geminiReq.write(payload);
