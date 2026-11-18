@@ -170,58 +170,37 @@
         position: relative;
         display: flex;
         align-items: center;
-        justify-content: center;
-        width: 132px;
-        height: 74px;
+        gap: 9px;
         background-color: var(--color-surface);
         border: 1px solid var(--color-line);
-        border-radius: 50%;
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        border-radius: 14px;
+        box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
         cursor: pointer;
         transition: transform 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
         user-select: none;
         color: var(--color-primary);
-        gap: 10px;
-        padding: 0 14px;
+        padding: 7px 16px 7px 8px;
       }
       .dark .tongan-trigger-btn {
-        box-shadow: 0 4px 25px rgba(0, 0, 0, 0.45);
+        box-shadow: 0 4px 22px rgba(0, 0, 0, 0.45);
       }
       .tongan-trigger-btn:hover {
         border-color: var(--color-muted);
         transform: translateY(-1px);
       }
-      .tongan-trigger-btn::before {
-        content: "";
-        position: absolute;
-        bottom: -8px;
-        right: 25px;
-        width: 19px;
-        height: 13px;
-        border-radius: 50%;
-        background-color: var(--color-surface);
-        border: 1px solid var(--color-line);
-        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
-        transition: border-color 0.15s ease;
-      }
       .tongan-trigger-btn::after {
         content: "";
         position: absolute;
-        bottom: -18px;
-        right: 15px;
-        width: 10.5px;
-        height: 7.5px;
-        border-radius: 50%;
+        bottom: -5px;
+        right: 18px;
+        width: 8px;
+        height: 8px;
         background-color: var(--color-surface);
-        border: 1px solid var(--color-line);
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+        border-right: 1px solid var(--color-line);
+        border-bottom: 1px solid var(--color-line);
+        transform: rotate(45deg);
         transition: border-color 0.15s ease;
       }
-      .dark .tongan-trigger-btn::before,
-      .dark .tongan-trigger-btn::after {
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
-      }
-      .tongan-trigger-btn:hover::before,
       .tongan-trigger-btn:hover::after {
         border-color: var(--color-muted);
       }
