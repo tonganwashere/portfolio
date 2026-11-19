@@ -7,11 +7,10 @@
 
   const API_ENDPOINT = window.TONGAN_API_URL || (['localhost', '127.0.0.1'].includes(location.hostname) ? '/api/chat' : 'https://portfolio-tongan.vercel.app/api/chat');
 
-  const WELCOME_MESSAGE = `Hey! I'm **Tongan AI**. Feel free to ask me anything about my projects, tech stack, or background. What would you like to know?`;
+  const WELCOME_MESSAGE = `Hey! I'm an **AI version of Tongan**. Feel free to ask me anything about my projects or background. What would you like to know?`;
 
   const SUGGESTED_QUESTIONS = [
     "What projects have you built?",
-    "What is your tech stack?",
     "Tell me about Bread & Blades",
     "Tell me about your cats!"
   ];
@@ -22,7 +21,10 @@
 
   try {
     const saved = sessionStorage.getItem('tongan_chat_history');
-    if (saved) messages = JSON.parse(saved);
+    if (saved) {
+      const parsed = JSON.parse(saved);
+      if (Array.isArray(parsed)) messages = parsed;
+    }
   } catch (e) {
     messages = [];
   }
@@ -33,25 +35,44 @@
     } catch (e) {}
   }
 
+  function escapeHtml(text) {
+    return text
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;');
+  }
+
   function formatInline(text) {
     if (!text) return '';
-    return text
+    const inlineCodes = [];
+    let processed = text.replace(/`([^`\n]+)`/g, (_, code) => {
+      const idx = inlineCodes.length;
+      inlineCodes.push('<code class="tongan-code-inline">' + code + '</code>');
+      return '@@INLINECODE' + idx + '@@';
+    });
+
+    processed = processed
       .replace(/\*\*(.+?)\*\*/g, '<strong class="tongan-bold">$1</strong>')
       .replace(/(?<!\*)\*([^*\s][^*]*?[^*\s]|\w)\*(?!\*)/g, '<em>$1</em>')
-      .replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+|\/[^\s)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer" class="tongan-link">$1</a>');
+      .replace(/\[([^\]]+)\]\((https?:\/\/[^\s)"'<>]+|\/[^\s)"'<>]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer" class="tongan-link">$1</a>');
+
+    return processed.replace(/@@INLINECODE(\d+)@@/g, (_, idx) => inlineCodes[Number(idx)] || '');
   }
 
   function renderMarkdown(text) {
     if (!text) return '';
-    let raw = text
-      .replace(/&/g, '&amp;')
-      .replace(/</g, '&lt;')
-      .replace(/>/g, '&gt;');
+    let raw = escapeHtml(text);
 
-    raw = raw.replace(/```(?:[a-zA-Z0-9_-]+)?\n([\s\S]*?)```/g, '<pre class="tongan-code-block"><code>$1</code></pre>');
-    raw = raw.replace(/`([^`\n]+)`/g, '<code class="tongan-code-inline">$1</code>');
+    const codeBlocks = [];
+    raw = raw.replace(/```(?:[a-zA-Z0-9_-]+)?[ \t]*\r?\n([\s\S]*?)```/g, (_, code) => {
+      const idx = codeBlocks.length;
+      const trimmedCode = code.replace(/\r?\n$/, '');
+      codeBlocks.push('<pre class="tongan-code-block"><code>' + trimmedCode + '</code></pre>');
+      return '\n@@CODEBLOCK' + idx + '@@\n';
+    });
 
-    const lines = raw.split('\n');
+    const lines = raw.split(/\r?\n/);
     const out = [];
     let currentList = null;
     let paragraphLines = [];
@@ -80,10 +101,11 @@
         continue;
       }
 
-      if (line.startsWith('<pre class="tongan-code-block">')) {
+      const codeBlockMatch = trimmed.match(/^@@CODEBLOCK(\d+)@@$/);
+      if (codeBlockMatch) {
         flushParagraph();
         flushList();
-        out.push(line);
+        out.push(codeBlocks[Number(codeBlockMatch[1])] || '');
         continue;
       }
 
@@ -347,7 +369,6 @@
         display: flex;
         flex-direction: column;
         gap: 14px;
-        scroll-behavior: smooth;
         scrollbar-width: thin;
         scrollbar-color: var(--color-line) transparent;
       }
@@ -731,7 +752,7 @@
         chatWindow.style.display = 'flex';
         triggerBtn.style.display = 'none';
         input.focus();
-        scrollToBottom();
+        scrollToBottom(true);
       } else {
         chatWindow.style.display = 'none';
         triggerBtn.style.display = 'flex';
@@ -754,6 +775,7 @@
       if (isGenerating) return;
       messages = [];
       saveHistory();
+      autoScrollEnabled = true;
       const feed = document.getElementById('tongan-messages-feed');
       feed.innerHTML = `
         <div class="tongan-msg-assistant">
@@ -777,6 +799,51 @@
       `;
       bindChipButtons(feed);
     });
+
+    const feed = document.getElementById('tongan-messages-feed');
+    if (feed) {
+      feed.addEventListener('wheel', (e) => {
+        if (e.deltaY < 0) {
+          autoScrollEnabled = false;
+        } else {
+          const distanceToBottom = feed.scrollHeight - feed.scrollTop - feed.clientHeight;
+          if (distanceToBottom <= 40) {
+            autoScrollEnabled = true;
+          }
+        }
+      }, { passive: true });
+
+      let touchStartY = 0;
+      feed.addEventListener('touchstart', (e) => {
+        if (e.touches && e.touches[0]) {
+          touchStartY = e.touches[0].clientY;
+        }
+      }, { passive: true });
+
+      feed.addEventListener('touchmove', (e) => {
+        if (e.touches && e.touches[0]) {
+          const touchY = e.touches[0].clientY;
+          if (touchY > touchStartY + 10) {
+            autoScrollEnabled = false;
+          } else {
+            const distanceToBottom = feed.scrollHeight - feed.scrollTop - feed.clientHeight;
+            if (distanceToBottom <= 40) {
+              autoScrollEnabled = true;
+            }
+          }
+        }
+      }, { passive: true });
+
+      feed.addEventListener('scroll', () => {
+        if (isProgrammaticScroll) return;
+        const distanceToBottom = feed.scrollHeight - feed.scrollTop - feed.clientHeight;
+        if (distanceToBottom > 120) {
+          autoScrollEnabled = false;
+        } else if (distanceToBottom <= 40) {
+          autoScrollEnabled = true;
+        }
+      }, { passive: true });
+    }
 
     bindChipButtons();
 
@@ -803,12 +870,21 @@
     }
   }
 
+  let autoScrollEnabled = true;
+  let isProgrammaticScroll = false;
+
   function scrollToBottom(force = false) {
     const feed = document.getElementById('tongan-messages-feed');
     if (!feed) return;
-    const isNearBottom = feed.scrollHeight - feed.scrollTop - feed.clientHeight < 80;
-    if (force || isNearBottom) {
+    if (force) {
+      autoScrollEnabled = true;
+    }
+    if (autoScrollEnabled) {
+      isProgrammaticScroll = true;
       feed.scrollTop = feed.scrollHeight;
+      requestAnimationFrame(() => {
+        isProgrammaticScroll = false;
+      });
     }
   }
 
@@ -905,7 +981,9 @@
       } catch (e) {
         this.container.textContent = this.targetText;
       }
-      scrollToBottom();
+      if (autoScrollEnabled) {
+        scrollToBottom(true);
+      }
       if (this.resolvePromise) {
         this.resolvePromise(this.targetText);
         this.resolvePromise = null;
@@ -927,7 +1005,7 @@
       wrapper.className = 'tongan-msg-user-wrap';
       wrapper.innerHTML = `
         <div class="tongan-msg-user">
-          ${content.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')}
+          ${escapeHtml(content).replace(/\r?\n/g, '<br>')}
         </div>
       `;
     } else {
@@ -992,7 +1070,7 @@
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         signal: controller.signal,
-        body: JSON.stringify({ messages: messages.slice(-8) })
+        body: JSON.stringify({ messages: messages.slice(-6) })
       });
 
       if (!response.ok) {
@@ -1049,6 +1127,7 @@
       }
 
       clearTimeout(streamTimer);
+      buffer += decoder.decode();
       if (buffer && buffer.trim()) {
         handleDataLine(buffer.trim());
       }
@@ -1081,13 +1160,11 @@
         displayError = "I couldn't reach the AI service right now. Please try again in a moment, or reach out to me directly on Telegram [@tonganwashere](https://t.me/tonganwashere)!";
       }
       bubbleContainer.innerHTML = renderMarkdown(displayError);
-      messages.push({ role: 'assistant', content: displayError });
-      saveHistory();
     } finally {
       clearTimeout(streamTimer);
       isGenerating = false;
       if (sendBtn) sendBtn.disabled = false;
-      scrollToBottom(true);
+      scrollToBottom(false);
     }
   }
 
